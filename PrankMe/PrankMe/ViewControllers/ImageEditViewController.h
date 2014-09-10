@@ -10,4 +10,9 @@
 
 @interface ImageEditViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UIImageView *image;
+@property (nonatomic) IBOutlet UIScrollView *carousel;
+
+- (id)initWithSelectedImage:(UIImage *)selectedImage;
+
 @end

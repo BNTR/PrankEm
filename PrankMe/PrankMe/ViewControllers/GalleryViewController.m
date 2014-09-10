@@ -10,6 +10,7 @@
 #import "SettingsViewController.h"
 #import "ShopViewController.h"
 #import "GalleryCell.h"
+#import "ImageEditViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 @interface GalleryViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -80,11 +81,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)photoPicker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
-    
-//    [self.selectedImageView setImage:selectedImage];
-    
     [photoPicker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
+    ImageEditViewController *imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    [self.navigationController pushViewController:imageEditVC animated:YES];
 }
 
 #pragma mark Collection View Delegate
@@ -113,8 +113,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     ALAsset *asset = self.imagesFromRoll[indexPath.row];
     ALAssetRepresentation *defaultRep = [asset defaultRepresentation];
-    UIImage *image = [UIImage imageWithCGImage:[defaultRep fullScreenImage] scale:[defaultRep scale] orientation:0];
-    // Do something with the image
+    UIImage *selectedImage = [UIImage imageWithCGImage:[defaultRep fullScreenImage] scale:[defaultRep scale] orientation:0];
+    ImageEditViewController *imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    [self.navigationController pushViewController:imageEditVC animated:YES];
 }
 
 #pragma mark - Assets Library Methods

@@ -10,6 +10,8 @@
 		322520C919BF11F900766247 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520C819BF11F900766247 /* GalleryCell.xib */; };
 		322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520CB19BF9DD200766247 /* ImageEditViewController.m */; };
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
+		322520D119BFAB9000766247 /* CarouselItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520D019BFAB9000766247 /* CarouselItem.m */; };
+		322520D319BFABA500766247 /* CarouselItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520D219BFABA500766247 /* CarouselItem.xib */; };
 		327BE02E19BE3777007F065D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02D19BE3777007F065D /* Foundation.framework */; };
 		327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02F19BE3777007F065D /* CoreGraphics.framework */; };
 		327BE03219BE3777007F065D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE03119BE3777007F065D /* UIKit.framework */; };
@@ -49,6 +51,9 @@
 		322520CA19BF9DD200766247 /* ImageEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditViewController.h; sourceTree = "<group>"; };
 		322520CB19BF9DD200766247 /* ImageEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEditViewController.m; sourceTree = "<group>"; };
 		322520CC19BF9DD200766247 /* ImageEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageEditViewController.xib; sourceTree = "<group>"; };
+		322520CF19BFAB9000766247 /* CarouselItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselItem.h; sourceTree = "<group>"; };
+		322520D019BFAB9000766247 /* CarouselItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselItem.m; sourceTree = "<group>"; };
+		322520D219BFABA500766247 /* CarouselItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselItem.xib; sourceTree = "<group>"; };
 		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +205,9 @@
 				322520CA19BF9DD200766247 /* ImageEditViewController.h */,
 				322520CB19BF9DD200766247 /* ImageEditViewController.m */,
 				322520CC19BF9DD200766247 /* ImageEditViewController.xib */,
+				322520CF19BFAB9000766247 /* CarouselItem.h */,
+				322520D019BFAB9000766247 /* CarouselItem.m */,
+				322520D219BFABA500766247 /* CarouselItem.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 				327BE06E19BE3C21007F065D /* GalleryViewController.xib in Resources */,
 				327BE04019BE3777007F065D /* Images.xcassets in Resources */,
 				327BE07019BE3C21007F065D /* SettingsViewController.xib in Resources */,
+				322520D319BFABA500766247 /* CarouselItem.xib in Resources */,
 				322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */,
 				327BE07A19BE428F007F065D /* ShopItemCell.xib in Resources */,
 				327BE07519BE40E3007F065D /* ShopViewController.xib in Resources */,
@@ -305,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322520D119BFAB9000766247 /* CarouselItem.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
