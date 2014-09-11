@@ -12,6 +12,8 @@
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
 		322520D119BFAB9000766247 /* CarouselItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520D019BFAB9000766247 /* CarouselItem.m */; };
 		322520D319BFABA500766247 /* CarouselItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520D219BFABA500766247 /* CarouselItem.xib */; };
+		325734B919C22E1A00B15B74 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 325734B819C22E1A00B15B74 /* FilterView.m */; };
+		325734BB19C22E3300B15B74 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325734BA19C22E3300B15B74 /* FilterView.xib */; };
 		327BE02E19BE3777007F065D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02D19BE3777007F065D /* Foundation.framework */; };
 		327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02F19BE3777007F065D /* CoreGraphics.framework */; };
 		327BE03219BE3777007F065D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE03119BE3777007F065D /* UIKit.framework */; };
@@ -54,6 +56,9 @@
 		322520CF19BFAB9000766247 /* CarouselItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselItem.h; sourceTree = "<group>"; };
 		322520D019BFAB9000766247 /* CarouselItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselItem.m; sourceTree = "<group>"; };
 		322520D219BFABA500766247 /* CarouselItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselItem.xib; sourceTree = "<group>"; };
+		325734B719C22E1A00B15B74 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
+		325734B819C22E1A00B15B74 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
+		325734BA19C22E3300B15B74 /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -208,6 +213,9 @@
 				322520CF19BFAB9000766247 /* CarouselItem.h */,
 				322520D019BFAB9000766247 /* CarouselItem.m */,
 				322520D219BFABA500766247 /* CarouselItem.xib */,
+				325734B719C22E1A00B15B74 /* FilterView.h */,
+				325734B819C22E1A00B15B74 /* FilterView.m */,
+				325734BA19C22E3300B15B74 /* FilterView.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325734BB19C22E3300B15B74 /* FilterView.xib in Resources */,
 				327BE03819BE3777007F065D /* InfoPlist.strings in Resources */,
 				327BE06E19BE3C21007F065D /* GalleryViewController.xib in Resources */,
 				327BE04019BE3777007F065D /* Images.xcassets in Resources */,
@@ -315,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				322520D119BFAB9000766247 /* CarouselItem.m in Sources */,
+				325734B919C22E1A00B15B74 /* FilterView.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
