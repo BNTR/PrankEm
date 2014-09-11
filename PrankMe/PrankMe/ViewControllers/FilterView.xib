@@ -15,30 +15,12 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="lS5-Kx-WiV">
-                    <rect key="frame" x="-25" y="-25" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="oCu-ks-VAr">
-                    <rect key="frame" x="-25" y="130" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="GCm-44-y3u">
-                    <rect key="frame" x="137" y="128" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="closeImage" destination="lS5-Kx-WiV" id="Wai-rz-E5e"/>
                 <outlet property="filterImage" destination="bZa-8z-k6b" id="MaQ-HL-87S"/>
-                <outlet property="rotateImage" destination="oCu-ks-VAr" id="FcV-Hh-5M8"/>
-                <outlet property="sizeImagw" destination="GCm-44-y3u" id="z2f-JS-GGt"/>
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="image" width="540" height="540"/>
-    </resources>
 </document>

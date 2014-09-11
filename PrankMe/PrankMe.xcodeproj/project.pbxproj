@@ -14,6 +14,7 @@
 		322520D319BFABA500766247 /* CarouselItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520D219BFABA500766247 /* CarouselItem.xib */; };
 		325734B919C22E1A00B15B74 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 325734B819C22E1A00B15B74 /* FilterView.m */; };
 		325734BB19C22E3300B15B74 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325734BA19C22E3300B15B74 /* FilterView.xib */; };
+		325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325734BC19C241A200B15B74 /* RageItalic.ttf */; };
 		327BE02E19BE3777007F065D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02D19BE3777007F065D /* Foundation.framework */; };
 		327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02F19BE3777007F065D /* CoreGraphics.framework */; };
 		327BE03219BE3777007F065D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE03119BE3777007F065D /* UIKit.framework */; };
@@ -59,6 +60,7 @@
 		325734B719C22E1A00B15B74 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
 		325734B819C22E1A00B15B74 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
 		325734BA19C22E3300B15B74 /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
+		325734BC19C241A200B15B74 /* RageItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RageItalic.ttf; sourceTree = "<group>"; };
 		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,6 +153,7 @@
 		327BE03319BE3777007F065D /* PrankMe */ = {
 			isa = PBXGroup;
 			children = (
+				325734BC19C241A200B15B74 /* RageItalic.ttf */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
 				327BE03D19BE3777007F065D /* AppDelegate.m */,
@@ -195,6 +198,9 @@
 				327BE06719BE3C21007F065D /* GalleryViewController.h */,
 				327BE06819BE3C21007F065D /* GalleryViewController.m */,
 				327BE06919BE3C21007F065D /* GalleryViewController.xib */,
+				327BE07B19BE4B31007F065D /* GalleryCell.h */,
+				327BE07C19BE4B31007F065D /* GalleryCell.m */,
+				322520C819BF11F900766247 /* GalleryCell.xib */,
 				327BE06A19BE3C21007F065D /* SettingsViewController.h */,
 				327BE06B19BE3C21007F065D /* SettingsViewController.m */,
 				327BE06C19BE3C21007F065D /* SettingsViewController.xib */,
@@ -204,9 +210,6 @@
 				327BE07619BE428F007F065D /* ShopItemCell.h */,
 				327BE07719BE428F007F065D /* ShopItemCell.m */,
 				327BE07819BE428F007F065D /* ShopItemCell.xib */,
-				327BE07B19BE4B31007F065D /* GalleryCell.h */,
-				327BE07C19BE4B31007F065D /* GalleryCell.m */,
-				322520C819BF11F900766247 /* GalleryCell.xib */,
 				322520CA19BF9DD200766247 /* ImageEditViewController.h */,
 				322520CB19BF9DD200766247 /* ImageEditViewController.m */,
 				322520CC19BF9DD200766247 /* ImageEditViewController.xib */,
@@ -295,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */,
 				325734BB19C22E3300B15B74 /* FilterView.xib in Resources */,
 				327BE03819BE3777007F065D /* InfoPlist.strings in Resources */,
 				327BE06E19BE3C21007F065D /* GalleryViewController.xib in Resources */,

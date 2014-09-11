@@ -25,8 +25,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.navigationItem.title = @"Settings";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonTapped)];
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *doneButtonImage = [UIImage imageNamed:@"doneButton"];
+    doneButton.frame = CGRectMake(0, 0, doneButtonImage.size.width, doneButtonImage.size.height);
+    [doneButton setBackgroundImage:doneButtonImage forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 }
 
@@ -78,6 +87,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"settingsCellArrow"]];
     if (indexPath.section == 0){
         switch (indexPath.row) {
             case 0:

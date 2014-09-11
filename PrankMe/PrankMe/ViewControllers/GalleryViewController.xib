@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jLl-sc-029">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jLl-sc-029">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jZp-QG-SdN">
                         <size key="itemSize" width="50" height="50"/>
@@ -34,9 +34,9 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c58-ky-Uot">
-                    <rect key="frame" x="254" y="518" width="54" height="30"/>
+                    <rect key="frame" x="276" y="496" width="34" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Camera">
+                    <state key="normal" backgroundImage="camera">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -44,12 +44,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGa-SJ-JxO">
-                    <rect key="frame" x="169" y="518" width="60" height="30"/>
+                    <rect key="frame" x="212" y="496" width="34" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="ZQz-J1-QXt"/>
+                        <constraint firstAttribute="width" constant="34" id="ZQz-J1-QXt"/>
                     </constraints>
-                    <state key="normal" title="Roll">
+                    <state key="normal" backgroundImage="cameraRoll">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -59,17 +59,22 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="c58-ky-Uot" firstAttribute="leading" secondItem="MGa-SJ-JxO" secondAttribute="trailing" constant="30" id="5LP-lL-TCe"/>
                 <constraint firstAttribute="trailing" secondItem="jLl-sc-029" secondAttribute="trailing" id="9Tn-HG-wCz"/>
+                <constraint firstItem="c58-ky-Uot" firstAttribute="top" secondItem="MGa-SJ-JxO" secondAttribute="top" id="9Xg-iF-9Zr"/>
+                <constraint firstItem="c58-ky-Uot" firstAttribute="baseline" secondItem="MGa-SJ-JxO" secondAttribute="baseline" id="BPm-Qf-bnA"/>
+                <constraint firstAttribute="trailing" secondItem="c58-ky-Uot" secondAttribute="trailing" constant="10" id="Biv-as-Z8H"/>
                 <constraint firstItem="jLl-sc-029" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DmM-0p-T0C"/>
-                <constraint firstAttribute="trailing" secondItem="c58-ky-Uot" secondAttribute="trailing" constant="12" id="MGM-Rh-e7Y"/>
-                <constraint firstItem="c58-ky-Uot" firstAttribute="leading" secondItem="MGa-SJ-JxO" secondAttribute="trailing" constant="25" id="Smg-tQ-bBO"/>
-                <constraint firstItem="MGa-SJ-JxO" firstAttribute="baseline" secondItem="c58-ky-Uot" secondAttribute="baseline" id="UF8-T0-DFz"/>
-                <constraint firstAttribute="bottom" secondItem="jLl-sc-029" secondAttribute="bottom" id="k1D-Yn-qMG"/>
-                <constraint firstAttribute="bottom" secondItem="MGa-SJ-JxO" secondAttribute="bottom" constant="20" symbolic="YES" id="kyx-YZ-wjP"/>
+                <constraint firstAttribute="bottom" secondItem="jLl-sc-029" secondAttribute="bottom" constant="80" id="k1D-Yn-qMG"/>
+                <constraint firstAttribute="bottom" secondItem="MGa-SJ-JxO" secondAttribute="bottom" constant="38" id="kyx-YZ-wjP"/>
                 <constraint firstItem="jLl-sc-029" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="odv-k6-wUd"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="camera" width="34" height="34"/>
+        <image name="cameraRoll" width="34" height="34"/>
+    </resources>
 </document>

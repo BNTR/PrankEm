@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "shopButton.png"
+      "filename" : "camera.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "shopButton@2x.png"
+      "filename" : "camera@2x.png"
     }
   ],
   "info" : {
