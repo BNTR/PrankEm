@@ -27,6 +27,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>RageItalic.ttf</string>
+		<string>MyriadPro.otf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

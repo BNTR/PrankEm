@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="uyi-NA-90k">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uyi-NA-90k">
+                    <rect key="frame" x="0.0" y="16" width="320" height="554"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -28,8 +28,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="uyi-NA-90k" secondAttribute="trailing" id="2vm-XD-Bik"/>
-                <constraint firstItem="uyi-NA-90k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BMi-Xd-Umc"/>
-                <constraint firstAttribute="bottom" secondItem="uyi-NA-90k" secondAttribute="bottom" id="CQi-JE-uHf"/>
+                <constraint firstItem="uyi-NA-90k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="BMi-Xd-Umc"/>
+                <constraint firstAttribute="bottom" secondItem="uyi-NA-90k" secondAttribute="bottom" constant="-2" id="CQi-JE-uHf"/>
                 <constraint firstItem="uyi-NA-90k" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r1g-WE-2IL"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

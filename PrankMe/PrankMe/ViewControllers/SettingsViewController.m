@@ -60,6 +60,10 @@
 
 #pragma mark Table View Datasource
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 34.5;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0){
         return 3;
@@ -80,6 +84,28 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 32.5)];
+    UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellTableSection"]];
+    [header addSubview:headerImage];
+    NSString *title;
+    if (section == 0){
+        title = @"App Store";
+    } else {
+        title = @"About";
+    }
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 32.5)];
+    titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = title;
+    [header addSubview:titleLabel];
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 32.5;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellId = @"CellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -88,6 +114,7 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"settingsCellArrow"]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section == 0){
         switch (indexPath.row) {
             case 0:
@@ -106,6 +133,15 @@
     } else {
         cell.textLabel.text = @"Help/Support";
     }
+    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 2, 320, 32.5)];
+    UIView *backgroundLine = [[UIView alloc] initWithFrame:CGRectMake(0, 2, 320, 32.5)];
+    backgroundLine.backgroundColor = [UIColor whiteColor];
+    backgroundLine.alpha = 0.2;
+    [background addSubview:backgroundLine];
+    cell.backgroundView = background;
     return cell;
 }
 

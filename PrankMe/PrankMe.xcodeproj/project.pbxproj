@@ -37,6 +37,7 @@
 		327BE07A19BE428F007F065D /* ShopItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327BE07819BE428F007F065D /* ShopItemCell.xib */; };
 		327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 327BE07C19BE4B31007F065D /* GalleryCell.m */; };
 		327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE08019BE5E81007F065D /* AssetsLibrary.framework */; };
+		32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32912AE819C378B9002894D1 /* MyriadPro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		327BE07B19BE4B31007F065D /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		327BE07C19BE4B31007F065D /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		327BE08019BE5E81007F065D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		32912AE819C378B9002894D1 /* MyriadPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyriadPro.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		327BE03319BE3777007F065D /* PrankMe */ = {
 			isa = PBXGroup;
 			children = (
+				32912AE819C378B9002894D1 /* MyriadPro.otf */,
 				325734BC19C241A200B15B74 /* RageItalic.ttf */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
@@ -298,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */,
 				325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */,
 				325734BB19C22E3300B15B74 /* FilterView.xib in Resources */,
 				327BE03819BE3777007F065D /* InfoPlist.strings in Resources */,
