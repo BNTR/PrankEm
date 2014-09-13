@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopViewController">
             <connections>
-                <outlet property="segmentControl" destination="S5t-eO-whc" id="glG-fD-H57"/>
+                <outlet property="effectsLabel" destination="blf-X3-Ltr" id="DFO-DD-pdp"/>
+                <outlet property="firstSegmentControlItem" destination="8yW-qV-ply" id="oYL-AO-OGE"/>
+                <outlet property="fourthSegmentControlItem" destination="xVD-fg-BFO" id="gdt-8f-6wc"/>
+                <outlet property="secondSegmentControlItem" destination="zPF-ez-37v" id="fdN-2K-ahz"/>
+                <outlet property="segmentControlView" destination="47q-ll-UXq" id="x57-km-lGJ"/>
                 <outlet property="tableView" destination="nOX-eQ-gRh" id="mcF-z7-FJW"/>
+                <outlet property="thirdSegmentControlItem" destination="tQ1-aN-DHW" id="tSP-jD-75l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,51 +22,93 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="S5t-eO-whc">
-                    <rect key="frame" x="20" y="118" width="280" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Broken Glass"/>
-                        <segment title="Scratches"/>
-                        <segment title="Dents"/>
-                        <segment title="Sprey"/>
-                    </segments>
-                    <connections>
-                        <action selector="segmentControlTapped:" destination="-1" eventType="valueChanged" id="Aav-G1-DyO"/>
-                    </connections>
-                </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nOX-eQ-gRh">
-                    <rect key="frame" x="0.0" y="173" width="320" height="395"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="qW0-4r-1Sc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nOX-eQ-gRh">
+                    <rect key="frame" x="0.0" y="77" width="320" height="491"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="491" id="CiO-qu-HIo"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="F0J-tK-ifX"/>
                         <outlet property="delegate" destination="-1" id="ciY-ku-iBp"/>
                     </connections>
                 </tableView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Effects" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blf-X3-Ltr">
-                    <rect key="frame" x="139" y="81" width="53" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="139" y="16" width="53" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Mft-JA-Ngi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47q-ll-UXq">
+                    <rect key="frame" x="10" y="45" width="301" height="24"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yW-qV-ply">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="24"/>
+                            <state key="normal" title="Broken Glass">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionFirstSegment:" destination="-1" eventType="touchUpInside" id="yIe-sK-S6j"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-fg-BFO">
+                            <rect key="frame" x="221" y="0.0" width="80" height="24"/>
+                            <state key="normal" title="Sprey">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionFourthSegment:" destination="-1" eventType="touchUpInside" id="cLs-nr-fVd"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQ1-aN-DHW">
+                            <rect key="frame" x="148" y="0.0" width="75" height="24"/>
+                            <state key="normal" title="Dents">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionThirdSegment:" destination="-1" eventType="touchUpInside" id="iqD-7J-erc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPF-ez-37v">
+                            <rect key="frame" x="74" y="0.0" width="75" height="24"/>
+                            <state key="normal" title="Scratches">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionSecoundSegment:" destination="-1" eventType="touchUpInside" id="Ljc-Tq-u37"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="9xN-BR-HpH"/>
+                        <constraint firstAttribute="width" constant="301" id="w5o-0d-NzJ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="blf-X3-Ltr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="7qM-76-jp6"/>
-                <constraint firstItem="blf-X3-Ltr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="139" id="8bS-ru-Vws"/>
-                <constraint firstItem="S5t-eO-whc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Gyw-N4-Nfe"/>
-                <constraint firstItem="nOX-eQ-gRh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I5t-t5-tTt"/>
-                <constraint firstAttribute="bottom" secondItem="nOX-eQ-gRh" secondAttribute="bottom" id="I7E-fP-ReC"/>
-                <constraint firstItem="S5t-eO-whc" firstAttribute="top" secondItem="blf-X3-Ltr" secondAttribute="bottom" constant="16" id="U9z-QG-zV6"/>
-                <constraint firstItem="nOX-eQ-gRh" firstAttribute="top" secondItem="S5t-eO-whc" secondAttribute="bottom" constant="27" id="eIt-DJ-yJY"/>
-                <constraint firstItem="S5t-eO-whc" firstAttribute="centerX" secondItem="nOX-eQ-gRh" secondAttribute="centerX" id="ny1-Mh-hsA"/>
-                <constraint firstAttribute="trailing" secondItem="S5t-eO-whc" secondAttribute="trailing" constant="20" symbolic="YES" id="yKM-FA-rpC"/>
+                <constraint firstItem="47q-ll-UXq" firstAttribute="top" secondItem="blf-X3-Ltr" secondAttribute="bottom" constant="8" id="2Au-Io-w8S"/>
+                <constraint firstItem="qW0-4r-1Sc" firstAttribute="bottom" secondItem="nOX-eQ-gRh" secondAttribute="bottom" id="66p-0b-bLE"/>
+                <constraint firstItem="qW0-4r-1Sc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jfd-bk-z5J"/>
+                <constraint firstAttribute="bottom" secondItem="qW0-4r-1Sc" secondAttribute="bottom" id="Osm-3e-j3B"/>
+                <constraint firstItem="blf-X3-Ltr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="139" id="bmZ-Jj-4YG"/>
+                <constraint firstItem="nOX-eQ-gRh" firstAttribute="leading" secondItem="qW0-4r-1Sc" secondAttribute="leading" id="eoR-RT-Vvu"/>
+                <constraint firstItem="nOX-eQ-gRh" firstAttribute="top" secondItem="47q-ll-UXq" secondAttribute="bottom" constant="8" id="jZz-B8-Pb1"/>
+                <constraint firstItem="47q-ll-UXq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="jf6-zo-F9J"/>
+                <constraint firstAttribute="trailing" secondItem="47q-ll-UXq" secondAttribute="trailing" constant="9" id="qze-me-AQt"/>
+                <constraint firstItem="blf-X3-Ltr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="t7K-7S-nQ2"/>
+                <constraint firstItem="nOX-eQ-gRh" firstAttribute="trailing" secondItem="qW0-4r-1Sc" secondAttribute="trailing" id="zKW-HJ-2ex"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="background" width="320" height="568"/>
+    </resources>
 </document>

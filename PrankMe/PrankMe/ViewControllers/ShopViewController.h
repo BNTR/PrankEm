@@ -11,6 +11,7 @@
 @interface ShopViewController : UIViewController
 
 @property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) IBOutlet UISegmentedControl *segmentControl;
+//@property (nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (nonatomic) IBOutlet UILabel *effectsLabel;
 
 @end

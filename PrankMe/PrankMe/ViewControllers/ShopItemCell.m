@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    self.itemTopLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18.0];
+    self.itemBottomLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15.0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

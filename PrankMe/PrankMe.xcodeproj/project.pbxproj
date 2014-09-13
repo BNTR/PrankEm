@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32139CEE19C3AED50073E7C9 /* AnimationSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 32139CED19C3AED50073E7C9 /* AnimationSegment.m */; };
 		322520C919BF11F900766247 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520C819BF11F900766247 /* GalleryCell.xib */; };
 		322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520CB19BF9DD200766247 /* ImageEditViewController.m */; };
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32139CEC19C3AED50073E7C9 /* AnimationSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSegment.h; sourceTree = "<group>"; };
+		32139CED19C3AED50073E7C9 /* AnimationSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationSegment.m; sourceTree = "<group>"; };
 		322520C819BF11F900766247 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
 		322520CA19BF9DD200766247 /* ImageEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditViewController.h; sourceTree = "<group>"; };
 		322520CB19BF9DD200766247 /* ImageEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEditViewController.m; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				32912AE819C378B9002894D1 /* MyriadPro.otf */,
+				32139CEC19C3AED50073E7C9 /* AnimationSegment.h */,
+				32139CED19C3AED50073E7C9 /* AnimationSegment.m */,
 				325734BC19C241A200B15B74 /* RageItalic.ttf */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
@@ -334,6 +339,7 @@
 				322520D119BFAB9000766247 /* CarouselItem.m in Sources */,
 				325734B919C22E1A00B15B74 /* FilterView.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
+				32139CEE19C3AED50073E7C9 /* AnimationSegment.m in Sources */,
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
 				327BE06D19BE3C21007F065D /* GalleryViewController.m in Sources */,

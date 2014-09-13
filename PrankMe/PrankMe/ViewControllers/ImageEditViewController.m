@@ -51,8 +51,22 @@
     [super viewDidLoad];
     self.image.image = self.selectedImage;
     self.navigationItem.title = @"Effects";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(goBackToGallery)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStylePlain target:self action:@selector(goToShareScreen)];
+    self.backgroundForImage.alpha = 0.2;
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *cancelButtonImage = [UIImage imageNamed:@"cancelButton"];
+    cancelButton.frame = CGRectMake(0, 0, cancelButtonImage.size.width, cancelButtonImage.size.height);
+    [cancelButton setBackgroundImage:cancelButtonImage forState:UIControlStateNormal];
+    [cancelButton addTarget:self action:@selector(goBackToGallery) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
+    
+    UIButton *applyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *applyButtonImage = [UIImage imageNamed:@"applyButton"];
+    applyButton.frame = CGRectMake(0, 0, applyButtonImage.size.width, applyButtonImage.size.height);
+    [applyButton setBackgroundImage:applyButtonImage forState:UIControlStateNormal];
+    [applyButton addTarget:self action:@selector(goToShareScreen) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:applyButton];
+    
     [self setupCarousel];
     self.rotating = NO;
 
@@ -77,38 +91,79 @@
 #pragma mark Carousel Methods
 
 - (void)setupCarousel{
+    
+//    NSArray *itemsList = @[@"shop",
+//                           @{@"unlocked": @(1),
+//                             @"filters":@[@{@"separator": @"separatorGlassImage"},
+//                                          @{@"image": @"image1",
+//                                            @"title": @"image1"
+//                                            @"paied": @(1)},
+//                                          @{@"image": @"image2",
+//                                            @"title": @"image2"},
+//                                          @{@"image": @"image3",
+//                                            @"title": @"image3"}
+//                                          ]
+//                             },
+//                           @{@"unlocked": @(0),
+//                             @"filters":@[@{@"image": @"image1",
+//                                            @"title": @"image1"},
+//                                          @{@"image": @"image1",
+//                                            @"title": @"image1"},
+//                                          @{@"image": @"image2",
+//                                            @"title": @"image2"},
+//                                          @{@"image": @"image3",
+//                                            @"title": @"image3"}]}
+//                           
+//                           ];
+    
+    
     float xCoordinate = 0;
     
-    UIButton *shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    shopButton.backgroundColor = [UIColor blueColor];
-    UIImage *shopButtonImage = [UIImage imageNamed:@"shopButton"];
-    [shopButton setImage:shopButtonImage forState:UIControlStateNormal];
-    shopButton.frame = CGRectMake(0, 0, shopButtonImage.size.width, shopButtonImage.size.height);
-    
-    xCoordinate = shopButtonImage.size.width;
-    
-    UIImageView *separatorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separatorImage"]];
-    separatorImage.frame = CGRectMake(xCoordinate, 0, 28, 98);
-    
-    xCoordinate += separatorImage.frame.size.width;
-    
-    CarouselItem *item1 = [[[NSBundle mainBundle] loadNibNamed:@"CarouselItem"
-                                                         owner:self
-                                                       options:nil] objectAtIndex:0];
-    [item1 setFrame:CGRectMake(xCoordinate, 0, item1.frame.size.width, item1.frame.size.height)];
-    item1.itemImage.image = [UIImage imageNamed:@"image"];
-    item1.itemLabel.text = @"Original";
-    [item1.itemButton addTarget:self action:@selector(selectFilter) forControlEvents:UIControlEventTouchUpInside];
-    
-    xCoordinate += item1.frame.size.width;
-    
-    self.carouselItemsList = [NSMutableArray arrayWithArray:@[shopButton, separatorImage, item1]];
-    
-    for (int i = 0; i < self.carouselItemsList.count; i++){
-        [self.carousel addSubview:self.carouselItemsList[i]];
+    for (int i = 0; i < itemsList.count; i++){
+        id item = [itemsList objectAtIndex:i];
+        if ([item isKindOfClass:[NSString class]]){
+            UIButton *shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            shopButton.backgroundColor = [UIColor blueColor];
+            UIImage *shopButtonImage = [UIImage imageNamed:@"shopCarouselButton"];
+            [shopButton setImage:shopButtonImage forState:UIControlStateNormal];
+            shopButton.frame = CGRectMake(11, 0, shopButtonImage.size.width, shopButtonImage.size.height);
+            xCoordinate +=shopButton.frame.size.width + 4;
+            [self.carousel addSubview:shopButton];
+        } else if ([item isKindOfClass:[NSDictionary class]]){
+            NSDictionary *filters = [[NSDictionary alloc] initWithDictionary:item];
+            BOOL unlocked = [[filters objectForKey:@"unlocked"] boolValue];
+            if (unlocked){
+                NSArray *filtersItems = [filters objectForKey:@"filters"];
+                for (int j = 0; j < filtersItems.count; j++){
+                    NSDictionary *item = [[NSDictionary alloc] initWithDictionary:filtersItems[j]];
+                    NSLog(@"%@, %@", [item objectForKey:@"image"], [item objectForKey:@"title"]);
+                }
+            }
+        }
     }
     
-    self.carousel.contentSize = CGSizeMake(self.carouselItemsList.count * 200, 94);
+//    UIImageView *separatorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separatorImage"]];
+//    separatorImage.frame = CGRectMake(xCoordinate, 0, 28, 98);
+//    
+//    xCoordinate += separatorImage.frame.size.width;
+//    
+//    CarouselItem *item1 = [[[NSBundle mainBundle] loadNibNamed:@"CarouselItem"
+//                                                         owner:self
+//                                                       options:nil] objectAtIndex:0];
+//    [item1 setFrame:CGRectMake(xCoordinate, 0, item1.frame.size.width, item1.frame.size.height)];
+//    item1.itemImage.image = [UIImage imageNamed:@"image"];
+//    item1.itemLabel.text = @"Original";
+//    [item1.itemButton addTarget:self action:@selector(selectFilter) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    xCoordinate += item1.frame.size.width;
+//    
+//    self.carouselItemsList = [NSMutableArray arrayWithArray:@[shopButton, separatorImage, item1]];
+//    
+//    for (int i = 0; i < self.carouselItemsList.count; i++){
+//        [self.carousel addSubview:self.carouselItemsList[i]];
+//    }
+//    
+//    self.carousel.contentSize = CGSizeMake(self.carouselItemsList.count * 200, 94);
 }
 
 #pragma mark Select Filter 

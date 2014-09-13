@@ -16,21 +16,35 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnE-jP-1zi">
-                    <rect key="frame" x="20" y="85" width="280" height="365"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="PCc-P1-mTt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrD-zP-SVe">
+                    <rect key="frame" x="10" y="17" width="300" height="370"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="280" id="5tX-zq-Ndn"/>
+                        <constraint firstAttribute="height" constant="370" id="l91-VP-27s"/>
+                        <constraint firstAttribute="width" constant="300" id="v1q-gU-Bxu"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnE-jP-1zi">
+                    <rect key="frame" x="26" y="32" width="268" height="340"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="340" id="7df-F1-jDy"/>
+                        <constraint firstAttribute="width" constant="268" id="wkP-GI-1hC"/>
                     </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr1-AO-UuU">
                     <rect key="frame" x="0.0" y="474" width="320" height="94"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="94" id="3VN-wN-EIy"/>
-                        <constraint firstAttribute="width" constant="320" id="u3N-5g-Jl3"/>
+                        <constraint firstAttribute="width" constant="320" id="cpu-Xa-Ciz"/>
+                        <constraint firstAttribute="height" constant="94" id="xBn-Wf-9Mr"/>
                     </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="uZc-DV-bA5"/>
@@ -39,17 +53,24 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="pr1-AO-UuU" firstAttribute="top" secondItem="XnE-jP-1zi" secondAttribute="bottom" constant="24" id="6Xf-2c-I0n"/>
-                <constraint firstAttribute="trailing" secondItem="pr1-AO-UuU" secondAttribute="trailing" id="SSk-Oe-uP3"/>
-                <constraint firstItem="XnE-jP-1zi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="85" id="Ygy-ft-glD"/>
-                <constraint firstItem="XnE-jP-1zi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Z75-yu-Z5C"/>
-                <constraint firstAttribute="trailing" secondItem="XnE-jP-1zi" secondAttribute="trailing" constant="20" id="nB6-s3-zXB"/>
-                <constraint firstAttribute="bottom" secondItem="pr1-AO-UuU" secondAttribute="bottom" id="q6H-qG-Qop"/>
-                <constraint firstItem="pr1-AO-UuU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="w13-ca-cMv"/>
+                <constraint firstAttribute="trailing" secondItem="BrD-zP-SVe" secondAttribute="trailing" constant="10" id="Eib-1e-jGy"/>
+                <constraint firstItem="pr1-AO-UuU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mb3-wI-QWX"/>
+                <constraint firstAttribute="trailing" secondItem="XnE-jP-1zi" secondAttribute="trailing" constant="26" id="NuZ-h6-cIc"/>
+                <constraint firstAttribute="bottom" secondItem="pr1-AO-UuU" secondAttribute="bottom" id="QMQ-0g-E6V"/>
+                <constraint firstItem="XnE-jP-1zi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="S0E-Z0-jK3"/>
+                <constraint firstItem="BrD-zP-SVe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="T4W-kz-4sP"/>
+                <constraint firstItem="BrD-zP-SVe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="X1b-VB-J0n"/>
+                <constraint firstItem="XnE-jP-1zi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="26" id="Xzr-bE-hoX"/>
+                <constraint firstItem="PCc-P1-mTt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gko-Ly-oNR"/>
+                <constraint firstItem="PCc-P1-mTt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lbX-Nr-w7f"/>
+                <constraint firstAttribute="trailing" secondItem="pr1-AO-UuU" secondAttribute="trailing" id="px8-EO-fJv"/>
+                <constraint firstAttribute="bottom" secondItem="PCc-P1-mTt" secondAttribute="bottom" id="u7I-Jz-dsj"/>
+                <constraint firstAttribute="trailing" secondItem="PCc-P1-mTt" secondAttribute="trailing" id="ydr-cz-aKa"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="background" width="320" height="568"/>
+    </resources>
 </document>

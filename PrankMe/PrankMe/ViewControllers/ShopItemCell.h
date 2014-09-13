@@ -14,5 +14,6 @@
 @property (nonatomic) IBOutlet UILabel *itemTopLabel;
 @property (nonatomic) IBOutlet UILabel *itemBottomLabel;
 @property (nonatomic) IBOutlet UIButton *itemButton;
+@property (nonatomic) IBOutlet UILabel *itemPriceLabel;
 
 @end
