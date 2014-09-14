@@ -9,6 +9,7 @@
 #import "ImageEditViewController.h"
 #import "CarouselItem.h"
 #import "FilterView.h"
+#import "CarouselSourceSingleton.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate>
@@ -23,7 +24,8 @@
 @property (nonatomic) float lastRotation;
 @property (nonatomic) float lastScale;
 
-@property (nonatomic, strong) NSMutableArray *carouselItemsList;
+@property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
+@property (nonatomic, strong) NSString *selectedLayerName;
 
 @end
 
@@ -33,7 +35,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -42,6 +43,7 @@
     self = [super initWithNibName:@"ImageEditViewController" bundle:nil];
     if (self) {
         self.selectedImage = selectedImage;
+        self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
     }
     return self;
 }
@@ -51,7 +53,6 @@
     [super viewDidLoad];
     self.image.image = self.selectedImage;
     self.navigationItem.title = @"Effects";
-    self.backgroundForImage.alpha = 0.2;
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *cancelButtonImage = [UIImage imageNamed:@"cancelButton"];
@@ -92,87 +93,57 @@
 
 - (void)setupCarousel{
     
-//    NSArray *itemsList = @[@"shop",
-//                           @{@"unlocked": @(1),
-//                             @"filters":@[@{@"separator": @"separatorGlassImage"},
-//                                          @{@"image": @"image1",
-//                                            @"title": @"image1"
-//                                            @"paied": @(1)},
-//                                          @{@"image": @"image2",
-//                                            @"title": @"image2"},
-//                                          @{@"image": @"image3",
-//                                            @"title": @"image3"}
-//                                          ]
-//                             },
-//                           @{@"unlocked": @(0),
-//                             @"filters":@[@{@"image": @"image1",
-//                                            @"title": @"image1"},
-//                                          @{@"image": @"image1",
-//                                            @"title": @"image1"},
-//                                          @{@"image": @"image2",
-//                                            @"title": @"image2"},
-//                                          @{@"image": @"image3",
-//                                            @"title": @"image3"}]}
-//                           
-//                           ];
-    
+    self.carousel.canCancelContentTouches = YES;
+    self.carousel.delaysContentTouches = NO;
+    NSArray *itemsList = [self.carouselSource getAllItems];
     
     float xCoordinate = 0;
     
+    UIButton *shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    shopButton.backgroundColor = [UIColor blueColor];
+    UIImage *shopButtonImage = [UIImage imageNamed:@"shopCarouselButton"];
+    [shopButton setImage:shopButtonImage forState:UIControlStateNormal];
+    shopButton.frame = CGRectMake(11, 0, shopButtonImage.size.width, shopButtonImage.size.height);
+    xCoordinate +=shopButton.frame.size.width + shopButton.frame.origin.x + 4;
+    [self.carousel addSubview:shopButton];
+    
     for (int i = 0; i < itemsList.count; i++){
-        id item = [itemsList objectAtIndex:i];
-        if ([item isKindOfClass:[NSString class]]){
-            UIButton *shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            shopButton.backgroundColor = [UIColor blueColor];
-            UIImage *shopButtonImage = [UIImage imageNamed:@"shopCarouselButton"];
-            [shopButton setImage:shopButtonImage forState:UIControlStateNormal];
-            shopButton.frame = CGRectMake(11, 0, shopButtonImage.size.width, shopButtonImage.size.height);
-            xCoordinate +=shopButton.frame.size.width + 4;
-            [self.carousel addSubview:shopButton];
-        } else if ([item isKindOfClass:[NSDictionary class]]){
-            NSDictionary *filters = [[NSDictionary alloc] initWithDictionary:item];
-            BOOL unlocked = [[filters objectForKey:@"unlocked"] boolValue];
-            if (unlocked){
-                NSArray *filtersItems = [filters objectForKey:@"filters"];
-                for (int j = 0; j < filtersItems.count; j++){
-                    NSDictionary *item = [[NSDictionary alloc] initWithDictionary:filtersItems[j]];
-                    NSLog(@"%@, %@", [item objectForKey:@"image"], [item objectForKey:@"title"]);
-                }
+        NSArray *group = itemsList[i];
+        for (int j = 0; j < group.count; j++){
+            NSDictionary *filters = [group objectAtIndex:j];
+            if (j == 0){
+                UIImage *shopButtonImage = [UIImage imageNamed:filters[@"image"]];
+                UIImageView *separatorImage = [[UIImageView alloc] initWithImage:shopButtonImage];
+                separatorImage.frame = CGRectMake(xCoordinate, 0, shopButtonImage.size.width, shopButtonImage.size.height);
+                [self.carousel addSubview:separatorImage];
+                xCoordinate += separatorImage.frame.size.width + 4;
+            } else {
+                CarouselItem *item = [[[NSBundle mainBundle] loadNibNamed:@"CarouselItem"
+                                                                    owner:self
+                                                                  options:nil] objectAtIndex:0];
+                [item setFrame:CGRectMake(xCoordinate, 0, item.frame.size.width, item.frame.size.height)];
+                item.itemImage.image = [UIImage imageNamed:filters[@"image"]];
+                item.itemLabel.text = filters[@"title"];
+                item.itemLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.765];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectFilter:)];
+                [item addGestureRecognizer:tap];
+                [self.carousel addSubview:item];
+                xCoordinate +=item.frame.size.width + 4;
             }
         }
     }
-    
-//    UIImageView *separatorImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separatorImage"]];
-//    separatorImage.frame = CGRectMake(xCoordinate, 0, 28, 98);
-//    
-//    xCoordinate += separatorImage.frame.size.width;
-//    
-//    CarouselItem *item1 = [[[NSBundle mainBundle] loadNibNamed:@"CarouselItem"
-//                                                         owner:self
-//                                                       options:nil] objectAtIndex:0];
-//    [item1 setFrame:CGRectMake(xCoordinate, 0, item1.frame.size.width, item1.frame.size.height)];
-//    item1.itemImage.image = [UIImage imageNamed:@"image"];
-//    item1.itemLabel.text = @"Original";
-//    [item1.itemButton addTarget:self action:@selector(selectFilter) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    xCoordinate += item1.frame.size.width;
-//    
-//    self.carouselItemsList = [NSMutableArray arrayWithArray:@[shopButton, separatorImage, item1]];
-//    
-//    for (int i = 0; i < self.carouselItemsList.count; i++){
-//        [self.carousel addSubview:self.carouselItemsList[i]];
-//    }
-//    
-//    self.carousel.contentSize = CGSizeMake(self.carouselItemsList.count * 200, 94);
+    self.carousel.contentSize = CGSizeMake(xCoordinate, 94);
 }
 
 #pragma mark Select Filter 
 
-- (void)selectFilter{
+- (void)selectFilter:(UITapGestureRecognizer *)recognizer{
+    CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
     self.selectedFilter = [[[NSBundle mainBundle] loadNibNamed:@"FilterView"
                                                          owner:self
                                                        options:nil] objectAtIndex:0];
     [self.selectedFilter setFrame:CGRectMake(0, 0, self.selectedFilter.frame.size.width, self.selectedFilter.frame.size.height)];
+    self.selectedFilter.filterImage.image = selecteLayer.itemImage.image;
     [self.image addSubview:self.selectedFilter];
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
     [self.view addGestureRecognizer:panRecognizer];

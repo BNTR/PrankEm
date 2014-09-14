@@ -39,6 +39,7 @@
 		327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 327BE07C19BE4B31007F065D /* GalleryCell.m */; };
 		327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE08019BE5E81007F065D /* AssetsLibrary.framework */; };
 		32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32912AE819C378B9002894D1 /* MyriadPro.otf */; };
+		32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		327BE07C19BE4B31007F065D /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		327BE08019BE5E81007F065D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		32912AE819C378B9002894D1 /* MyriadPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyriadPro.otf; sourceTree = "<group>"; };
+		32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselSourceSingleton.m; sourceTree = "<group>"; };
+		32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselSourceSingleton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 		327BE03319BE3777007F065D /* PrankMe */ = {
 			isa = PBXGroup;
 			children = (
+				32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */,
+				32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */,
 				32912AE819C378B9002894D1 /* MyriadPro.otf */,
 				32139CEC19C3AED50073E7C9 /* AnimationSegment.h */,
 				32139CED19C3AED50073E7C9 /* AnimationSegment.m */,
@@ -346,6 +351,7 @@
 				322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */,
 				327BE07419BE40E3007F065D /* ShopViewController.m in Sources */,
 				327BE07919BE428F007F065D /* ShopItemCell.m in Sources */,
+				32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */,
 				327BE06F19BE3C21007F065D /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

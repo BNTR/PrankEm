@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *image;
 @property (nonatomic) IBOutlet UIScrollView *carousel;
-@property (nonatomic) IBOutlet UIView *backgroundForImage;
 
 - (id)initWithSelectedImage:(UIImage *)selectedImage;
 

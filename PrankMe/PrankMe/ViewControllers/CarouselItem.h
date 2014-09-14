@@ -12,6 +12,5 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *itemImage;
 @property (nonatomic, strong) IBOutlet UILabel *itemLabel;
-@property (nonatomic, strong) IBOutlet UIButton *itemButton;
 
 @end
