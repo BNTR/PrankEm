@@ -15,6 +15,10 @@
 
 @interface GalleryViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (nonatomic, strong) SettingsViewController *settingsVC;
+@property (nonatomic, strong) ShopViewController *shopVC;
+@property (nonatomic, strong) ImageEditViewController *imageEditVC;
+
 @end
 
 @implementation GalleryViewController
@@ -54,7 +58,7 @@
     self.navigationItem.title = @"PrankEm";
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                           [UIFont fontWithName:@"RageItalic" size:22.87], NSFontAttributeName, nil]];
+                                                           [UIFont fontWithName:@"MyriadPro-Regular" size:15.00], NSFontAttributeName, nil]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.pictures.backgroundColor = [UIColor clearColor];
@@ -67,14 +71,14 @@
 
 - (void)goToSettingsScreen
 {
-    SettingsViewController *settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-    [self.navigationController pushViewController:settingsVC animated:YES];
+    self.settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+    [self.navigationController pushViewController:self.settingsVC animated:YES];
 }
 
 - (void)goToShopScreen
 {
-    ShopViewController *shopVC = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];
-    [self.navigationController pushViewController:shopVC animated:YES];
+    self.shopVC = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];
+    [self.navigationController pushViewController:self.shopVC animated:YES];
 }
 
 #pragma mark Buttons Action
@@ -143,8 +147,8 @@
     ALAsset *asset = self.imagesFromRoll[indexPath.row];
     ALAssetRepresentation *defaultRep = [asset defaultRepresentation];
     UIImage *selectedImage = [UIImage imageWithCGImage:[defaultRep fullScreenImage] scale:[defaultRep scale] orientation:0];
-    ImageEditViewController *imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
-    [self.navigationController pushViewController:imageEditVC animated:YES];
+    self.imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    [self.navigationController pushViewController:self.imageEditVC animated:YES];
 }
 
 #pragma mark - Assets Library Methods

@@ -12,7 +12,9 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *image;
 @property (nonatomic) IBOutlet UIScrollView *carousel;
+@property (nonatomic) UIView *carouselContent;
 
 - (id)initWithSelectedImage:(UIImage *)selectedImage;
+- (void)reloadCarousel;
 
 @end

@@ -25,69 +25,63 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.brokenGlassFilters = [NSMutableArray arrayWithObjects:
                                    @{@"image": @"glassSeparator"},
                                    @{@"image": @"glass1",
-                                     @"title": @"glass1",
-                                     @"paied": @(1)},
+                                     @"title": @"glass1"},
                                    @{@"image": @"glass2",
-                                     @"title": @"glass2",
-                                     @"paied": @(1)},
+                                     @"title": @"glass2"},
                                    @{@"image": @"glass3",
-                                     @"title": @"glass3",
-                                     @"paied": @(1)},
-                                   @{@"image": @"glass4",
-                                     @"title": @"glass4",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass5",
-                                     @"title": @"glass5",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass6",
-                                     @"title": @"glass6",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass7",
-                                     @"title": @"glass7",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass8",
-                                     @"title": @"glass8",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass9",
-                                     @"title": @"glass9",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass10",
-                                     @"title": @"glass10",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass11",
-                                     @"title": @"glass11",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass12",
-                                     @"title": @"glass12",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass13",
-                                     @"title": @"glass13",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass14",
-                                     @"title": @"glass14",
-                                     @"paied": @(0)},
-                                   @{@"image": @"glass15",
-                                     @"title": @"glass15",
-                                     @"paied": @(0)},
+                                     @"title": @"glass3"},
                                    nil];
+        self.brokenGlassFirstBundle = [NSMutableArray arrayWithObjects:
+                                       @[@{@"image": @"glass4",
+                                         @"title": @"glass4"},
+                                       @{@"image": @"glass5",
+                                         @"title": @"glass5",},
+                                       @{@"image": @"glass6",
+                                         @"title": @"glass6"}],
+                                       @{@"price":@"1,99 $"},
+                                       nil];
+
+        self.brokenGlassSecondBundle = [NSMutableArray arrayWithObjects:
+                                        @[@{@"image": @"glass7",
+                                          @"title": @"glass7",},
+                                        @{@"image": @"glass8",
+                                          @"title": @"glass8",},
+                                        @{@"image": @"glass9",
+                                          @"title": @"glass9",}],
+                                        @{@"price":@"0,99 $"},
+                                        nil];
+        self.brokenGlassThirdBundle = [NSMutableArray arrayWithObjects:
+                                       @[@{@"image": @"glass10",
+                                         @"title": @"glass10"},
+                                       @{@"image": @"glass11",
+                                         @"title": @"glass11"},
+                                       @{@"image": @"glass12",
+                                         @"title": @"glass12"}],
+                                       @{@"price":@"3,99 $"},
+                                       nil];
+        
+        self.allBrokenGlassBundles = [NSMutableArray arrayWithObjects:self.brokenGlassFirstBundle, self.brokenGlassSecondBundle, self.brokenGlassThirdBundle, nil];
+        
         self.scratchesFilters = [NSMutableArray arrayWithObjects:
                                    @{@"image": @"glassSeparator"},
                                    @{@"image": @"scratch1",
-                                     @"title": @"scratch1",
-                                     @"paied": @(1)},
+                                     @"title": @"scratch1"},
                                    @{@"image": @"scratch2",
-                                     @"title": @"scratch2",
-                                     @"paied": @(1)},
+                                     @"title": @"scratch2"},
                                    @{@"image": @"scratch3",
-                                     @"title": @"scratch3",
-                                     @"paied": @(1)},
-                                   @{@"image": @"scratch4",
-                                     @"title": @"scratch4",
-                                     @"paied": @(0)},
-                                   @{@"image": @"scratch5",
-                                     @"title": @"scratch5",
-                                     @"paied": @(0)},
+                                     @"title": @"scratch3"},
                                    nil];
+        
+        self.scratchesGlassFirstBundle = [NSMutableArray arrayWithObjects:
+                                          @[@{@"image": @"scratch4",
+                                              @"title": @"scratch4"},
+                                            @{@"image": @"scratch5",
+                                              @"title": @"scratch5"}],
+                                            @{@"price":@"4,99 $"},
+                                          nil];
+        
+        self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesGlassFirstBundle, nil];
+        
         self.dentsFilters = [NSMutableArray arrayWithArray:@[]];
         self.spreyFilters = [NSMutableArray arrayWithArray:@[]];
     }

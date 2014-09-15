@@ -10,9 +10,10 @@
 #import "CarouselItem.h"
 #import "FilterView.h"
 #import "CarouselSourceSingleton.h"
+#import "ShopViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIImage *selectedImage;
 @property (nonatomic, strong) FilterView *selectedFilter;
@@ -44,6 +45,7 @@
     if (self) {
         self.selectedImage = selectedImage;
         self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
+        self.carouselContent = [[UIView alloc] init];
     }
     return self;
 }
@@ -53,7 +55,7 @@
     [super viewDidLoad];
     self.image.image = self.selectedImage;
     self.navigationItem.title = @"Effects";
-    
+    self.navigationController.delegate = self;
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *cancelButtonImage = [UIImage imageNamed:@"cancelButton"];
     cancelButton.frame = CGRectMake(0, 0, cancelButtonImage.size.width, cancelButtonImage.size.height);
@@ -70,7 +72,6 @@
     
     [self setupCarousel];
     self.rotating = NO;
-
 }
 
 #pragma Navigation Buttons Action
@@ -91,10 +92,16 @@
 
 #pragma mark Carousel Methods
 
+- (void)reloadCarousel{
+    [self.carouselContent removeFromSuperview];
+    self.carouselContent = nil;
+    [self setupCarousel];
+}
+
 - (void)setupCarousel{
-    
-    self.carousel.canCancelContentTouches = YES;
-    self.carousel.delaysContentTouches = NO;
+    if (self.carouselContent == nil){
+        self.carouselContent = [[UIView alloc] init];
+    }
     NSArray *itemsList = [self.carouselSource getAllItems];
     
     float xCoordinate = 0;
@@ -104,19 +111,20 @@
     UIImage *shopButtonImage = [UIImage imageNamed:@"shopCarouselButton"];
     [shopButton setImage:shopButtonImage forState:UIControlStateNormal];
     shopButton.frame = CGRectMake(11, 0, shopButtonImage.size.width, shopButtonImage.size.height);
+    [shopButton addTarget:self action:@selector(goToShop:) forControlEvents:UIControlEventTouchUpInside];
     xCoordinate +=shopButton.frame.size.width + shopButton.frame.origin.x + 4;
-    [self.carousel addSubview:shopButton];
+    [self.carouselContent addSubview:shopButton];
     
     for (int i = 0; i < itemsList.count; i++){
         NSArray *group = itemsList[i];
         for (int j = 0; j < group.count; j++){
             NSDictionary *filters = [group objectAtIndex:j];
             if (j == 0){
-                UIImage *shopButtonImage = [UIImage imageNamed:filters[@"image"]];
-                UIImageView *separatorImage = [[UIImageView alloc] initWithImage:shopButtonImage];
-                separatorImage.frame = CGRectMake(xCoordinate, 0, shopButtonImage.size.width, shopButtonImage.size.height);
-                [self.carousel addSubview:separatorImage];
-                xCoordinate += separatorImage.frame.size.width + 4;
+                UIImage *separatorImage = [UIImage imageNamed:filters[@"image"]];
+                UIImageView *separatorImageView = [[UIImageView alloc] initWithImage:separatorImage];
+                separatorImageView.frame = CGRectMake(xCoordinate, 0, separatorImage.size.width, separatorImage.size.height);
+                [self.carouselContent addSubview:separatorImageView];
+                xCoordinate += separatorImageView.frame.size.width + 4;
             } else {
                 CarouselItem *item = [[[NSBundle mainBundle] loadNibNamed:@"CarouselItem"
                                                                     owner:self
@@ -127,11 +135,13 @@
                 item.itemLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.765];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectFilter:)];
                 [item addGestureRecognizer:tap];
-                [self.carousel addSubview:item];
+                [self.carouselContent addSubview:item];
                 xCoordinate +=item.frame.size.width + 4;
             }
         }
     }
+    self.carouselContent.frame = CGRectMake(0, 0, xCoordinate, 94);
+    [self.carousel addSubview:self.carouselContent];
     self.carousel.contentSize = CGSizeMake(xCoordinate, 94);
 }
 
@@ -204,6 +214,12 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
+}
+
+- (IBAction)goToShop:(id)sender{
+    ShopViewController *shopVC = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];
+    shopVC.imageEdit = self;
+    [self.navigationController pushViewController:shopVC animated:YES];
 }
 
 @end

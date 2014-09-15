@@ -22,6 +22,14 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *dentsFilters;
 @property (nonatomic, strong) NSMutableArray *spreyFilters;
 
+@property (nonatomic, strong) NSMutableArray *brokenGlassFirstBundle;
+@property (nonatomic, strong) NSMutableArray *brokenGlassSecondBundle;
+@property (nonatomic, strong) NSMutableArray *brokenGlassThirdBundle;
+@property (nonatomic, strong) NSMutableArray *allBrokenGlassBundles;
+
+@property (nonatomic, strong) NSMutableArray *scratchesGlassFirstBundle;
+@property (nonatomic, strong) NSMutableArray *allScratchesBundles;
+
 + (CarouselSourceSingleton *)sharedCarouselSourceSingleton;
 
 - (void)unlockItemInGroup:(Group)group underIndex:(NSInteger)index;
