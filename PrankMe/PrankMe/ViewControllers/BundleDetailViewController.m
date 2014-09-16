@@ -48,18 +48,18 @@
     self.navigationItem.title = @"Settings";
     
     UIButton *shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *shopButtonImage = [UIImage imageNamed:@"shopNavButton"];
+    UIImage *shopButtonImage = [UIImage imageNamed:@"orangeShopButton"];
     shopButton.frame = CGRectMake(0, 0, shopButtonImage.size.width, shopButtonImage.size.height);
     [shopButton setBackgroundImage:shopButtonImage forState:UIControlStateNormal];
     [shopButton addTarget:self action:@selector(goBackToShop) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shopButton];
     
-    UIButton *buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *emptyButtonNavImage = [UIImage imageNamed:@"emptyNavButton"];
-    buyButton.frame = CGRectMake(0, 0, emptyButtonNavImage.size.width, emptyButtonNavImage.size.height);
-    [buyButton setBackgroundImage:emptyButtonNavImage forState:UIControlStateNormal];
-    [buyButton addTarget:self action:@selector(buyBundle) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buyButton];
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *orangeDoneImage = [UIImage imageNamed:@"orangeDoneButton"];
+    doneButton.frame = CGRectMake(0, 0, orangeDoneImage.size.width, orangeDoneImage.size.height);
+    [doneButton setBackgroundImage:orangeDoneImage forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(goBackToShop) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     
     [self setupView];
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GalleryViewController">
@@ -33,7 +33,10 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c58-ky-Uot">
-                    <rect key="frame" x="276" y="496" width="34" height="34"/>
+                    <rect key="frame" x="264" y="505" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="yVg-SG-vL2"/>
+                    </constraints>
                     <state key="normal" backgroundImage="camera">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -42,9 +45,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGa-SJ-JxO">
-                    <rect key="frame" x="212" y="496" width="34" height="34"/>
+                    <rect key="frame" x="203" y="505" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="34" id="ZQz-J1-QXt"/>
+                        <constraint firstAttribute="width" constant="48" id="w3c-nG-faw"/>
                     </constraints>
                     <state key="normal" backgroundImage="cameraRoll">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,25 +59,22 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="c58-ky-Uot" firstAttribute="leading" secondItem="MGa-SJ-JxO" secondAttribute="trailing" constant="30" id="5LP-lL-TCe"/>
+                <constraint firstItem="MGa-SJ-JxO" firstAttribute="top" secondItem="jLl-sc-029" secondAttribute="bottom" constant="17" id="22U-Tn-gLU"/>
+                <constraint firstItem="MGa-SJ-JxO" firstAttribute="top" secondItem="c58-ky-Uot" secondAttribute="top" id="56f-hc-fzQ"/>
                 <constraint firstAttribute="trailing" secondItem="jLl-sc-029" secondAttribute="trailing" id="9Tn-HG-wCz"/>
-                <constraint firstItem="c58-ky-Uot" firstAttribute="top" secondItem="MGa-SJ-JxO" secondAttribute="top" id="9Xg-iF-9Zr"/>
-                <constraint firstItem="c58-ky-Uot" firstAttribute="baseline" secondItem="MGa-SJ-JxO" secondAttribute="baseline" id="BPm-Qf-bnA"/>
-                <constraint firstAttribute="trailing" secondItem="c58-ky-Uot" secondAttribute="trailing" constant="10" id="Biv-as-Z8H"/>
                 <constraint firstItem="jLl-sc-029" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DmM-0p-T0C"/>
+                <constraint firstItem="c58-ky-Uot" firstAttribute="bottom" secondItem="MGa-SJ-JxO" secondAttribute="bottom" id="T4D-KM-YNL"/>
+                <constraint firstAttribute="bottom" secondItem="MGa-SJ-JxO" secondAttribute="bottom" constant="15" id="Twv-ni-GIj"/>
+                <constraint firstItem="MGa-SJ-JxO" firstAttribute="baseline" secondItem="c58-ky-Uot" secondAttribute="baseline" id="WAO-PX-4Vo"/>
+                <constraint firstItem="c58-ky-Uot" firstAttribute="leading" secondItem="MGa-SJ-JxO" secondAttribute="trailing" constant="13" id="Y8Z-z1-3u5"/>
                 <constraint firstAttribute="bottom" secondItem="jLl-sc-029" secondAttribute="bottom" constant="80" id="k1D-Yn-qMG"/>
-                <constraint firstAttribute="bottom" secondItem="MGa-SJ-JxO" secondAttribute="bottom" constant="38" id="kyx-YZ-wjP"/>
                 <constraint firstItem="jLl-sc-029" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="odv-k6-wUd"/>
+                <constraint firstAttribute="trailing" secondItem="c58-ky-Uot" secondAttribute="trailing" constant="8" id="ohb-Lv-qzq"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="camera" width="34" height="34"/>
-        <image name="cameraRoll" width="34" height="34"/>
+        <image name="camera" width="48" height="48"/>
+        <image name="cameraRoll" width="48" height="48"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

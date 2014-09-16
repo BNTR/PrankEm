@@ -11,6 +11,7 @@
 #import "FilterView.h"
 #import "CarouselSourceSingleton.h"
 #import "ShopViewController.h"
+#import "ShareViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate>
@@ -81,7 +82,23 @@
 }
 
 - (void)goToShareScreen{
-    NSLog(@"goToShareScreen");
+    CGSize newSize = CGSizeMake(self.selectedImage.size.width, self.selectedImage.size.height);
+    UIGraphicsBeginImageContext(newSize);
+    
+    [self.selectedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    
+    [self.selectedFilter.filterImage.image drawInRect:CGRectMake(self.selectedFilter.filterImage.frame.origin.x,
+                                                                 self.selectedFilter.filterImage.frame.origin.y,
+                                                                 self.selectedFilter.filterImage.frame.size.width,
+                                                                 self.selectedFilter.filterImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    
+    UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    //[self.view addSubview:[[UIImageView alloc] initWithImage:mergedImage]];
+    ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:mergedImage];
+    [self.navigationController pushViewController:shareVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

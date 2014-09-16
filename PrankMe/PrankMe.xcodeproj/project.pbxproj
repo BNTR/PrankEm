@@ -38,6 +38,8 @@
 		327BE07A19BE428F007F065D /* ShopItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327BE07819BE428F007F065D /* ShopItemCell.xib */; };
 		327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 327BE07C19BE4B31007F065D /* GalleryCell.m */; };
 		327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE08019BE5E81007F065D /* AssetsLibrary.framework */; };
+		328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 328AE34D19C7ABBE0090F995 /* ShareViewController.m */; };
+		328AE35019C7ABBE0090F995 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328AE34E19C7ABBE0090F995 /* ShareViewController.xib */; };
 		32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32912AE819C378B9002894D1 /* MyriadPro.otf */; };
 		32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */; };
 		32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FEB2C119C5F7F4009ADD6E /* BundleDetailViewController.m */; };
@@ -101,6 +103,9 @@
 		327BE07B19BE4B31007F065D /* GalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCell.h; sourceTree = "<group>"; };
 		327BE07C19BE4B31007F065D /* GalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCell.m; sourceTree = "<group>"; };
 		327BE08019BE5E81007F065D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		328AE34C19C7ABBE0090F995 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		328AE34D19C7ABBE0090F995 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		328AE34E19C7ABBE0090F995 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		32912AE819C378B9002894D1 /* MyriadPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyriadPro.otf; sourceTree = "<group>"; };
 		32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselSourceSingleton.m; sourceTree = "<group>"; };
 		32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselSourceSingleton.h; sourceTree = "<group>"; };
@@ -221,8 +226,19 @@
 				32FEB2C619C6257F009ADD6E /* Settings */,
 				32FEB2C719C62587009ADD6E /* Shop */,
 				32FEB2C819C6258E009ADD6E /* ImageEdit */,
+				328AE35119C7ABC20090F995 /* Share */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		328AE35119C7ABC20090F995 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				328AE34C19C7ABBE0090F995 /* ShareViewController.h */,
+				328AE34D19C7ABBE0090F995 /* ShareViewController.m */,
+				328AE34E19C7ABBE0090F995 /* ShareViewController.xib */,
+			);
+			name = Share;
 			sourceTree = "<group>";
 		};
 		32FEB2C519C62576009ADD6E /* Gallery */ = {
@@ -377,6 +393,7 @@
 				327BE07019BE3C21007F065D /* SettingsViewController.xib in Resources */,
 				322520D319BFABA500766247 /* CarouselItem.xib in Resources */,
 				322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */,
+				328AE35019C7ABBE0090F995 /* ShareViewController.xib in Resources */,
 				327BE07A19BE428F007F065D /* ShopItemCell.xib in Resources */,
 				32FEB2CE19C65514009ADD6E /* BundleDetailItem.xib in Resources */,
 				327BE07519BE40E3007F065D /* ShopViewController.xib in Resources */,
@@ -412,6 +429,7 @@
 				327BE07419BE40E3007F065D /* ShopViewController.m in Sources */,
 				327BE07919BE428F007F065D /* ShopItemCell.m in Sources */,
 				32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */,
+				328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */,
 				327BE06F19BE3C21007F065D /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
