@@ -40,6 +40,8 @@
 		327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE08019BE5E81007F065D /* AssetsLibrary.framework */; };
 		328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 328AE34D19C7ABBE0090F995 /* ShareViewController.m */; };
 		328AE35019C7ABBE0090F995 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328AE34E19C7ABBE0090F995 /* ShareViewController.xib */; };
+		328AE35719CA376F0090F995 /* ZDStickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328AE35319CA376F0090F995 /* ZDStickerView.m */; };
+		328AE35819CA376F0090F995 /* SPGripViewBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328AE35519CA376F0090F995 /* SPGripViewBorderView.m */; };
 		32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32912AE819C378B9002894D1 /* MyriadPro.otf */; };
 		32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */; };
 		32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FEB2C119C5F7F4009ADD6E /* BundleDetailViewController.m */; };
@@ -106,6 +108,10 @@
 		328AE34C19C7ABBE0090F995 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		328AE34D19C7ABBE0090F995 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		328AE34E19C7ABBE0090F995 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		328AE35319CA376F0090F995 /* ZDStickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDStickerView.m; sourceTree = "<group>"; };
+		328AE35419CA376F0090F995 /* SPGripViewBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGripViewBorderView.h; sourceTree = "<group>"; };
+		328AE35519CA376F0090F995 /* SPGripViewBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGripViewBorderView.m; sourceTree = "<group>"; };
+		328AE35619CA376F0090F995 /* ZDStickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDStickerView.h; sourceTree = "<group>"; };
 		32912AE819C378B9002894D1 /* MyriadPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyriadPro.otf; sourceTree = "<group>"; };
 		32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselSourceSingleton.m; sourceTree = "<group>"; };
 		32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselSourceSingleton.h; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 		327BE03319BE3777007F065D /* PrankMe */ = {
 			isa = PBXGroup;
 			children = (
+				328AE35219CA36F70090F995 /* OverlayClass */,
 				32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */,
 				32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */,
 				32FEB2C919C625B0009ADD6E /* Fonts */,
@@ -239,6 +246,17 @@
 				328AE34E19C7ABBE0090F995 /* ShareViewController.xib */,
 			);
 			name = Share;
+			sourceTree = "<group>";
+		};
+		328AE35219CA36F70090F995 /* OverlayClass */ = {
+			isa = PBXGroup;
+			children = (
+				328AE35619CA376F0090F995 /* ZDStickerView.h */,
+				328AE35319CA376F0090F995 /* ZDStickerView.m */,
+				328AE35419CA376F0090F995 /* SPGripViewBorderView.h */,
+				328AE35519CA376F0090F995 /* SPGripViewBorderView.m */,
+			);
+			name = OverlayClass;
 			sourceTree = "<group>";
 		};
 		32FEB2C519C62576009ADD6E /* Gallery */ = {
@@ -424,10 +442,12 @@
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
 				327BE06D19BE3C21007F065D /* GalleryViewController.m in Sources */,
+				328AE35719CA376F0090F995 /* ZDStickerView.m in Sources */,
 				322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */,
 				32FEB2CC19C65505009ADD6E /* BundleDetailItem.m in Sources */,
 				327BE07419BE40E3007F065D /* ShopViewController.m in Sources */,
 				327BE07919BE428F007F065D /* ShopItemCell.m in Sources */,
+				328AE35819CA376F0090F995 /* SPGripViewBorderView.m in Sources */,
 				32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */,
 				328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */,
 				327BE06F19BE3C21007F065D /* SettingsViewController.m in Sources */,

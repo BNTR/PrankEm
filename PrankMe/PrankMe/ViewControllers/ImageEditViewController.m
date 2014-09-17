@@ -13,21 +13,14 @@
 #import "ShopViewController.h"
 #import "ShareViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ZDStickerView.h"
 
-@interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate>
+@interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, ZDStickerViewDelegate>
 
 @property (nonatomic, strong) UIImage *selectedImage;
 @property (nonatomic, strong) FilterView *selectedFilter;
-
-@property (nonatomic) CGPoint startLocation;
-@property (nonatomic) BOOL dragging;
-@property (nonatomic) BOOL rotating;
-
-@property (nonatomic) float lastRotation;
-@property (nonatomic) float lastScale;
-
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
-@property (nonatomic, strong) NSString *selectedLayerName;
+@property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
 
 @end
 
@@ -47,6 +40,7 @@
         self.selectedImage = selectedImage;
         self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
         self.carouselContent = [[UIView alloc] init];
+        self.overlaysOnScreen = [NSMutableArray array];
     }
     return self;
 }
@@ -72,7 +66,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:applyButton];
     
     [self setupCarousel];
-    self.rotating = NO;
 }
 
 #pragma Navigation Buttons Action
@@ -83,18 +76,34 @@
 
 - (void)goToShareScreen{
     CGSize newSize = CGSizeMake(self.selectedImage.size.width, self.selectedImage.size.height);
-    UIGraphicsBeginImageContext(newSize);
-    
-    [self.selectedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    
-    [self.selectedFilter.filterImage.image drawInRect:CGRectMake(self.selectedFilter.filterImage.frame.origin.x,
-                                                                 self.selectedFilter.filterImage.frame.origin.y,
-                                                                 self.selectedFilter.filterImage.frame.size.width,
-                                                                 self.selectedFilter.filterImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-    
-    UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
+    UIImage *mergedImage = [[UIImage alloc] init];
+    for (int i = 0; i < self.overlaysOnScreen.count; i++){
+        
+        UIGraphicsBeginImageContext(newSize);
+        if (i == 0){
+            [self.selectedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        } else {
+            [mergedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        }
+        
+        ZDStickerView *overlay = self.overlaysOnScreen[i];
+        UIView *content = overlay.contentView;
+        UIImageView *overlayImage = [[UIImageView alloc] init];
+        for (int j = 0; j < content.subviews.count; j++){
+            if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+                overlayImage = content.subviews[j];
+            }
+        }
+        
+        [overlayImage.image drawInRect:CGRectMake(overlayImage.frame.origin.x,
+                                                                     overlayImage.frame.origin.y,
+                                                                     overlayImage.frame.size.width,
+                                                                     overlayImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+        
+        mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+    }
     
     //[self.view addSubview:[[UIImageView alloc] initWithImage:mergedImage]];
     ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:mergedImage];
@@ -166,71 +175,25 @@
 
 - (void)selectFilter:(UITapGestureRecognizer *)recognizer{
     CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
-    self.selectedFilter = [[[NSBundle mainBundle] loadNibNamed:@"FilterView"
-                                                         owner:self
-                                                       options:nil] objectAtIndex:0];
-    [self.selectedFilter setFrame:CGRectMake(0, 0, self.selectedFilter.frame.size.width, self.selectedFilter.frame.size.height)];
-    self.selectedFilter.filterImage.image = selecteLayer.itemImage.image;
-    [self.image addSubview:self.selectedFilter];
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
-    [self.view addGestureRecognizer:panRecognizer];
-    UIRotationGestureRecognizer *rotationRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotate:)];
-	[rotationRecognizer setDelegate:self];
-	[self.view addGestureRecognizer:rotationRecognizer];
-    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
-	[pinchRecognizer setDelegate:self];
-	[self.view addGestureRecognizer:pinchRecognizer];
-}
-
-#pragma mark Move Selected Filter
-
-- (void)panDetected:(UIPanGestureRecognizer *)panRecognizer
-{
-    CGPoint translation = [panRecognizer translationInView:self.view];
-    CGPoint imageViewPosition = self.selectedFilter.center;
-    imageViewPosition.x += translation.x;
-    imageViewPosition.y += translation.y;
+    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:selecteLayer.itemImage.image];
+    CGRect gripFrame1 = CGRectMake(50, 50, 140, 140);
+    imageView1.frame = gripFrame1;
+    UIView* contentView = [[UIView alloc] initWithFrame:gripFrame1];
+    [contentView setBackgroundColor:[UIColor clearColor]];
+    [contentView addSubview:imageView1];
     
-    self.selectedFilter.center = imageViewPosition;
-    [panRecognizer setTranslation:CGPointZero inView:self.view];
-}
-
--(void)scale:(id)sender {
+    ZDStickerView *overlay = [[ZDStickerView alloc] initWithFrame:gripFrame1];
+    overlay.tag = 0;
+    overlay.delegate = self;
+    overlay.contentView = contentView;
+    overlay.preventsPositionOutsideSuperview = NO;
+    overlay.preventsCustomButton = NO;
+    [overlay setButton:ZDSTICKERVIEW_BUTTON_CUSTOM
+                            image:[UIImage imageNamed:@"rotateOverlayButton"]];
+    [overlay showEditingHandles];
+    [self.view addSubview:overlay];
     
-    if([(UIPinchGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
-        _lastScale = 1.0;
-    }
-    
-    CGFloat scale = 1.0 - (_lastScale - [(UIPinchGestureRecognizer*)sender scale]);
-    
-    CGAffineTransform currentTransform = self.selectedFilter.filterImage.transform;
-    CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, scale, scale);
-    
-    [self.selectedFilter.filterImage setTransform:newTransform];
-    _lastScale = [(UIPinchGestureRecognizer*)sender scale];
-}
-
--(void)rotate:(id)sender {
-    
-    if([(UIRotationGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded) {
-        
-        _lastRotation = 0.0;
-        return;
-    }
-    
-    CGFloat rotation = 0.0 - (_lastRotation - [(UIRotationGestureRecognizer*)sender rotation]);
-    
-    CGAffineTransform currentTransform = self.selectedFilter.transform;
-    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
-    
-    [self.selectedFilter setTransform:newTransform];
-    
-    _lastRotation = [(UIRotationGestureRecognizer*)sender rotation];
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
+    [self.overlaysOnScreen addObject:overlay];
 }
 
 - (IBAction)goToShop:(id)sender{
