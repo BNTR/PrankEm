@@ -7,6 +7,7 @@
 //
 
 #import "ShareViewController.h"
+#import "GalleryViewController.h"
 
 @interface ShareViewController ()
 
@@ -37,13 +38,46 @@
 {
     [super viewDidLoad];
     self.completeImageView.image = self.completeImage;
-    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"Share";
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *doneButtonImage = [UIImage imageNamed:@"doneButton"];
+    doneButton.frame = CGRectMake(0, 0, doneButtonImage.size.width, doneButtonImage.size.height);
+    [doneButton setBackgroundImage:doneButtonImage forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(goToGallery) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)instagramButtonTapped:(id)sender{
+    NSLog(@"instagramButtonTapped");
+}
+
+- (IBAction)facebookButtonTapped:(id)sender{
+    NSLog(@"facebookButtonTapped");
+}
+
+- (IBAction)twitterButtonTapped:(id)sender{
+    NSLog(@"twitterButtonTapped");
+}
+
+- (IBAction)mailButtonTapped:(id)sender{
+    NSLog(@"mailButtonTapped");
+}
+
+- (IBAction)textButtonTapped:(id)sender{
+    NSLog(@"textButtonTapped");
+}
+
+- (void)goToGallery{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
