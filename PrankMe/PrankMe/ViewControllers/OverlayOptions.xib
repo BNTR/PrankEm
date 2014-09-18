@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="MyriadPro.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OverlayOptions">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="181"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invertColorUncheck" translatesAutoresizingMaskIntoConstraints="NO" id="2u4-pj-RRI">
+                    <rect key="frame" x="14" y="16" width="11" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="6et-fG-NPU"/>
+                        <constraint firstAttribute="width" constant="11" id="sPF-zm-Xaq"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invert color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZX-5w-7Ak">
+                    <rect key="frame" x="41" y="11" width="87" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="87" id="p9R-Jp-AVV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-ZV-sXo">
+                    <rect key="frame" x="6" y="7" width="131" height="30"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contrast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Up-VX-bci">
+                    <rect key="frame" x="8" y="84" width="67" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="67" id="frb-KZ-jdU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="53l-18-61Q">
+                    <rect key="frame" x="12" y="57" width="118" height="31"/>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brightness" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyG-v0-b00">
+                    <rect key="frame" x="8" y="35" width="82" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="pIu-2i-EcN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7N2-r4-Xmd">
+                    <rect key="frame" x="12" y="102" width="118" height="31"/>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2u4-pj-RRI" firstAttribute="centerY" secondItem="WZX-5w-7Ak" secondAttribute="centerY" id="0LS-6j-FoK"/>
+                <constraint firstItem="53l-18-61Q" firstAttribute="leading" secondItem="7N2-r4-Xmd" secondAttribute="leading" id="25z-Sp-26e"/>
+                <constraint firstItem="PyG-v0-b00" firstAttribute="leading" secondItem="7Up-VX-bci" secondAttribute="leading" id="2v1-jB-ln8"/>
+                <constraint firstItem="2u4-pj-RRI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="4XW-BH-Z8g"/>
+                <constraint firstItem="PvM-ZV-sXo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="CRh-ks-Kgl"/>
+                <constraint firstItem="PvM-ZV-sXo" firstAttribute="centerX" secondItem="53l-18-61Q" secondAttribute="centerX" id="Ce1-W0-YEp"/>
+                <constraint firstItem="7N2-r4-Xmd" firstAttribute="trailing" secondItem="53l-18-61Q" secondAttribute="trailing" id="Dab-ek-yVb"/>
+                <constraint firstItem="7N2-r4-Xmd" firstAttribute="top" secondItem="53l-18-61Q" secondAttribute="bottom" constant="15" id="Dqi-fb-vVn"/>
+                <constraint firstItem="53l-18-61Q" firstAttribute="leading" secondItem="2u4-pj-RRI" secondAttribute="leading" id="E1j-VG-C2l"/>
+                <constraint firstAttribute="bottom" secondItem="7Up-VX-bci" secondAttribute="bottom" constant="76" id="Ja2-uC-Xz2"/>
+                <constraint firstItem="WZX-5w-7Ak" firstAttribute="trailing" secondItem="53l-18-61Q" secondAttribute="trailing" id="L1j-5f-Pj3"/>
+                <constraint firstItem="7Up-VX-bci" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="LAg-Sm-tQT"/>
+                <constraint firstItem="53l-18-61Q" firstAttribute="top" secondItem="PyG-v0-b00" secondAttribute="bottom" constant="1" id="PAr-0Y-WBm"/>
+                <constraint firstItem="PyG-v0-b00" firstAttribute="top" secondItem="2u4-pj-RRI" secondAttribute="bottom" constant="8" symbolic="YES" id="Rao-wG-DX6"/>
+                <constraint firstItem="PyG-v0-b00" firstAttribute="top" secondItem="WZX-5w-7Ak" secondAttribute="bottom" constant="3" id="bga-CE-lhN"/>
+                <constraint firstItem="53l-18-61Q" firstAttribute="top" secondItem="PvM-ZV-sXo" secondAttribute="bottom" constant="20" id="d6t-Rp-ymi"/>
+                <constraint firstItem="WZX-5w-7Ak" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="gpZ-iw-jX0"/>
+                <constraint firstItem="7Up-VX-bci" firstAttribute="top" secondItem="PyG-v0-b00" secondAttribute="bottom" constant="28" id="hwU-BJ-4mT"/>
+                <constraint firstItem="PvM-ZV-sXo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="mmK-8G-GkU"/>
+                <constraint firstItem="WZX-5w-7Ak" firstAttribute="leading" secondItem="2u4-pj-RRI" secondAttribute="trailing" constant="16" id="tWE-gW-i0x"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="brightnessLabel" destination="PyG-v0-b00" id="iqx-67-3qn"/>
+                <outlet property="brightnessSlider" destination="53l-18-61Q" id="3oe-8Z-sjU"/>
+                <outlet property="contrastLabel" destination="7Up-VX-bci" id="wGD-qY-Zd4"/>
+                <outlet property="contrastSlider" destination="7N2-r4-Xmd" id="kzg-KJ-gpB"/>
+                <outlet property="invertColorButton" destination="PvM-ZV-sXo" id="Fr4-oh-S0Z"/>
+                <outlet property="invertColorImage" destination="2u4-pj-RRI" id="Tqt-i4-0Gh"/>
+                <outlet property="invertLabel" destination="WZX-5w-7Ak" id="m9d-Ur-2eA"/>
+            </connections>
+            <point key="canvasLocation" x="326" y="172.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="invertColorUncheck" width="12" height="12"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -78,8 +78,8 @@
     CGSize newSize = CGSizeMake(self.selectedImage.size.width, self.selectedImage.size.height);
     UIImage *mergedImage = [[UIImage alloc] init];
     for (int i = 0; i < self.overlaysOnScreen.count; i++){
-        
-        UIGraphicsBeginImageContext(newSize);
+//        
+//        UIGraphicsBeginImageContext(newSize);
         if (i == 0){
             [self.selectedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
         } else {
@@ -95,19 +95,52 @@
             }
         }
         
-        [overlayImage.image drawInRect:CGRectMake(overlayImage.frame.origin.x,
-                                                                     overlayImage.frame.origin.y,
-                                                                     overlayImage.frame.size.width,
-                                                                     overlayImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+        mergedImage = [ImageEditViewController mergeImage:self.selectedImage withImage:overlayImage.image];
         
-        mergedImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
+//        [overlayImage.image drawInRect:CGRectMake(overlayImage.frame.origin.x,
+//                                                                     overlayImage.frame.origin.y,
+//                                                                     overlayImage.frame.size.width,
+//                                                                     overlayImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+//        
+//        mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+//        
+//        UIGraphicsEndImageContext();
     }
     
     //[self.view addSubview:[[UIImageView alloc] initWithImage:mergedImage]];
     ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:mergedImage];
     [self.navigationController pushViewController:shareVC animated:YES];
+}
+
++ (UIImage*)mergeImage:(UIImage*)first withImage:(UIImage*)second
+{
+    // get size of the first image
+    CGImageRef firstImageRef = first.CGImage;
+    CGFloat firstWidth = CGImageGetWidth(firstImageRef);
+    CGFloat firstHeight = CGImageGetHeight(firstImageRef);
+    
+    // get size of the second image
+    CGImageRef secondImageRef = second.CGImage;
+    CGFloat secondWidth = CGImageGetWidth(secondImageRef);
+    CGFloat secondHeight = CGImageGetHeight(secondImageRef);
+    
+    // build merged size
+    CGSize mergedSize = CGSizeMake(MAX(firstWidth, secondWidth), MAX(firstHeight, secondHeight));
+    
+    // capture image context ref
+    UIGraphicsBeginImageContext(mergedSize);
+    
+    //Draw images onto the context
+    [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
+    [second drawInRect:CGRectMake(0, 0, secondWidth, secondHeight)];
+    
+    // assign context to new UIImage
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // end context
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void)didReceiveMemoryWarning
@@ -171,9 +204,17 @@
     self.carousel.contentSize = CGSizeMake(xCoordinate, 94);
 }
 
+
+- (IBAction)goToShop:(id)sender{
+    ShopViewController *shopVC = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];
+    shopVC.imageEdit = self;
+    [self.navigationController pushViewController:shopVC animated:YES];
+}
+
 #pragma mark Select Filter 
 
 - (void)selectFilter:(UITapGestureRecognizer *)recognizer{
+    [self showOverlayOptions];
     CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:selecteLayer.itemImage.image];
     CGRect gripFrame1 = CGRectMake(50, 50, 140, 140);
@@ -196,10 +237,28 @@
     [self.overlaysOnScreen addObject:overlay];
 }
 
-- (IBAction)goToShop:(id)sender{
-    ShopViewController *shopVC = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];
-    shopVC.imageEdit = self;
-    [self.navigationController pushViewController:shopVC animated:YES];
+- (void)showOverlayOptions{
+//    OverlayOptions *overlayOptions = [[[NSBundle mainBundle] loadNibNamed:@"OverlayOptions"
+//                                                        owner:self
+//                                                      options:nil] objectAtIndex:0];
+//    [overlayOptions setFrame:CGRectMake(0, 390, overlayOptions.frame.size.width, overlayOptions.frame.size.height)];
+//    [overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
+//    [overlayOptions.contrastSlider addTarget:self action:@selector(contrastChanged:) forControlEvents:UIControlEventValueChanged];
+//    [self.view addSubview:overlayOptions];
+    self.overlayOptionsContent.hidden = NO;
+    self.carouselContent.hidden = YES;
+}
+
+- (IBAction)brightnessChanged:(UISlider *)sender{
+    NSLog(@"%f", sender.value);
+}
+
+- (IBAction)contrastChanged:(UISlider *)sender{
+    NSLog(@"%f", sender.value);
+}
+
+- (IBAction)invertColor:(id)sender{
+    NSLog(@"");
 }
 
 @end

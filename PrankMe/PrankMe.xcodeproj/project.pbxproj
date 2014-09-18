@@ -16,6 +16,8 @@
 		325734B919C22E1A00B15B74 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 325734B819C22E1A00B15B74 /* FilterView.m */; };
 		325734BB19C22E3300B15B74 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325734BA19C22E3300B15B74 /* FilterView.xib */; };
 		325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325734BC19C241A200B15B74 /* RageItalic.ttf */; };
+		32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EA019CB45FF00AE8A38 /* OverlayOptions.m */; };
+		32621EA319CB460F00AE8A38 /* OverlayOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32621EA219CB460F00AE8A38 /* OverlayOptions.xib */; };
 		327BE02E19BE3777007F065D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02D19BE3777007F065D /* Foundation.framework */; };
 		327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02F19BE3777007F065D /* CoreGraphics.framework */; };
 		327BE03219BE3777007F065D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE03119BE3777007F065D /* UIKit.framework */; };
@@ -74,6 +76,9 @@
 		325734B819C22E1A00B15B74 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
 		325734BA19C22E3300B15B74 /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		325734BC19C241A200B15B74 /* RageItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RageItalic.ttf; sourceTree = "<group>"; };
+		32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayOptions.h; sourceTree = "<group>"; };
+		32621EA019CB45FF00AE8A38 /* OverlayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayOptions.m; sourceTree = "<group>"; };
+		32621EA219CB460F00AE8A38 /* OverlayOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayOptions.xib; sourceTree = "<group>"; };
 		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -313,6 +318,9 @@
 				325734B719C22E1A00B15B74 /* FilterView.h */,
 				325734B819C22E1A00B15B74 /* FilterView.m */,
 				325734BA19C22E3300B15B74 /* FilterView.xib */,
+				32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */,
+				32621EA019CB45FF00AE8A38 /* OverlayOptions.m */,
+				32621EA219CB460F00AE8A38 /* OverlayOptions.xib */,
 			);
 			name = ImageEdit;
 			sourceTree = "<group>";
@@ -402,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32FEB2C419C5F810009ADD6E /* BundleDetailViewController.xib in Resources */,
+				32621EA319CB460F00AE8A38 /* OverlayOptions.xib in Resources */,
 				32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */,
 				325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */,
 				325734BB19C22E3300B15B74 /* FilterView.xib in Resources */,
@@ -439,6 +448,7 @@
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */,
 				32139CEE19C3AED50073E7C9 /* AnimationSegment.m in Sources */,
+				32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */,
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
 				327BE06D19BE3C21007F065D /* GalleryViewController.m in Sources */,
@@ -567,7 +577,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
@@ -581,7 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
