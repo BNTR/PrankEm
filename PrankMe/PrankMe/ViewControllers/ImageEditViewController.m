@@ -325,6 +325,9 @@
     [self.overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
     [self.overlayOptions.contrastSlider addTarget:self action:@selector(contrastChanged:) forControlEvents:UIControlEventValueChanged];
     [self.overlayOptions.invertColorButton addTarget:self action:@selector(invertColor:) forControlEvents:UIControlEventTouchUpInside];
+    [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateHighlighted];
+    [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateSelected];
     [self.view addSubview:self.overlayOptions];
     self.originalOverlayImage = image;
     self.carouselContent.hidden = YES;
