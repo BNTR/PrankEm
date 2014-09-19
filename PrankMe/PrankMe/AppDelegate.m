@@ -18,6 +18,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     GalleryViewController *galleryVC = [[GalleryViewController alloc] initWithNibName:@"GalleryViewController" bundle:nil];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:galleryVC];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                               [UIFont fontWithName:@"MyriadPro-Regular" size:15.00], NSFontAttributeName, nil]];
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;

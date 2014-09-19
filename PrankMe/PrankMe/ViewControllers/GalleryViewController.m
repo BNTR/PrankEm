@@ -57,10 +57,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shopButton];
     self.navigationItem.title = @"PrankEm";
 
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                           [UIFont fontWithName:@"MyriadPro-Regular" size:15.00], NSFontAttributeName, nil]];
-    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.pictures.backgroundColor = [UIColor clearColor];
     [self getAllPictures];
