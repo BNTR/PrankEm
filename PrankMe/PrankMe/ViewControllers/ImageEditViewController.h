@@ -13,7 +13,6 @@
 @property (nonatomic, strong) IBOutlet UIImageView *image;
 @property (nonatomic) IBOutlet UIScrollView *carousel;
 @property (nonatomic) UIView *carouselContent;
-@property (nonatomic) IBOutlet UIView *overlayOptionsContent;
 
 - (id)initWithSelectedImage:(UIImage *)selectedImage;
 - (void)reloadCarousel;

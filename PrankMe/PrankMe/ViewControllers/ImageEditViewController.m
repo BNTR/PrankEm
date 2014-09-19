@@ -14,6 +14,8 @@
 #import "ShareViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ZDStickerView.h"
+#import "OverlayOptions.h"
+#import "UIImage+Filtering.h"
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, ZDStickerViewDelegate>
 
@@ -21,6 +23,30 @@
 @property (nonatomic, strong) FilterView *selectedFilter;
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
 @property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
+@property (nonatomic, strong) OverlayOptions *overlayOptions;
+
+@property (nonatomic, strong) UIImage *originalOverlayImage;
+
+@property (nonatomic, strong) UIView *selectedImageTopView;
+@end
+
+#import <CoreImage/CoreImage.h>
+
+@interface UIImage (ColorInverse)
+
+@end
+
+
+@implementation UIImage (ColorInverse)
+
++ (UIImage *)inverseColor:(UIImage *)image
+{
+    CIImage *coreImage = [CIImage imageWithCGImage:image.CGImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
+    [filter setValue:coreImage forKey:kCIInputImageKey];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    return [UIImage imageWithCIImage:result];
+}
 
 @end
 
@@ -41,6 +67,7 @@
         self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
         self.carouselContent = [[UIView alloc] init];
         self.overlaysOnScreen = [NSMutableArray array];
+        self.selectedImageTopView = [[UIView alloc] init];
     }
     return self;
 }
@@ -57,15 +84,50 @@
     [cancelButton setBackgroundImage:cancelButtonImage forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(goBackToGallery) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
+    //self.selectedImageTopView.backgroundColor = [UIColor redColor];
     
-    UIButton *applyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *applyButtonImage = [UIImage imageNamed:@"applyButton"];
-    applyButton.frame = CGRectMake(0, 0, applyButtonImage.size.width, applyButtonImage.size.height);
-    [applyButton setBackgroundImage:applyButtonImage forState:UIControlStateNormal];
-    [applyButton addTarget:self action:@selector(goToShareScreen) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:applyButton];
-    
+    CGSize size = [self imageSizeAfterAspectFit:self.image];
+    self.selectedImageTopView.frame = CGRectMake(self.image.frame.origin.x, self.image.frame.origin.y, size.width, size.height);
+    self.selectedImageTopView.clipsToBounds = YES;
+    [self.view addSubview:self.selectedImageTopView];
     [self setupCarousel];
+}
+
+-(CGSize)imageSizeAfterAspectFit:(UIImageView*)imgview{
+    float newwidth;
+    float newheight;
+    
+    UIImage *image = imgview.image;
+    
+    if (image.size.height >= image.size.width){
+        newheight = imgview.frame.size.height;
+        newwidth = (image.size.width/image.size.height)*newheight;
+        
+        if (newwidth > imgview.frame.size.width){
+            float diff = imgview.frame.size.width-newwidth;
+            newheight = newheight+diff/newheight*newheight;
+            newwidth = imgview.frame.size.width;
+        }
+        
+    }
+    else{
+        newwidth = imgview.frame.size.width;
+        newheight = (image.size.height/image.size.width)*newwidth;
+        
+        if(newheight > imgview.frame.size.height){
+            float diff = imgview.frame.size.height-newheight;
+            newwidth = newwidth+diff/newwidth*newwidth;
+            newheight = imgview.frame.size.height;
+        }
+    }
+    
+    NSLog(@"image after aspect fit: width=%f height=%f",newwidth,newheight);
+    
+    
+    //adapt UIImageView size to image size
+    imgview.frame=CGRectMake(imgview.frame.origin.x+(imgview.frame.size.width-newwidth)/2,imgview.frame.origin.y+(imgview.frame.size.height-newheight)/2,newwidth,newheight);
+    
+    return CGSizeMake(newwidth, newheight);
 }
 
 #pragma Navigation Buttons Action
@@ -75,72 +137,18 @@
 }
 
 - (void)goToShareScreen{
-    CGSize newSize = CGSizeMake(self.selectedImage.size.width, self.selectedImage.size.height);
-    UIImage *mergedImage = [[UIImage alloc] init];
-    for (int i = 0; i < self.overlaysOnScreen.count; i++){
-//        
-//        UIGraphicsBeginImageContext(newSize);
-        if (i == 0){
-            [self.selectedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-        } else {
-            [mergedImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-        }
-        
-        ZDStickerView *overlay = self.overlaysOnScreen[i];
-        UIView *content = overlay.contentView;
-        UIImageView *overlayImage = [[UIImageView alloc] init];
-        for (int j = 0; j < content.subviews.count; j++){
-            if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
-                overlayImage = content.subviews[j];
-            }
-        }
-        
-        mergedImage = [ImageEditViewController mergeImage:self.selectedImage withImage:overlayImage.image];
-        
-//        [overlayImage.image drawInRect:CGRectMake(overlayImage.frame.origin.x,
-//                                                                     overlayImage.frame.origin.y,
-//                                                                     overlayImage.frame.size.width,
-//                                                                     overlayImage.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-//        
-//        mergedImage = UIGraphicsGetImageFromCurrentImageContext();
-//        
-//        UIGraphicsEndImageContext();
-    }
+    UIImage *image = self.image.image;
     
-    //[self.view addSubview:[[UIImageView alloc] initWithImage:mergedImage]];
-    ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:mergedImage];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"MyImageName.png"];
+    
+    // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:filePath atomically:YES];
+    
+    ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:self.image.image];
     [self.navigationController pushViewController:shareVC animated:YES];
-}
-
-+ (UIImage*)mergeImage:(UIImage*)first withImage:(UIImage*)second
-{
-    // get size of the first image
-    CGImageRef firstImageRef = first.CGImage;
-    CGFloat firstWidth = CGImageGetWidth(firstImageRef);
-    CGFloat firstHeight = CGImageGetHeight(firstImageRef);
-    
-    // get size of the second image
-    CGImageRef secondImageRef = second.CGImage;
-    CGFloat secondWidth = CGImageGetWidth(secondImageRef);
-    CGFloat secondHeight = CGImageGetHeight(secondImageRef);
-    
-    // build merged size
-    CGSize mergedSize = CGSizeMake(MAX(firstWidth, secondWidth), MAX(firstHeight, secondHeight));
-    
-    // capture image context ref
-    UIGraphicsBeginImageContext(mergedSize);
-    
-    //Draw images onto the context
-    [first drawInRect:CGRectMake(0, 0, firstWidth, firstHeight)];
-    [second drawInRect:CGRectMake(0, 0, secondWidth, secondHeight)];
-    
-    // assign context to new UIImage
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // end context
-    UIGraphicsEndImageContext();
-    
-    return newImage;
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,8 +222,8 @@
 #pragma mark Select Filter 
 
 - (void)selectFilter:(UITapGestureRecognizer *)recognizer{
-    [self showOverlayOptions];
     CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
+    [self showOverlayOptionsForImage:selecteLayer.itemImage.image];
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:selecteLayer.itemImage.image];
     CGRect gripFrame1 = CGRectMake(50, 50, 140, 140);
     imageView1.frame = gripFrame1;
@@ -232,33 +240,147 @@
     [overlay setButton:ZDSTICKERVIEW_BUTTON_CUSTOM
                             image:[UIImage imageNamed:@"rotateOverlayButton"]];
     [overlay showEditingHandles];
-    [self.view addSubview:overlay];
-    
+
+    [self.selectedImageTopView addSubview:overlay];
     [self.overlaysOnScreen addObject:overlay];
+    [self addApplyButton];
 }
 
-- (void)showOverlayOptions{
-//    OverlayOptions *overlayOptions = [[[NSBundle mainBundle] loadNibNamed:@"OverlayOptions"
-//                                                        owner:self
-//                                                      options:nil] objectAtIndex:0];
-//    [overlayOptions setFrame:CGRectMake(0, 390, overlayOptions.frame.size.width, overlayOptions.frame.size.height)];
-//    [overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
-//    [overlayOptions.contrastSlider addTarget:self action:@selector(contrastChanged:) forControlEvents:UIControlEventValueChanged];
-//    [self.view addSubview:overlayOptions];
-    self.overlayOptionsContent.hidden = NO;
+- (void)addApplyButton{
+    UIButton *applyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *applyButtonImage = [UIImage imageNamed:@"applyButton"];
+    applyButton.frame = CGRectMake(0, 0, applyButtonImage.size.width, applyButtonImage.size.height);
+    [applyButton setBackgroundImage:applyButtonImage forState:UIControlStateNormal];
+    [applyButton addTarget:self action:@selector(useFilter) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:applyButton];
+}
+
+- (void)useFilter{
+    [self hideAllOverlaysInterfaces];
+    
+    self.image.image = [self buildImage:self.image.image];
+    [self deleteAllOverlays];
+    [self.overlaysOnScreen removeAllObjects];
+    
+    self.overlayOptions.hidden = YES;
+    self.carouselContent.hidden = NO;
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *doneButtonImage = [UIImage imageNamed:@"doneButton"];
+    doneButton.frame = CGRectMake(0, 0, doneButtonImage.size.width, doneButtonImage.size.height);
+    [doneButton setBackgroundImage:doneButtonImage forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(goToShareScreen) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+}
+
+- (UIImage*)buildImage:(UIImage*)image
+{
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+    
+    [image drawAtPoint:CGPointZero];
+    
+    CGFloat scale = image.size.width / self.selectedImageTopView.frame.size.width;
+    CGContextScaleCTM(UIGraphicsGetCurrentContext(), scale, scale);
+    [self.selectedImageTopView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *tmp = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return tmp;
+}
+
+- (void)hideAllOverlaysInterfaces{
+    for (int i = 0; i < self.overlaysOnScreen.count; i++){
+        ZDStickerView *overlay = self.overlaysOnScreen[i];
+        [overlay hideCustomHandle];
+        [overlay hideDelHandle];
+        [overlay hideEditingHandles];
+    }
+}
+
+- (void)deleteAllOverlays{
+    for (int i = 0; i < self.overlaysOnScreen.count; i++){
+        ZDStickerView *overlay = self.overlaysOnScreen[i];
+        [overlay removeFromSuperview];
+    }
+}
+
+- (void)stickerViewDidClose:(ZDStickerView *)sticker{
+    [self.overlaysOnScreen removeObject:sticker];
+    self.overlayOptions.hidden = YES;
+    self.carouselContent.hidden = NO;
+}
+
+#pragma mark Overlay Options
+
+- (void)showOverlayOptionsForImage:(UIImage *)image{
+    self.overlayOptions = [[[NSBundle mainBundle] loadNibNamed:@"OverlayOptions"
+                                                        owner:self
+                                                      options:nil] objectAtIndex:0];
+    [self.overlayOptions setFrame:CGRectMake(0,
+                                             387,
+                                             self.overlayOptions.frame.size.width,
+                                             self.overlayOptions.frame.size.height)];
+    [self.overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.overlayOptions.contrastSlider addTarget:self action:@selector(contrastChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.overlayOptions.invertColorButton addTarget:self action:@selector(invertColor:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.overlayOptions];
+    self.originalOverlayImage = image;
     self.carouselContent.hidden = YES;
 }
 
 - (IBAction)brightnessChanged:(UISlider *)sender{
-    NSLog(@"%f", sender.value);
+    ZDStickerView *overlay = self.overlaysOnScreen[0];
+    UIView *content = overlay.contentView;
+    UIImageView *overlayImage = [[UIImageView alloc] init];
+    for (int j = 0; j < content.subviews.count; j++){
+        if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+            overlayImage = content.subviews[j];
+        }
+    }
+    overlayImage.image = [self.originalOverlayImage brightenWithValue:sender.value];
 }
 
 - (IBAction)contrastChanged:(UISlider *)sender{
-    NSLog(@"%f", sender.value);
+    ZDStickerView *overlay = self.overlaysOnScreen[0];
+    UIView *content = overlay.contentView;
+    UIImageView *overlayImage = [[UIImageView alloc] init];
+    for (int j = 0; j < content.subviews.count; j++){
+        if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+            overlayImage = content.subviews[j];
+        }
+    }
+   overlayImage.image = [self.originalOverlayImage contrastAdjustmentWithValue:sender.value];
 }
 
 - (IBAction)invertColor:(id)sender{
-    NSLog(@"");
+    ZDStickerView *overlay = self.overlaysOnScreen[0];
+    UIView *content = overlay.contentView;
+    UIImageView *overlayImage = [[UIImageView alloc] init];
+    for (int j = 0; j < content.subviews.count; j++){
+        if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+            overlayImage = content.subviews[j];
+        }
+    }
+    UIGraphicsBeginImageContext(overlayImage.image.size);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
+    CGRect imageRect = CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height);
+    [overlayImage.image drawInRect:imageRect];
+    
+    
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
+    // translate/flip the graphics context (for transforming from CG* coords to UI* coords
+    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0, overlayImage.image.size.height);
+    CGContextScaleCTM(UIGraphicsGetCurrentContext(), 1.0, -1.0);
+    //mask the image
+    CGContextClipToMask(UIGraphicsGetCurrentContext(), imageRect,  overlayImage.image.CGImage);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(),[UIColor whiteColor].CGColor);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height));
+    UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    overlayImage.image = returnImage;
+    self.originalOverlayImage = returnImage;
 }
 
 @end

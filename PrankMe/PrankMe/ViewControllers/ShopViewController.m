@@ -8,7 +8,6 @@
 
 #import "ShopViewController.h"
 #import "ShopItemCell.h"
-#import "AnimationSegment.h"
 #import "BundleDetailViewController.h"
 #import "CarouselSourceSingleton.h"
 

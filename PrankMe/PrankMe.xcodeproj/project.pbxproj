@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32139CEE19C3AED50073E7C9 /* AnimationSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 32139CED19C3AED50073E7C9 /* AnimationSegment.m */; };
 		322520C919BF11F900766247 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520C819BF11F900766247 /* GalleryCell.xib */; };
 		322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520CB19BF9DD200766247 /* ImageEditViewController.m */; };
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
@@ -18,6 +17,9 @@
 		325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325734BC19C241A200B15B74 /* RageItalic.ttf */; };
 		32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EA019CB45FF00AE8A38 /* OverlayOptions.m */; };
 		32621EA319CB460F00AE8A38 /* OverlayOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32621EA219CB460F00AE8A38 /* OverlayOptions.xib */; };
+		32621EAC19CB66CF00AE8A38 /* UIImage+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EAB19CB66CF00AE8A38 /* UIImage+Filtering.m */; };
+		32621EB019CB66E300AE8A38 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EAE19CB66E300AE8A38 /* NYXImagesHelper.m */; };
+		32621EB219CB6C0900AE8A38 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32621EB119CB6C0900AE8A38 /* CoreImage.framework */; };
 		327BE02E19BE3777007F065D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02D19BE3777007F065D /* Foundation.framework */; };
 		327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE02F19BE3777007F065D /* CoreGraphics.framework */; };
 		327BE03219BE3777007F065D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327BE03119BE3777007F065D /* UIKit.framework */; };
@@ -63,8 +65,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		32139CEC19C3AED50073E7C9 /* AnimationSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSegment.h; sourceTree = "<group>"; };
-		32139CED19C3AED50073E7C9 /* AnimationSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationSegment.m; sourceTree = "<group>"; };
 		322520C819BF11F900766247 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
 		322520CA19BF9DD200766247 /* ImageEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditViewController.h; sourceTree = "<group>"; };
 		322520CB19BF9DD200766247 /* ImageEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEditViewController.m; sourceTree = "<group>"; };
@@ -79,6 +79,12 @@
 		32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayOptions.h; sourceTree = "<group>"; };
 		32621EA019CB45FF00AE8A38 /* OverlayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayOptions.m; sourceTree = "<group>"; };
 		32621EA219CB460F00AE8A38 /* OverlayOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayOptions.xib; sourceTree = "<group>"; };
+		32621EAA19CB66CF00AE8A38 /* UIImage+Filtering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtering.h"; sourceTree = "<group>"; };
+		32621EAB19CB66CF00AE8A38 /* UIImage+Filtering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtering.m"; sourceTree = "<group>"; };
+		32621EAD19CB66E300AE8A38 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesHelper.h; sourceTree = "<group>"; };
+		32621EAE19CB66E300AE8A38 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
+		32621EAF19CB66E300AE8A38 /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
+		32621EB119CB6C0900AE8A38 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32621EB219CB6C0900AE8A38 /* CoreImage.framework in Frameworks */,
 				327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */,
 				327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */,
 				327BE03219BE3777007F065D /* UIKit.framework in Frameworks */,
@@ -153,6 +160,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32621EB319CBA99F00AE8A38 /* OverlayOptions */ = {
+			isa = PBXGroup;
+			children = (
+				32621EAA19CB66CF00AE8A38 /* UIImage+Filtering.h */,
+				32621EAB19CB66CF00AE8A38 /* UIImage+Filtering.m */,
+				32621EAD19CB66E300AE8A38 /* NYXImagesHelper.h */,
+				32621EAE19CB66E300AE8A38 /* NYXImagesHelper.m */,
+				32621EAF19CB66E300AE8A38 /* NYXImagesKit.h */,
+			);
+			name = OverlayOptions;
+			sourceTree = "<group>";
+		};
+		32621EB419CBA9B100AE8A38 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				32621EB319CBA99F00AE8A38 /* OverlayOptions */,
+				328AE35219CA36F70090F995 /* OverlayClass */,
+			);
+			name = Overlay;
+			sourceTree = "<group>";
+		};
 		327BE02119BE3777007F065D = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +203,7 @@
 		327BE02C19BE3777007F065D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32621EB119CB6C0900AE8A38 /* CoreImage.framework */,
 				327BE08019BE5E81007F065D /* AssetsLibrary.framework */,
 				327BE02D19BE3777007F065D /* Foundation.framework */,
 				327BE02F19BE3777007F065D /* CoreGraphics.framework */,
@@ -187,12 +216,10 @@
 		327BE03319BE3777007F065D /* PrankMe */ = {
 			isa = PBXGroup;
 			children = (
-				328AE35219CA36F70090F995 /* OverlayClass */,
+				32621EB419CBA9B100AE8A38 /* Overlay */,
 				32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */,
 				32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */,
 				32FEB2C919C625B0009ADD6E /* Fonts */,
-				32139CEC19C3AED50073E7C9 /* AnimationSegment.h */,
-				32139CED19C3AED50073E7C9 /* AnimationSegment.m */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
 				327BE03D19BE3777007F065D /* AppDelegate.m */,
@@ -447,7 +474,6 @@
 				325734B919C22E1A00B15B74 /* FilterView.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */,
-				32139CEE19C3AED50073E7C9 /* AnimationSegment.m in Sources */,
 				32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */,
 				327BE07D19BE4B31007F065D /* GalleryCell.m in Sources */,
 				327BE03A19BE3777007F065D /* main.m in Sources */,
@@ -456,11 +482,13 @@
 				322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */,
 				32FEB2CC19C65505009ADD6E /* BundleDetailItem.m in Sources */,
 				327BE07419BE40E3007F065D /* ShopViewController.m in Sources */,
+				32621EAC19CB66CF00AE8A38 /* UIImage+Filtering.m in Sources */,
 				327BE07919BE428F007F065D /* ShopItemCell.m in Sources */,
 				328AE35819CA376F0090F995 /* SPGripViewBorderView.m in Sources */,
 				32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */,
 				328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */,
 				327BE06F19BE3C21007F065D /* SettingsViewController.m in Sources */,
+				32621EB019CB66E300AE8A38 /* NYXImagesHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
@@ -591,7 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";

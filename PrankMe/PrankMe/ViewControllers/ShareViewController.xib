@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController">
             <connections>
-                <outlet property="completeImageView" destination="iNq-Wy-vEB" id="5kO-AX-5Hm"/>
+                <outlet property="completeImageView" destination="Ic8-UU-qdA" id="rD7-AN-Ih3"/>
                 <outlet property="facebookButton" destination="g7G-ji-LWB" id="6H6-xW-KAN"/>
                 <outlet property="mailButton" destination="PJx-IQ-KT4" id="dR6-72-hca"/>
                 <outlet property="textButton" destination="Pv6-gl-NA3" id="xo1-OX-8cc"/>
@@ -21,15 +22,9 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="KYt-Te-CMG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iNq-Wy-vEB">
-                    <rect key="frame" x="40" y="39" width="240" height="288"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-KN-SDS">
-                    <rect key="frame" x="20" y="476" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="20" y="432" width="40" height="40"/>
                     <state key="normal" backgroundImage="instagramButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -38,8 +33,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7G-ji-LWB">
-                    <rect key="frame" x="80" y="476" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="80" y="432" width="40" height="40"/>
                     <state key="normal" backgroundImage="facebookButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -48,8 +42,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAO-Od-bBt">
-                    <rect key="frame" x="140" y="476" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="140" y="432" width="40" height="40"/>
                     <state key="normal" backgroundImage="twitterButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -58,8 +51,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJx-IQ-KT4">
-                    <rect key="frame" x="202" y="476" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="202" y="432" width="40" height="40"/>
                     <state key="normal" backgroundImage="mailButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -68,8 +60,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-gl-NA3">
-                    <rect key="frame" x="260" y="476" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="260" y="432" width="40" height="40"/>
                     <state key="normal" backgroundImage="textButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -77,38 +68,38 @@
                         <action selector="textButtonTapped:" destination="-1" eventType="touchUpInside" id="jhW-MB-tYv"/>
                     </connections>
                 </button>
+                <view alpha="0.20000000298023224" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-fS-WCK">
+                    <rect key="frame" x="12" y="22" width="300" height="370"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ic8-UU-qdA">
+                    <rect key="frame" x="28" y="37" width="268" height="340"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ncQ-KN-SDS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="58K-KM-eyN"/>
-                <constraint firstItem="ncQ-KN-SDS" firstAttribute="baseline" secondItem="PJx-IQ-KT4" secondAttribute="baseline" id="5d9-S3-yik"/>
-                <constraint firstItem="QAO-Od-bBt" firstAttribute="baseline" secondItem="g7G-ji-LWB" secondAttribute="baseline" id="6Or-IZ-XYw"/>
-                <constraint firstItem="g7G-ji-LWB" firstAttribute="top" secondItem="QAO-Od-bBt" secondAttribute="top" id="9cs-TO-DUj"/>
-                <constraint firstItem="PJx-IQ-KT4" firstAttribute="baseline" secondItem="g7G-ji-LWB" secondAttribute="baseline" id="BzK-LL-GYa"/>
-                <constraint firstItem="PJx-IQ-KT4" firstAttribute="baseline" secondItem="Pv6-gl-NA3" secondAttribute="baseline" id="DDV-Db-qLK"/>
-                <constraint firstItem="QAO-Od-bBt" firstAttribute="baseline" secondItem="ncQ-KN-SDS" secondAttribute="baseline" id="EAO-uq-qhZ"/>
-                <constraint firstItem="PJx-IQ-KT4" firstAttribute="top" secondItem="Pv6-gl-NA3" secondAttribute="top" id="Fde-AC-hvc"/>
-                <constraint firstItem="g7G-ji-LWB" firstAttribute="baseline" secondItem="Pv6-gl-NA3" secondAttribute="baseline" id="I0I-OC-a8g"/>
-                <constraint firstItem="QAO-Od-bBt" firstAttribute="baseline" secondItem="Pv6-gl-NA3" secondAttribute="baseline" id="JsB-Cl-hWc"/>
-                <constraint firstAttribute="trailing" secondItem="Pv6-gl-NA3" secondAttribute="trailing" constant="20" symbolic="YES" id="Ltt-iN-Hoy"/>
-                <constraint firstAttribute="bottom" secondItem="KYt-Te-CMG" secondAttribute="bottom" id="MOQ-sC-tCY"/>
-                <constraint firstItem="g7G-ji-LWB" firstAttribute="leading" secondItem="ncQ-KN-SDS" secondAttribute="trailing" constant="20" id="Mpn-aY-3eJ"/>
-                <constraint firstItem="QAO-Od-bBt" firstAttribute="centerX" secondItem="iNq-Wy-vEB" secondAttribute="centerX" id="MuD-LZ-6hp"/>
-                <constraint firstItem="ncQ-KN-SDS" firstAttribute="top" secondItem="g7G-ji-LWB" secondAttribute="top" id="N53-Ct-JX9"/>
-                <constraint firstAttribute="trailing" secondItem="KYt-Te-CMG" secondAttribute="trailing" id="TOs-1x-yPv"/>
-                <constraint firstAttribute="bottom" secondItem="iNq-Wy-vEB" secondAttribute="bottom" constant="241" id="VEG-jC-FYo"/>
-                <constraint firstItem="KYt-Te-CMG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YBF-Un-KJC"/>
-                <constraint firstItem="ncQ-KN-SDS" firstAttribute="baseline" secondItem="Pv6-gl-NA3" secondAttribute="baseline" id="ZBG-Tt-sBs"/>
-                <constraint firstItem="iNq-Wy-vEB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="39" id="a8u-67-0QY"/>
-                <constraint firstAttribute="bottom" secondItem="ncQ-KN-SDS" secondAttribute="bottom" constant="52" id="ad1-HO-kJ7"/>
-                <constraint firstItem="KYt-Te-CMG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c9C-dO-TPz"/>
-                <constraint firstAttribute="trailing" secondItem="iNq-Wy-vEB" secondAttribute="trailing" constant="40" id="eRy-5A-sTx"/>
-                <constraint firstItem="iNq-Wy-vEB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="edT-2D-ScP"/>
-                <constraint firstItem="ncQ-KN-SDS" firstAttribute="baseline" secondItem="g7G-ji-LWB" secondAttribute="baseline" id="la5-7x-tN6"/>
-                <constraint firstItem="PJx-IQ-KT4" firstAttribute="top" secondItem="QAO-Od-bBt" secondAttribute="top" id="sud-vc-v6w"/>
-                <constraint firstItem="Pv6-gl-NA3" firstAttribute="leading" secondItem="PJx-IQ-KT4" secondAttribute="trailing" constant="18" id="wa9-LM-Yxf"/>
-                <constraint firstItem="PJx-IQ-KT4" firstAttribute="baseline" secondItem="QAO-Od-bBt" secondAttribute="baseline" id="yEu-ao-7rk"/>
+                <constraint firstItem="ncQ-KN-SDS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="2Zm-2i-OcD"/>
+                <constraint firstItem="QAO-Od-bBt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="432" id="3Rx-5j-6E4"/>
+                <constraint firstItem="Pv6-gl-NA3" firstAttribute="leading" secondItem="PJx-IQ-KT4" secondAttribute="trailing" constant="18" id="P5m-YC-ChS"/>
+                <constraint firstItem="PJx-IQ-KT4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="432" id="Q8S-kg-XVD"/>
+                <constraint firstItem="Pv6-gl-NA3" firstAttribute="leading" secondItem="PJx-IQ-KT4" secondAttribute="trailing" constant="18" id="Swg-eQ-t9L"/>
+                <constraint firstAttribute="bottom" secondItem="KYt-Te-CMG" secondAttribute="bottom" id="VXV-Kt-wUV"/>
+                <constraint firstItem="PJx-IQ-KT4" firstAttribute="leading" secondItem="QAO-Od-bBt" secondAttribute="trailing" constant="22" id="Yzm-hz-kzs"/>
+                <constraint firstItem="g7G-ji-LWB" firstAttribute="leading" secondItem="ncQ-KN-SDS" secondAttribute="trailing" constant="20" id="aGY-8y-X6g"/>
+                <constraint firstItem="PJx-IQ-KT4" firstAttribute="leading" secondItem="QAO-Od-bBt" secondAttribute="trailing" constant="22" id="elz-1Z-9je"/>
+                <constraint firstItem="ncQ-KN-SDS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="432" id="eoo-qr-1Xc"/>
+                <constraint firstItem="KYt-Te-CMG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fR6-et-5VM"/>
+                <constraint firstItem="QAO-Od-bBt" firstAttribute="leading" secondItem="g7G-ji-LWB" secondAttribute="trailing" constant="20" id="fYj-UR-lLc"/>
+                <constraint firstItem="Pv6-gl-NA3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="432" id="hjJ-Vj-W6S"/>
+                <constraint firstItem="g7G-ji-LWB" firstAttribute="leading" secondItem="ncQ-KN-SDS" secondAttribute="trailing" constant="20" id="jdh-Fs-Fi9"/>
+                <constraint firstItem="g7G-ji-LWB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="250" constant="432" id="loG-kg-Q0w"/>
+                <constraint firstAttribute="trailing" secondItem="Pv6-gl-NA3" secondAttribute="trailing" constant="20" id="rc9-w7-dAP"/>
+                <constraint firstItem="KYt-Te-CMG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="v2S-CI-Coo"/>
+                <constraint firstItem="QAO-Od-bBt" firstAttribute="leading" secondItem="g7G-ji-LWB" secondAttribute="trailing" constant="20" id="xhh-Ff-fkK"/>
+                <constraint firstAttribute="trailing" secondItem="KYt-Te-CMG" secondAttribute="trailing" id="z7h-YX-ZWo"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
@@ -120,4 +111,9 @@
         <image name="textButton" width="40" height="40"/>
         <image name="twitterButton" width="40" height="40"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
