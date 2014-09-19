@@ -319,7 +319,7 @@
                                                         owner:self
                                                       options:nil] objectAtIndex:0];
     [self.overlayOptions setFrame:CGRectMake(0,
-                                             387,
+                                             self.carousel.frame.origin.y,
                                              self.overlayOptions.frame.size.width,
                                              self.overlayOptions.frame.size.height)];
     [self.overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
