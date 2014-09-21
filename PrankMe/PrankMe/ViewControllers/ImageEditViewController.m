@@ -62,7 +62,19 @@
 }
 
 - (id)initWithSelectedImage:(UIImage *)selectedImage{
-    self = [super initWithNibName:@"ImageEditViewController" bundle:nil];
+   
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        if(result.height == 480)
+        {
+             self = [super initWithNibName:@"ImageEditViewController" bundle:nil];
+        }
+        if(result.height == 568)
+        {
+             self = [super initWithNibName:@"ImageEditViewControllerIphone5" bundle:nil];
+        }
+    }
     if (self) {
         self.selectedImage = selectedImage;
         self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
@@ -324,7 +336,7 @@
                                                         owner:self
                                                       options:nil] objectAtIndex:0];
     [self.overlayOptions setFrame:CGRectMake(0,
-                                             self.carousel.frame.origin.y,
+                                             self.view.frame.size.height - self.overlayOptions.frame.size.height,
                                              self.overlayOptions.frame.size.width,
                                              self.overlayOptions.frame.size.height)];
     [self.overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
