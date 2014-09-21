@@ -224,6 +224,7 @@
 - (void)selectFilter:(UITapGestureRecognizer *)recognizer{
     CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
     [self showOverlayOptionsForImage:selecteLayer.itemImage.image];
+    self.navigationItem.title = selecteLayer.itemLabel.text;
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:selecteLayer.itemImage.image];
     CGRect gripFrame1 = CGRectMake(50, 50, 140, 140);
     imageView1.frame = gripFrame1;
@@ -264,6 +265,7 @@
     
     self.overlayOptions.hidden = YES;
     self.carouselContent.hidden = NO;
+    self.navigationItem.title = @"Effects";
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *doneButtonImage = [UIImage imageNamed:@"doneButton"];
@@ -310,6 +312,7 @@
     [self.overlaysOnScreen removeObject:sticker];
     self.overlayOptions.hidden = YES;
     self.carouselContent.hidden = NO;
+    self.navigationItem.title = @"Effects";
 }
 
 #pragma mark Overlay Options
