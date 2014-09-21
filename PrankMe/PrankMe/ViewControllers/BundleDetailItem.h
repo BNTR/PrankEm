@@ -11,6 +11,5 @@
 @interface BundleDetailItem : UIView
 
 @property (nonatomic) IBOutlet UIImageView *selectedOverlay;
-@property (nonatomic) IBOutlet UIButton *showOverlay;
 
 @end

@@ -68,26 +68,34 @@
     self.overlays = self.bundle[0];
     int xCoor = 186;
     int yCoor = 26;
+    int horizontalItemsCount = 0;
     for (int i = 0; i < self.overlays.count; i++){
+        if (horizontalItemsCount == 2){
+            horizontalItemsCount = 0;
+            yCoor += 60;
+        }
         if (i % 2 == 0){
             xCoor = 186;
         } else {
             xCoor = 250;
         }
+        horizontalItemsCount++;
         BundleDetailItem *item = [[[NSBundle mainBundle] loadNibNamed:@"BundleDetailItem"
                                                             owner:self
                                                           options:nil] objectAtIndex:0];
         [item setFrame:CGRectMake(xCoor, yCoor, item.frame.size.width, item.frame.size.height)];
         item.selectedOverlay.image = [UIImage imageNamed:self.overlays[i][@"image"]];
-        item.showOverlay.tag = i;
-        [item.showOverlay addTarget:self action:@selector(showOverlay:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *overlayShowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        overlayShowButton.frame = CGRectMake(xCoor, yCoor, item.frame.size.width, item.frame.size.height);
+        [overlayShowButton addTarget:self action:@selector(showOverlay:) forControlEvents:UIControlEventTouchUpInside];
+        overlayShowButton.tag = i;
         [self.view addSubview:item];
+        [self.view addSubview:overlayShowButton];
     }
     self.effectsCount.text = [NSString stringWithFormat:@"%i effects", (int)self.overlays.count];
     self.bundleName.text = self.bundleTitle;
     NSDictionary *price = self.bundle[1];
     self.price.text = price[@"price"];
-    self.price.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14.035];
 }
 
 - (void)didReceiveMemoryWarning
