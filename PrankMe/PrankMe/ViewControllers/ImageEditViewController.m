@@ -24,6 +24,7 @@
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
 @property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
 @property (nonatomic, strong) OverlayOptions *overlayOptions;
+@property (nonatomic) BOOL invertOn;
 
 @property (nonatomic, strong) UIImage *originalOverlayImage;
 
@@ -245,6 +246,7 @@
     [self.selectedImageTopView addSubview:overlay];
     [self.overlaysOnScreen addObject:overlay];
     [self addApplyButton];
+    self.invertOn = NO;
 }
 
 - (void)addApplyButton{
@@ -361,6 +363,14 @@
 }
 
 - (IBAction)invertColor:(id)sender{
+    if (self.invertOn){
+        self.overlayOptions.invertColorImage.image = [UIImage imageNamed:@"invertColorUncheck"];
+        self.invertOn = NO;
+    } else {
+        self.overlayOptions.invertColorImage.image = [UIImage imageNamed:@"invertColorCheck"];
+        self.invertOn = YES;
+    }
+    
     ZDStickerView *overlay = self.overlaysOnScreen[0];
     UIView *content = overlay.contentView;
     UIImageView *overlayImage = [[UIImageView alloc] init];
@@ -373,7 +383,6 @@
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
     CGRect imageRect = CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height);
     [overlayImage.image drawInRect:imageRect];
-    
     
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
     // translate/flip the graphics context (for transforming from CG* coords to UI* coords
