@@ -341,6 +341,7 @@
 				322520CA19BF9DD200766247 /* ImageEditViewController.h */,
 				322520CB19BF9DD200766247 /* ImageEditViewController.m */,
 				322520CC19BF9DD200766247 /* ImageEditViewController.xib */,
+				3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */,
 				322520CF19BFAB9000766247 /* CarouselItem.h */,
 				322520D019BFAB9000766247 /* CarouselItem.m */,
 				322520D219BFABA500766247 /* CarouselItem.xib */,
@@ -350,7 +351,6 @@
 				32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */,
 				32621EA019CB45FF00AE8A38 /* OverlayOptions.m */,
 				32621EA219CB460F00AE8A38 /* OverlayOptions.xib */,
-				3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */,
 			);
 			name = ImageEdit;
 			sourceTree = "<group>";
