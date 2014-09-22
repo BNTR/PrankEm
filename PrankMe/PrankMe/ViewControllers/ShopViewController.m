@@ -97,8 +97,6 @@
             break;
         case 2:
             break;
-        case 3:
-            break;
         default:{
             return 0;
             break;
@@ -125,10 +123,6 @@
             break;
         }
         case 2:{
-            //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
-            break;
-        }
-        case 3:{
             //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
             break;
         }
@@ -173,10 +167,6 @@
             //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
             break;
         }
-        case 3:{
-            //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
-            break;
-        }
         default:
             break;
     }
@@ -199,10 +189,6 @@
             break;
         }
         case 2:
-            self.cellValue = @"Dents";
-            self.group = Dents;
-            break;
-        case 3:
             self.cellValue = @"Sprey";
             self.group = Sprey;
             break;

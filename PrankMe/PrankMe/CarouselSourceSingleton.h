@@ -11,7 +11,6 @@
 typedef enum {
     BrokenGlass = 0,
     Scratches,
-    Dents,
     Sprey
 } Group;
 
@@ -19,7 +18,6 @@ typedef enum {
 
 @property (nonatomic, strong) NSMutableArray *brokenGlassFilters;
 @property (nonatomic, strong) NSMutableArray *scratchesFilters;
-@property (nonatomic, strong) NSMutableArray *dentsFilters;
 @property (nonatomic, strong) NSMutableArray *spreyFilters;
 
 @property (nonatomic, strong) NSMutableArray *brokenGlassFirstBundle;

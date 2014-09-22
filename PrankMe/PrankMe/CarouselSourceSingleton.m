@@ -82,7 +82,6 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         
         self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesGlassFirstBundle, nil];
         
-        self.dentsFilters = [NSMutableArray arrayWithArray:@[]];
         self.spreyFilters = [NSMutableArray arrayWithArray:@[]];
     }
     return self;
@@ -102,10 +101,6 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
             [items setValue:@(1) forKey:@"paied"];
             break;
         }
-        case Dents:
-        {
-            break;
-        }
         case Sprey:
         {
             break;
@@ -116,11 +111,11 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
 }
 
 - (NSArray *)getAllItems{
-    return @[self.brokenGlassFilters, self.scratchesFilters, self.dentsFilters, self.spreyFilters];
+    return @[self.brokenGlassFilters, self.scratchesFilters, self.spreyFilters];
 }
 
 - (NSInteger)getAllItemsCount{
-    return self.brokenGlassFilters.count + self.scratchesFilters.count + self.dentsFilters.count + self.spreyFilters.count;
+    return self.brokenGlassFilters.count + self.scratchesFilters.count + self.spreyFilters.count;
 }
 
 @end
