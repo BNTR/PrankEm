@@ -9,6 +9,7 @@
 #import "ShareViewController.h"
 #import "GalleryViewController.h"
 #import <MessageUI/MessageUI.h>
+#import <Social/Social.h>
 
 @interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
@@ -96,11 +97,27 @@
 }
 
 - (IBAction)facebookButtonTapped:(id)sender{
-    NSLog(@"facebookButtonTapped");
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        [controller setInitialText:@"Facebook"];
+        [controller addImage:self.completeImage];
+        
+        [self presentViewController:controller animated:YES completion:Nil];
+        
+    }
 }
 
 - (IBAction)twitterButtonTapped:(id)sender{
-    NSLog(@"twitterButtonTapped");
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheet setInitialText:@"Twitter"];
+        [tweetSheet addImage:self.completeImage];
+        [self presentViewController:tweetSheet animated:YES completion:nil];
+    }
 }
 
 - (IBAction)mailButtonTapped:(id)sender{
@@ -113,7 +130,6 @@
         
         [self presentViewController:composeViewController animated:YES completion:nil];
     }
-    NSLog(@"mailButtonTapped");
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error

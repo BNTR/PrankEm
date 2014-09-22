@@ -50,6 +50,7 @@
 		328AE35819CA376F0090F995 /* SPGripViewBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328AE35519CA376F0090F995 /* SPGripViewBorderView.m */; };
 		32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 32912AE819C378B9002894D1 /* MyriadPro.otf */; };
 		32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */; };
+		32EA752319D0AA9E00A3D5E3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA752219D0AA9E00A3D5E3 /* Social.framework */; };
 		32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FEB2C119C5F7F4009ADD6E /* BundleDetailViewController.m */; };
 		32FEB2C419C5F810009ADD6E /* BundleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FEB2C319C5F810009ADD6E /* BundleDetailViewController.xib */; };
 		32FEB2CC19C65505009ADD6E /* BundleDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FEB2CB19C65505009ADD6E /* BundleDetailItem.m */; };
@@ -130,6 +131,7 @@
 		32912AE819C378B9002894D1 /* MyriadPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MyriadPro.otf; sourceTree = "<group>"; };
 		32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselSourceSingleton.m; sourceTree = "<group>"; };
 		32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselSourceSingleton.h; sourceTree = "<group>"; };
+		32EA752219D0AA9E00A3D5E3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		32FEB2C019C5F7F4009ADD6E /* BundleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleDetailViewController.h; sourceTree = "<group>"; };
 		32FEB2C119C5F7F4009ADD6E /* BundleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleDetailViewController.m; sourceTree = "<group>"; };
 		32FEB2C319C5F810009ADD6E /* BundleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BundleDetailViewController.xib; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32EA752319D0AA9E00A3D5E3 /* Social.framework in Frameworks */,
 				32227F4D19CF9C790065F83F /* MessageUI.framework in Frameworks */,
 				32621EB219CB6C0900AE8A38 /* CoreImage.framework in Frameworks */,
 				327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */,
@@ -208,6 +211,7 @@
 		327BE02C19BE3777007F065D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32EA752219D0AA9E00A3D5E3 /* Social.framework */,
 				32227F4C19CF9C790065F83F /* MessageUI.framework */,
 				32621EB119CB6C0900AE8A38 /* CoreImage.framework */,
 				327BE08019BE5E81007F065D /* AssetsLibrary.framework */,
