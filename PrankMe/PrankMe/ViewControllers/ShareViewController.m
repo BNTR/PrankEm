@@ -10,9 +10,10 @@
 #import "GalleryViewController.h"
 #import <MessageUI/MessageUI.h>
 
-@interface ShareViewController ()<MFMailComposeViewControllerDelegate>
+@interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, strong) UIImage *completeImage;
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
 @end
 
@@ -58,7 +59,40 @@
 }
 
 - (IBAction)instagramButtonTapped:(id)sender{
-    NSLog(@"instagramButtonTapped");
+    NSURL *instagramURL = [NSURL URLWithString:@"instagram://app"];
+    if([[UIApplication sharedApplication] canOpenURL:instagramURL])
+    {
+        CGFloat cropVal = (self.completeImageView.image.size.height > self.completeImageView.image.size.width ? self.completeImageView.image.size.width : self.completeImageView.image.size.height);
+        
+        cropVal *= [self.completeImageView.image scale];
+        
+        CGRect cropRect = (CGRect){.size.height = cropVal, .size.width = cropVal};
+        CGImageRef imageRef = CGImageCreateWithImageInRect([self.completeImageView.image CGImage], cropRect);
+        
+        NSData *imageData = UIImageJPEGRepresentation([UIImage imageWithCGImage:imageRef], 1.0);
+        CGImageRelease(imageRef);
+        
+        NSString *writePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"instagram.igo"];
+        if (![imageData writeToFile:writePath atomically:YES]) {
+            // failure
+            NSLog(@"image save failed to path %@", writePath);
+            return;
+        } else {
+            // success.
+        }
+        
+        // send it to instagram.
+        NSURL *fileURL = [NSURL fileURLWithPath:writePath];
+        self.documentController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+        self.documentController.delegate = self;
+        [self.documentController setUTI:@"com.instagram.exclusivegram"];
+        [self.documentController setAnnotation:@{@"InstagramCaption" : @"We are making fun"}];
+        [self.documentController presentOpenInMenuFromRect:CGRectMake(0, 0, 320, 480) inView:self.view animated:YES];
+    }
+    else
+    {
+        NSLog (@"Instagram not found");
+    }
 }
 
 - (IBAction)facebookButtonTapped:(id)sender{
