@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
 
-@interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate>
+@interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIImage *completeImage;
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
@@ -50,7 +50,14 @@
     [doneButton addTarget:self action:@selector(goToGallery) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     
+    UIImageWriteToSavedPhotosAlbum(self.completeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+}
+
+- (void)image:(UIImage*)image didFinishSavingWithError:(NSError *)error contextInfo:(NSDictionary*)info{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your image successfully saved to Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
