@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32227F4D19CF9C790065F83F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32227F4C19CF9C790065F83F /* MessageUI.framework */; };
 		322520C919BF11F900766247 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520C819BF11F900766247 /* GalleryCell.xib */; };
 		322520CD19BF9DD200766247 /* ImageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520CB19BF9DD200766247 /* ImageEditViewController.m */; };
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32227F4C19CF9C790065F83F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		322520C819BF11F900766247 /* GalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
 		322520CA19BF9DD200766247 /* ImageEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditViewController.h; sourceTree = "<group>"; };
 		322520CB19BF9DD200766247 /* ImageEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageEditViewController.m; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32227F4D19CF9C790065F83F /* MessageUI.framework in Frameworks */,
 				32621EB219CB6C0900AE8A38 /* CoreImage.framework in Frameworks */,
 				327BE08119BE5E81007F065D /* AssetsLibrary.framework in Frameworks */,
 				327BE03019BE3777007F065D /* CoreGraphics.framework in Frameworks */,
@@ -205,6 +208,7 @@
 		327BE02C19BE3777007F065D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32227F4C19CF9C790065F83F /* MessageUI.framework */,
 				32621EB119CB6C0900AE8A38 /* CoreImage.framework */,
 				327BE08019BE5E81007F065D /* AssetsLibrary.framework */,
 				327BE02D19BE3777007F065D /* Foundation.framework */,

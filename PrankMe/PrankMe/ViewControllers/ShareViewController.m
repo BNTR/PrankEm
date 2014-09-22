@@ -8,8 +8,9 @@
 
 #import "ShareViewController.h"
 #import "GalleryViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ShareViewController ()
+@interface ShareViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIImage *completeImage;
 
@@ -69,7 +70,21 @@
 }
 
 - (IBAction)mailButtonTapped:(id)sender{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setSubject:@"PrankEm photo"];
+        NSData *myData = UIImageJPEGRepresentation(self.completeImage, 0.9);
+        [composeViewController addAttachmentData:myData mimeType:@"image/jpg" fileName:@"PrankEmPhoto.jpg"];
+        
+        [self presentViewController:composeViewController animated:YES completion:nil];
+    }
     NSLog(@"mailButtonTapped");
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)textButtonTapped:(id)sender{
