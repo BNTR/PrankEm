@@ -8,7 +8,6 @@
 
 #import "ImageEditViewController.h"
 #import "CarouselItem.h"
-#import "FilterView.h"
 #import "CarouselSourceSingleton.h"
 #import "ShopViewController.h"
 #import "ShareViewController.h"
@@ -19,8 +18,10 @@
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, ZDStickerViewDelegate>
 
+@property (nonatomic) IBOutlet UISlider *brightnessSlider;
+@property (nonatomic) IBOutlet UISlider *contrastSlider;
+
 @property (nonatomic, strong) UIImage *selectedImage;
-@property (nonatomic, strong) FilterView *selectedFilter;
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
 @property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
 @property (nonatomic, strong) OverlayOptions *overlayOptions;
@@ -339,8 +340,8 @@
                                              self.view.frame.size.height - self.overlayOptions.frame.size.height,
                                              self.overlayOptions.frame.size.width,
                                              self.overlayOptions.frame.size.height)];
-    [self.overlayOptions.brightnessSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.overlayOptions.contrastSlider addTarget:self action:@selector(contrastChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.overlayOptions.brightnessSlider addTarget:self action:@selector(sliderDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.overlayOptions.contrastSlider addTarget:self action:@selector(sliderDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.overlayOptions.invertColorButton addTarget:self action:@selector(invertColor:) forControlEvents:UIControlEventTouchUpInside];
     [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
     [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateHighlighted];
@@ -350,7 +351,8 @@
     self.carouselContent.hidden = YES;
 }
 
-- (IBAction)brightnessChanged:(UISlider *)sender{
+- (void)sliderDidChange:(UISlider*)sender
+{
     ZDStickerView *overlay = self.overlaysOnScreen[0];
     UIView *content = overlay.contentView;
     UIImageView *overlayImage = [[UIImageView alloc] init];
@@ -359,19 +361,43 @@
             overlayImage = content.subviews[j];
         }
     }
-    overlayImage.image = [self.originalOverlayImage brightenWithValue:sender.value];
+
+    static BOOL inProgress = NO;
+    
+    if(inProgress){ return; }
+    inProgress = YES;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *image = [self filteredImage:self.originalOverlayImage];
+        [overlayImage performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
+        inProgress = NO;
+    });
 }
 
-- (IBAction)contrastChanged:(UISlider *)sender{
-    ZDStickerView *overlay = self.overlaysOnScreen[0];
-    UIView *content = overlay.contentView;
-    UIImageView *overlayImage = [[UIImageView alloc] init];
-    for (int j = 0; j < content.subviews.count; j++){
-        if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
-            overlayImage = content.subviews[j];
-        }
-    }
-   overlayImage.image = [self.originalOverlayImage contrastAdjustmentWithValue:sender.value];
+- (UIImage*)filteredImage:(UIImage*)image
+{
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, ciImage, nil];
+    
+    filter = [CIFilter filterWithName:@"CIExposureAdjust" keysAndValues:kCIInputImageKey, [filter outputImage], nil];
+    [filter setDefaults];
+    CGFloat brightness = 2 * self.overlayOptions.brightnessSlider.value;
+    [filter setValue:[NSNumber numberWithFloat:brightness] forKey:@"inputEV"];
+    
+    filter = [CIFilter filterWithName:@"CIGammaAdjust" keysAndValues:kCIInputImageKey, [filter outputImage], nil];
+    [filter setDefaults];
+    CGFloat contrast   = self.overlayOptions.contrastSlider.value * self.overlayOptions.contrastSlider.value;
+    [filter setValue:[NSNumber numberWithFloat:contrast] forKey:@"inputPower"];
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    
+    return result;
 }
 
 - (IBAction)invertColor:(id)sender{

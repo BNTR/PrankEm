@@ -14,8 +14,6 @@
 		322520D119BFAB9000766247 /* CarouselItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520D019BFAB9000766247 /* CarouselItem.m */; };
 		322520D319BFABA500766247 /* CarouselItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520D219BFABA500766247 /* CarouselItem.xib */; };
 		3250265719CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */; };
-		325734B919C22E1A00B15B74 /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 325734B819C22E1A00B15B74 /* FilterView.m */; };
-		325734BB19C22E3300B15B74 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325734BA19C22E3300B15B74 /* FilterView.xib */; };
 		325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325734BC19C241A200B15B74 /* RageItalic.ttf */; };
 		32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EA019CB45FF00AE8A38 /* OverlayOptions.m */; };
 		32621EA319CB460F00AE8A38 /* OverlayOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32621EA219CB460F00AE8A38 /* OverlayOptions.xib */; };
@@ -77,9 +75,6 @@
 		322520D019BFAB9000766247 /* CarouselItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselItem.m; sourceTree = "<group>"; };
 		322520D219BFABA500766247 /* CarouselItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselItem.xib; sourceTree = "<group>"; };
 		3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageEditViewControllerIphone5.xib; sourceTree = "<group>"; };
-		325734B719C22E1A00B15B74 /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
-		325734B819C22E1A00B15B74 /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
-		325734BA19C22E3300B15B74 /* FilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		325734BC19C241A200B15B74 /* RageItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RageItalic.ttf; sourceTree = "<group>"; };
 		32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayOptions.h; sourceTree = "<group>"; };
 		32621EA019CB45FF00AE8A38 /* OverlayOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayOptions.m; sourceTree = "<group>"; };
@@ -353,9 +348,6 @@
 				322520CF19BFAB9000766247 /* CarouselItem.h */,
 				322520D019BFAB9000766247 /* CarouselItem.m */,
 				322520D219BFABA500766247 /* CarouselItem.xib */,
-				325734B719C22E1A00B15B74 /* FilterView.h */,
-				325734B819C22E1A00B15B74 /* FilterView.m */,
-				325734BA19C22E3300B15B74 /* FilterView.xib */,
 				32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */,
 				32621EA019CB45FF00AE8A38 /* OverlayOptions.m */,
 				32621EA219CB460F00AE8A38 /* OverlayOptions.xib */,
@@ -452,7 +444,6 @@
 				3250265719CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib in Resources */,
 				32912AE919C378D6002894D1 /* MyriadPro.otf in Resources */,
 				325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */,
-				325734BB19C22E3300B15B74 /* FilterView.xib in Resources */,
 				327BE03819BE3777007F065D /* InfoPlist.strings in Resources */,
 				327BE06E19BE3C21007F065D /* GalleryViewController.xib in Resources */,
 				327BE04019BE3777007F065D /* Images.xcassets in Resources */,
@@ -483,7 +474,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				322520D119BFAB9000766247 /* CarouselItem.m in Sources */,
-				325734B919C22E1A00B15B74 /* FilterView.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */,
 				32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */,
