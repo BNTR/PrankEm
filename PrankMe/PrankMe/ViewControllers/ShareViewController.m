@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import <Social/Social.h>
 
-@interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIImagePickerControllerDelegate>
+@interface ShareViewController ()<MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIImagePickerControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIImage *completeImage;
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
@@ -132,8 +132,8 @@
         MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
         [composeViewController setMailComposeDelegate:self];
         [composeViewController setSubject:@"PrankEm photo"];
-        NSData *myData = UIImageJPEGRepresentation(self.completeImage, 0.9);
-        [composeViewController addAttachmentData:myData mimeType:@"image/jpg" fileName:@"PrankEmPhoto.jpg"];
+        NSData *myData = UIImagePNGRepresentation(self.completeImage);
+        [composeViewController addAttachmentData:myData mimeType:@"image/png" fileName:@"PrankEmPhoto.png"];
         
         [self presentViewController:composeViewController animated:YES completion:nil];
     }
@@ -145,7 +145,33 @@
 }
 
 - (IBAction)textButtonTapped:(id)sender{
-    NSLog(@"textButtonTapped");
+    if ([MFMessageComposeViewController canSendText]){
+        MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] initWithNibName:nil bundle:nil];
+        picker.messageComposeDelegate = self;
+        picker.body = @"Pranked photo!";
+        NSData* data = UIImagePNGRepresentation(self.completeImage);
+        [picker addAttachmentData:data typeIdentifier:@"image/png" filename:@"image.png"];
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    NSString *messageResult;
+    if (result == MessageComposeResultCancelled){
+        messageResult = @"Message cancelled";
+    } else if (result == MessageComposeResultSent) {
+        messageResult = @"Message sent";
+    } else {
+        messageResult = @"Message failed";
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:messageResult
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)goToGallery{
