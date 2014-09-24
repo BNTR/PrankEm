@@ -85,20 +85,20 @@
 		32621EAE19CB66E300AE8A38 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
 		32621EAF19CB66E300AE8A38 /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
 		32621EB119CB6C0900AE8A38 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		327BE02A19BE3777007F065D /* PrankMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		327BE02A19BE3777007F065D /* PrankEm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrankEm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE02D19BE3777007F065D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		327BE02F19BE3777007F065D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		327BE03119BE3777007F065D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		327BE03519BE3777007F065D /* PrankMe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PrankMe-Info.plist"; sourceTree = "<group>"; };
+		327BE03519BE3777007F065D /* PrankEm-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PrankEm-Info.plist"; sourceTree = "<group>"; };
 		327BE03719BE3777007F065D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		327BE03919BE3777007F065D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		327BE03B19BE3777007F065D /* PrankMe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrankMe-Prefix.pch"; sourceTree = "<group>"; };
+		327BE03B19BE3777007F065D /* PrankEm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrankEm-Prefix.pch"; sourceTree = "<group>"; };
 		327BE03C19BE3777007F065D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		327BE03D19BE3777007F065D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		327BE03F19BE3777007F065D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		327BE04519BE3777007F065D /* PrankMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrankMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		327BE04519BE3777007F065D /* PrankEmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrankEmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		327BE04619BE3777007F065D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		327BE04E19BE3777007F065D /* PrankMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PrankMeTests-Info.plist"; sourceTree = "<group>"; };
+		327BE04E19BE3777007F065D /* PrankEmTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PrankEmTests-Info.plist"; sourceTree = "<group>"; };
 		327BE05019BE3777007F065D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		327BE05219BE3777007F065D /* PrankMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrankMeTests.m; sourceTree = "<group>"; };
 		327BE06719BE3C21007F065D /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
@@ -187,8 +187,8 @@
 		327BE02119BE3777007F065D = {
 			isa = PBXGroup;
 			children = (
-				327BE03319BE3777007F065D /* PrankMe */,
-				327BE04C19BE3777007F065D /* PrankMeTests */,
+				327BE03319BE3777007F065D /* PrankEm */,
+				327BE04C19BE3777007F065D /* PrankEmTests */,
 				327BE02C19BE3777007F065D /* Frameworks */,
 				327BE02B19BE3777007F065D /* Products */,
 			);
@@ -197,8 +197,8 @@
 		327BE02B19BE3777007F065D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				327BE02A19BE3777007F065D /* PrankMe.app */,
-				327BE04519BE3777007F065D /* PrankMeTests.xctest */,
+				327BE02A19BE3777007F065D /* PrankEm.app */,
+				327BE04519BE3777007F065D /* PrankEmTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		327BE03319BE3777007F065D /* PrankMe */ = {
+		327BE03319BE3777007F065D /* PrankEm */ = {
 			isa = PBXGroup;
 			children = (
 				32621EB419CBA9B100AE8A38 /* Overlay */,
@@ -231,33 +231,35 @@
 				327BE03F19BE3777007F065D /* Images.xcassets */,
 				327BE03419BE3777007F065D /* Supporting Files */,
 			);
+			name = PrankEm;
 			path = PrankMe;
 			sourceTree = "<group>";
 		};
 		327BE03419BE3777007F065D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				327BE03519BE3777007F065D /* PrankMe-Info.plist */,
+				327BE03519BE3777007F065D /* PrankEm-Info.plist */,
 				327BE03619BE3777007F065D /* InfoPlist.strings */,
 				327BE03919BE3777007F065D /* main.m */,
-				327BE03B19BE3777007F065D /* PrankMe-Prefix.pch */,
+				327BE03B19BE3777007F065D /* PrankEm-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		327BE04C19BE3777007F065D /* PrankMeTests */ = {
+		327BE04C19BE3777007F065D /* PrankEmTests */ = {
 			isa = PBXGroup;
 			children = (
 				327BE05219BE3777007F065D /* PrankMeTests.m */,
 				327BE04D19BE3777007F065D /* Supporting Files */,
 			);
+			name = PrankEmTests;
 			path = PrankMeTests;
 			sourceTree = "<group>";
 		};
 		327BE04D19BE3777007F065D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				327BE04E19BE3777007F065D /* PrankMeTests-Info.plist */,
+				327BE04E19BE3777007F065D /* PrankEmTests-Info.plist */,
 				327BE04F19BE3777007F065D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -367,9 +369,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		327BE02919BE3777007F065D /* PrankMe */ = {
+		327BE02919BE3777007F065D /* PrankEm */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 327BE05619BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankMe" */;
+			buildConfigurationList = 327BE05619BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankEm" */;
 			buildPhases = (
 				327BE02619BE3777007F065D /* Sources */,
 				327BE02719BE3777007F065D /* Frameworks */,
@@ -379,14 +381,14 @@
 			);
 			dependencies = (
 			);
-			name = PrankMe;
+			name = PrankEm;
 			productName = PrankMe;
-			productReference = 327BE02A19BE3777007F065D /* PrankMe.app */;
+			productReference = 327BE02A19BE3777007F065D /* PrankEm.app */;
 			productType = "com.apple.product-type.application";
 		};
-		327BE04419BE3777007F065D /* PrankMeTests */ = {
+		327BE04419BE3777007F065D /* PrankEmTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 327BE05919BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankMeTests" */;
+			buildConfigurationList = 327BE05919BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankEmTests" */;
 			buildPhases = (
 				327BE04119BE3777007F065D /* Sources */,
 				327BE04219BE3777007F065D /* Frameworks */,
@@ -397,9 +399,9 @@
 			dependencies = (
 				327BE04B19BE3777007F065D /* PBXTargetDependency */,
 			);
-			name = PrankMeTests;
+			name = PrankEmTests;
 			productName = PrankMeTests;
-			productReference = 327BE04519BE3777007F065D /* PrankMeTests.xctest */;
+			productReference = 327BE04519BE3777007F065D /* PrankEmTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -416,7 +418,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 327BE02519BE3777007F065D /* Build configuration list for PBXProject "PrankMe" */;
+			buildConfigurationList = 327BE02519BE3777007F065D /* Build configuration list for PBXProject "PrankEm" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -428,8 +430,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				327BE02919BE3777007F065D /* PrankMe */,
-				327BE04419BE3777007F065D /* PrankMeTests */,
+				327BE02919BE3777007F065D /* PrankEm */,
+				327BE04419BE3777007F065D /* PrankEmTests */,
 			);
 		};
 /* End PBXProject section */
@@ -507,7 +509,7 @@
 /* Begin PBXTargetDependency section */
 		327BE04B19BE3777007F065D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 327BE02919BE3777007F065D /* PrankMe */;
+			target = 327BE02919BE3777007F065D /* PrankEm */;
 			targetProxy = 327BE04A19BE3777007F065D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -609,9 +611,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
-				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "PrankMe/PrankEm-Prefix.pch";
+				INFOPLIST_FILE = "PrankMe/PrankEm-Info.plist";
+				PRODUCT_NAME = PrankEm;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -623,9 +625,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
-				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "PrankMe/PrankEm-Prefix.pch";
+				INFOPLIST_FILE = "PrankMe/PrankEm-Info.plist";
+				PRODUCT_NAME = PrankEm;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -645,8 +647,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "PrankMeTests/PrankMeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PrankMeTests/PrankEmTests-Info.plist";
+				PRODUCT_NAME = PrankEmTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -663,8 +665,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
-				INFOPLIST_FILE = "PrankMeTests/PrankMeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "PrankMeTests/PrankEmTests-Info.plist";
+				PRODUCT_NAME = PrankEmTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -673,7 +675,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		327BE02519BE3777007F065D /* Build configuration list for PBXProject "PrankMe" */ = {
+		327BE02519BE3777007F065D /* Build configuration list for PBXProject "PrankEm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				327BE05419BE3777007F065D /* Debug */,
@@ -682,7 +684,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		327BE05619BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankMe" */ = {
+		327BE05619BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankEm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				327BE05719BE3777007F065D /* Debug */,
@@ -691,7 +693,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		327BE05919BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankMeTests" */ = {
+		327BE05919BE3777007F065D /* Build configuration list for PBXNativeTarget "PrankEmTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				327BE05A19BE3777007F065D /* Debug */,
