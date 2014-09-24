@@ -63,7 +63,7 @@
 }
 
 - (id)initWithSelectedImage:(UIImage *)selectedImage{
-   
+    self = [super initWithNibName:@"ImageEditViewController" bundle:nil];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         CGSize result = [[UIScreen mainScreen] bounds].size;

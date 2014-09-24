@@ -105,8 +105,8 @@
 {
     [photoPicker dismissViewControllerAnimated:YES completion:nil];
     UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
-    ImageEditViewController *imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
-    [self.navigationController pushViewController:imageEditVC animated:YES];
+    self.imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    [self.navigationController pushViewController:self.imageEditVC animated:YES];
 }
 
 #pragma mark Collection View Delegate
