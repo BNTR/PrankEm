@@ -96,6 +96,7 @@
             return self.carouselSource.allScratchesBundles.count;
             break;
         case 2:
+            return self.carouselSource.allSpreyBundles.count;
             break;
         default:{
             return 0;
@@ -123,7 +124,7 @@
             break;
         }
         case 2:{
-            //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
+            bundle = self.carouselSource.allSpreyBundles[indexPath.row];
             break;
         }
         default:
@@ -164,7 +165,7 @@
             break;
         }
         case 2:{
-            //bundle = self.carouselSource.allBrokenGlassBundles[indexPath.row];
+            bundle = self.carouselSource.allSpreyBundles[tag];
             break;
         }
         default:

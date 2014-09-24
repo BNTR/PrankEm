@@ -117,6 +117,10 @@
             [self.source.scratchesFilters addObjectsFromArray:self.bundle[0]];
             break;
         }
+        case Sprey:{
+            [self.source.spreyFilters addObjectsFromArray:self.bundle[0]];
+            break;
+        }
         default:
             break;
     }
