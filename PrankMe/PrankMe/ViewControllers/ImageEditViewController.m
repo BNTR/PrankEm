@@ -273,7 +273,7 @@
 
 - (UIImage*)buildImage:(UIImage*)image
 {
-    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, self.image.image.scale);
     
     [image drawAtPoint:CGPointZero];
     
