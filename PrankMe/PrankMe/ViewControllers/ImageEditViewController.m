@@ -230,8 +230,6 @@
     overlay.contentView = contentView;
     overlay.preventsPositionOutsideSuperview = NO;
     overlay.preventsCustomButton = NO;
-    [overlay setButton:ZDSTICKERVIEW_BUTTON_CUSTOM
-                            image:[UIImage imageNamed:@"rotateOverlayButton"]];
     [overlay showEditingHandles];
 
     [self.selectedImageTopView addSubview:overlay];

@@ -153,79 +153,13 @@
 
 -(void)rotateViewPanGesture:(UIPanGestureRecognizer *)recognizer
 {
-//    if ([recognizer state]== UIGestureRecognizerStateBegan)
-//    {
-//        prevPoint = [recognizer locationInView:self];
-//        [self setNeedsDisplay];
-//    }
-//    else
-        if ([recognizer state] == UIGestureRecognizerStateChanged)
-    {
-//        if (self.bounds.size.width < minWidth || self.bounds.size.height < minHeight)
-//        {
-//            self.bounds = CGRectMake(self.bounds.origin.x,
-//                                     self.bounds.origin.y,
-//                                     minWidth+1,
-//                                     minHeight+1);
-//            resizingControl.frame =CGRectMake(self.bounds.size.width-kZDStickerViewControlSize,
-//                                              self.bounds.size.height-kZDStickerViewControlSize,
-//                                              kZDStickerViewControlSize,
-//                                              kZDStickerViewControlSize);
-//            deleteControl.frame = CGRectMake(0, 0,
-//                                             kZDStickerViewControlSize, kZDStickerViewControlSize);
-//            customControl.frame =CGRectMake(self.bounds.size.width-kZDStickerViewControlSize,
-//                                            0,
-//                                            kZDStickerViewControlSize,
-//                                            kZDStickerViewControlSize);
-//            prevPoint = [recognizer locationInView:self];
-//            
-//        } else {
-//            CGPoint point = [recognizer locationInView:self];
-//            float wChange = 0.0, hChange = 0.0;
-//            
-//            wChange = (point.x - prevPoint.x);
-//            float wRatioChange = (wChange/(float)self.bounds.size.width);
-//            
-//            hChange = wRatioChange * self.bounds.size.height;
-//            
-//            if (ABS(wChange) > 20.0f || ABS(hChange) > 20.0f) {
-//                prevPoint = [recognizer locationInView:self];
-//                return;
-//            }
-//            
-//            self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y,
-//                                     self.bounds.size.width + (wChange),
-//                                     self.bounds.size.height + (hChange));
-//            resizingControl.frame =CGRectMake(self.bounds.size.width-kZDStickerViewControlSize,
-//                                              self.bounds.size.height-kZDStickerViewControlSize,
-//                                              kZDStickerViewControlSize, kZDStickerViewControlSize);
-//            deleteControl.frame = CGRectMake(0, 0,
-//                                             kZDStickerViewControlSize, kZDStickerViewControlSize);
-//            customControl.frame =CGRectMake(self.bounds.size.width-kZDStickerViewControlSize,
-//                                            0,
-//                                            kZDStickerViewControlSize,
-//                                            kZDStickerViewControlSize);
-//            prevPoint = [recognizer locationInView:self];
-//        }
-        
-        /* Rotation */
-        float ang = atan2([recognizer locationInView:self.superview].y - self.center.y,
-                          [recognizer locationInView:self.superview].x - self.center.x);
-        float angleDiff = deltaAngle - ang;
-        if (NO == preventsResizing) {
-            self.transform = CGAffineTransformMakeRotation(-angleDiff);
-        }
-        
-//        borderView.frame = CGRectInset(self.bounds, kSPUserResizableViewGlobalInset, kSPUserResizableViewGlobalInset);
-//        [borderView setNeedsDisplay];
-        
-        [self setNeedsDisplay];
+    float ang = atan2([recognizer locationInView:self.superview].y - self.center.y,
+                      [recognizer locationInView:self.superview].x - self.center.x);
+    float angleDiff = deltaAngle - ang;
+    if (NO == preventsResizing) {
+        self.transform = CGAffineTransformMakeRotation(-angleDiff);
     }
-//    else if ([recognizer state] == UIGestureRecognizerStateEnded)
-//    {
-//        prevPoint = [recognizer locationInView:self];
-//        [self setNeedsDisplay];
-//    }
+    [self setNeedsDisplay];
 }
 
 - (void)setupDefaultAttributes {
@@ -279,7 +213,7 @@
                                                                    kZDStickerViewControlSize, kZDStickerViewControlSize)];
     customControl.backgroundColor = [UIColor clearColor];
     customControl.userInteractionEnabled = YES;
-    customControl.image = nil;
+    customControl.image = [UIImage imageNamed:@"rotateOverlayButton"];
     UIPanGestureRecognizer * customTapGesture = [[UIPanGestureRecognizer alloc]
                                           initWithTarget:self
                                           action:@selector(rotateViewPanGesture:)];
@@ -399,7 +333,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint touchLocation = [[touches anyObject] locationInView:self];
-    if (CGRectContainsPoint(resizingControl.frame, touchLocation)) {
+    if (CGRectContainsPoint(resizingControl.frame, touchLocation) || CGRectContainsPoint(customControl.frame, touchLocation)) {
         return;
     }
     
