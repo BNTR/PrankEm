@@ -182,7 +182,14 @@
                                                                     owner:self
                                                                   options:nil] objectAtIndex:0];
                 [item setFrame:CGRectMake(xCoordinate, 0, item.frame.size.width, item.frame.size.height)];
-                item.itemImage.image = [UIImage imageNamed:filters[@"image"]];
+                UIImage *originalImage = [UIImage imageNamed:filters[@"image"]];
+                item.originalImageName = filters[@"image"];
+                CGSize destinationSize = CGSizeMake(96, 96);
+                UIGraphicsBeginImageContext(destinationSize);
+                [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+                UIImage *thumbImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                item.itemImage.image = thumbImage;
                 item.itemLabel.text = filters[@"title"];
                 item.itemLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.765];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectFilter:)];
@@ -210,7 +217,7 @@
     CarouselItem *selecteLayer = (CarouselItem *)recognizer.view;
     [self showOverlayOptionsForImage:selecteLayer.itemImage.image];
     self.navigationItem.title = selecteLayer.itemLabel.text;
-    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:selecteLayer.itemImage.image];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:selecteLayer.originalImageName]];
     CGRect gripFrame1 = CGRectMake(50, 50, 140, 140);
     imageView1.frame = gripFrame1;
     UIView* contentView = [[UIView alloc] initWithFrame:gripFrame1];

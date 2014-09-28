@@ -109,7 +109,11 @@
 {
     [photoPicker dismissViewControllerAnimated:YES completion:nil];
     UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
-    self.imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    if (self.imageEditVC == nil){
+        self.imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
+    } else {
+        self.imageEditVC.image.image = selectedImage;
+    }
     [self.navigationController pushViewController:self.imageEditVC animated:YES];
 }
 
