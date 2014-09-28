@@ -11,7 +11,7 @@
 #define kSPUserResizableViewGlobalInset 5.0
 #define kSPUserResizableViewDefaultMinWidth 48.0
 #define kSPUserResizableViewInteractiveBorderSize 10.0
-#define kZDStickerViewControlSize 36.0
+#define kZDStickerViewControlSize 22.0
 
 
 @interface ZDStickerView ()
