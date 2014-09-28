@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
 
 typedef enum {
     BrokenGlass = 0,
@@ -25,8 +26,8 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *brokenGlassThirdBundle;
 @property (nonatomic, strong) NSMutableArray *allBrokenGlassBundles;
 
-@property (nonatomic, strong) NSMutableArray *scratchesGlassFirstBundle;
-@property (nonatomic, strong) NSMutableArray *scratchesGlassSecondBundle;
+@property (nonatomic, strong) NSMutableArray *scratchesFirstBundle;
+@property (nonatomic, strong) NSMutableArray *scratchesSecondBundle;
 @property (nonatomic, strong) NSMutableArray *allScratchesBundles;
 
 @property (nonatomic, strong) NSMutableArray *spreyFirstBundle;
@@ -35,10 +36,21 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *spreyFourthBundle;
 @property (nonatomic, strong) NSMutableArray *allSpreyBundles;
 
+@property (nonatomic, strong) NSMutableArray *allBundlesID;
+
+@property (nonatomic, strong) NSArray *products;
+
 + (CarouselSourceSingleton *)sharedCarouselSourceSingleton;
 
-- (void)unlockItemInGroup:(Group)group underIndex:(NSInteger)index;
 - (NSArray *)getAllItems;
 - (NSInteger)getAllItemsCount;
+
+// IN-APPS METHODS
+- (void)getInAppProducts;
+- (SKProduct *)getProductById:(NSString *)productID;
+- (NSMutableArray *)getBundleByProductID:(NSString *)productID;
+- (NSString *)getProductIdByBundle:(NSArray *)bundle;
+- (void)checkPurchasedBundles;
+- (void)bundlePurchasedWithId:(NSString *)productID andGroup:(Group)group;
 
 @end

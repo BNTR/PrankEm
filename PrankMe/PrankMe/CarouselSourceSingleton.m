@@ -7,6 +7,7 @@
 //
 
 #import "CarouselSourceSingleton.h"
+#import "BundleIAPHelper.h"
 
 @implementation CarouselSourceSingleton
 
@@ -22,6 +23,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
 
 - (id)init{
     if (self = [super init]) {
+        
         self.brokenGlassFilters = [NSMutableArray arrayWithObjects:
                                    @{@"image": @"glassSeparator"},
                                    @{@"image": @"glassFree1",
@@ -79,7 +81,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                      @"title": @"scratchFree2"},
                                    nil];
         
-        self.scratchesGlassFirstBundle = [NSMutableArray arrayWithObjects:
+        self.scratchesFirstBundle = [NSMutableArray arrayWithObjects:
                                           @[@{@"image": @"scratchBundle1_1",
                                               @"title": @"scratchBundle1_1"},
                                             @{@"image": @"scratchBundle1_2",
@@ -90,7 +92,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                               @"title": @"scratchBundle1_4"}],
                                             @{@"price":@"0,99 $"},
                                           nil];
-        self.scratchesGlassSecondBundle = [NSMutableArray arrayWithObjects:
+        self.scratchesSecondBundle = [NSMutableArray arrayWithObjects:
                                           @[@{@"image": @"scratchBundle2_1",
                                               @"title": @"scratchBundle2_1"},
                                             @{@"image": @"scratchBundle2_2",
@@ -102,7 +104,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                           @{@"price":@"0,99 $"},
                                           nil];
         
-        self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesGlassFirstBundle, self.scratchesGlassSecondBundle, nil];
+        self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesFirstBundle, self.scratchesSecondBundle, nil];
         
         self.spreyFilters = [NSMutableArray arrayWithObjects:
                                  @{@"image": @"glassSeparator"},
@@ -177,33 +179,30 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                  nil];
         
         self.allSpreyBundles = [NSMutableArray arrayWithObjects:self.spreyFirstBundle, self.spreySecondBundle, self.spreyThirdBundle, self.spreyFourthBundle, nil];
+        
+        self.allBundlesID = [NSMutableArray arrayWithObjects:
+                             @{@"key" :@"com.cratissoftware.prankem.glassbundle1",
+                               @"bundle" : self.brokenGlassFirstBundle,
+                               @"group" : @(BrokenGlass)},
+                             @{@"key" : @"com.cratissoftware.prankem.glassbundle2",
+                               @"bundle" : self.brokenGlassSecondBundle,
+                               @"group" : @(BrokenGlass)},
+                             @{@"key" : @"com.cratissoftware.prankem.glassbundle3",
+                               @"bundle" : self.brokenGlassThirdBundle,
+                               @"group" : @(BrokenGlass)},
+                             
+                             @{@"com.cratissoftware.prankem.scratchesbundle1": self.scratchesFirstBundle},
+                             @{@"com.cratissoftware.prankem.scratchesbundle2": self.scratchesSecondBundle},
+                             
+                             @{@"com.cratissoftware.prankem.spreybundle1": self.spreyFirstBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle2": self.spreySecondBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle3": self.spreyThirdBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle4": self.spreyFourthBundle},
+                             
+                             nil];
+        
     }
     return self;
-}
-
-- (void)unlockItemInGroup:(Group)group underIndex:(NSInteger)index{
-    switch (group) {
-        case BrokenGlass:
-        {
-            NSDictionary *items = [self.brokenGlassFilters objectAtIndex:index];
-            [items setValue:@(1) forKey:@"paied"];
-            break;
-        }
-        case Scratches:
-        {
-            NSDictionary *items = [self.scratchesFilters objectAtIndex:index];
-            [items setValue:@(1) forKey:@"paied"];
-            break;
-        }
-        case Sprey:
-        {
-            NSDictionary *items = [self.spreyFilters objectAtIndex:index];
-            [items setValue:@(1) forKey:@"paied"];
-            break;
-        }
-        default:
-            break;
-    }
 }
 
 - (NSArray *)getAllItems{
@@ -212,6 +211,100 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
 
 - (NSInteger)getAllItemsCount{
     return self.brokenGlassFilters.count + self.scratchesFilters.count + self.spreyFilters.count;
+}
+
+#pragma mark Work mafaka with In-apps
+
+- (NSMutableArray *)getBundleByProductID:(NSString *)productID{
+    NSMutableArray *bundleArray = [NSMutableArray array];
+    for (int i = 0; i < self.allBundlesID.count; i++){
+        NSDictionary *bundle  = self.allBundlesID[i];
+        if ([bundle[@"key"] isEqualToString:productID]){
+            bundleArray  = [NSMutableArray arrayWithArray:bundle[@"bundle"]];
+        }
+    }
+    return bundleArray;
+}
+
+- (NSString *)getProductIdByBundle:(NSArray *)bundle{
+    __block NSString *productName;
+    for (int i = 0; i < self.allBundlesID.count; i++){
+        NSDictionary *bundleDict  = self.allBundlesID[i];
+        [bundleDict enumerateKeysAndObjectsUsingBlock: ^(NSString *key, NSArray *object, BOOL *stop) {
+            if (bundle == object){
+                productName = bundleDict[@"key"];
+            }
+        }];
+    }
+    return productName;
+}
+
+- (void)getInAppProducts{
+    [[BundleIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            self.products = products;
+        }
+        NSLog(@"%@", self.products);
+    }];
+}
+
+- (SKProduct *)getProductById:(NSString *)productID{
+    SKProduct *product = [[SKProduct alloc] init];
+    for (SKProduct *prod in self.products){
+        if([prod.productIdentifier isEqualToString:productID]){
+            product = prod;
+        }
+    }
+    return product;
+}
+
+- (void)bundlePurchasedWithId:(NSString *)productID andGroup:(Group)group{
+    NSArray *bundle = [self getBundleByProductID:productID];
+    switch (group) {
+        case BrokenGlass:{
+            [self.brokenGlassFilters addObjectsFromArray:bundle[0]];
+            break;
+        }
+        case Scratches:{
+            [self.scratchesFilters addObjectsFromArray:bundle[0]];
+            break;
+        }
+        case Sprey:{
+            [self.spreyFilters addObjectsFromArray:bundle[0]];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)checkPurchasedBundles{
+    for (int i = 0; i < self.allBundlesID.count; i++){
+        NSDictionary *bundle = self.allBundlesID[i];
+        if ([[BundleIAPHelper sharedInstance] productPurchased:bundle[@"key"]]){
+            Group group = [bundle[@"group"] integerValue];
+            switch (group) {
+                case BrokenGlass:
+                {
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
+                    break;
+                }
+                case Scratches:
+                {
+                    [self.scratchesFilters addObjectsFromArray:bundle[@"bundle"]];
+                    break;
+                }
+                case Sprey:
+                {
+                    [self.spreyFilters addObjectsFromArray:bundle[@"bundle"]];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 @end

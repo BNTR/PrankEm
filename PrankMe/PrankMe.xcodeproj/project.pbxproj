@@ -13,6 +13,9 @@
 		322520CE19BF9DD200766247 /* ImageEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520CC19BF9DD200766247 /* ImageEditViewController.xib */; };
 		322520D119BFAB9000766247 /* CarouselItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 322520D019BFAB9000766247 /* CarouselItem.m */; };
 		322520D319BFABA500766247 /* CarouselItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322520D219BFABA500766247 /* CarouselItem.xib */; };
+		3240FB2419D4A1DC0091C2E6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3240FB2319D4A1DC0091C2E6 /* StoreKit.framework */; };
+		3240FB2A19D4A7F60091C2E6 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3240FB2919D4A7F60091C2E6 /* IAPHelper.m */; };
+		3240FB2D19D4ABC80091C2E6 /* BundleIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3240FB2C19D4ABC80091C2E6 /* BundleIAPHelper.m */; };
 		3250265719CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */; };
 		325734BD19C2435300B15B74 /* RageItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325734BC19C241A200B15B74 /* RageItalic.ttf */; };
 		32621EA119CB45FF00AE8A38 /* OverlayOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32621EA019CB45FF00AE8A38 /* OverlayOptions.m */; };
@@ -74,6 +77,11 @@
 		322520CF19BFAB9000766247 /* CarouselItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselItem.h; sourceTree = "<group>"; };
 		322520D019BFAB9000766247 /* CarouselItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselItem.m; sourceTree = "<group>"; };
 		322520D219BFABA500766247 /* CarouselItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarouselItem.xib; sourceTree = "<group>"; };
+		3240FB2319D4A1DC0091C2E6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3240FB2819D4A7F60091C2E6 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		3240FB2919D4A7F60091C2E6 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		3240FB2B19D4ABC80091C2E6 /* BundleIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleIAPHelper.h; sourceTree = "<group>"; };
+		3240FB2C19D4ABC80091C2E6 /* BundleIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleIAPHelper.m; sourceTree = "<group>"; };
 		3250265619CF8DA600269CB1 /* ImageEditViewControllerIphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageEditViewControllerIphone5.xib; sourceTree = "<group>"; };
 		325734BC19C241A200B15B74 /* RageItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RageItalic.ttf; sourceTree = "<group>"; };
 		32621E9F19CB45FF00AE8A38 /* OverlayOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayOptions.h; sourceTree = "<group>"; };
@@ -140,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3240FB2419D4A1DC0091C2E6 /* StoreKit.framework in Frameworks */,
 				32EA752319D0AA9E00A3D5E3 /* Social.framework in Frameworks */,
 				32227F4D19CF9C790065F83F /* MessageUI.framework in Frameworks */,
 				32621EB219CB6C0900AE8A38 /* CoreImage.framework in Frameworks */,
@@ -206,6 +215,7 @@
 		327BE02C19BE3777007F065D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3240FB2319D4A1DC0091C2E6 /* StoreKit.framework */,
 				32EA752219D0AA9E00A3D5E3 /* Social.framework */,
 				32227F4C19CF9C790065F83F /* MessageUI.framework */,
 				32621EB119CB6C0900AE8A38 /* CoreImage.framework */,
@@ -224,6 +234,10 @@
 				32621EB419CBA9B100AE8A38 /* Overlay */,
 				32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */,
 				32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */,
+				3240FB2819D4A7F60091C2E6 /* IAPHelper.h */,
+				3240FB2919D4A7F60091C2E6 /* IAPHelper.m */,
+				3240FB2B19D4ABC80091C2E6 /* BundleIAPHelper.h */,
+				3240FB2C19D4ABC80091C2E6 /* BundleIAPHelper.m */,
 				32FEB2C919C625B0009ADD6E /* Fonts */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
@@ -473,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3240FB2D19D4ABC80091C2E6 /* BundleIAPHelper.m in Sources */,
 				322520D119BFAB9000766247 /* CarouselItem.m in Sources */,
 				327BE03E19BE3777007F065D /* AppDelegate.m in Sources */,
 				32FEB2C219C5F7F4009ADD6E /* BundleDetailViewController.m in Sources */,
@@ -486,6 +501,7 @@
 				327BE07419BE40E3007F065D /* ShopViewController.m in Sources */,
 				32621EAC19CB66CF00AE8A38 /* UIImage+Filtering.m in Sources */,
 				327BE07919BE428F007F065D /* ShopItemCell.m in Sources */,
+				3240FB2A19D4A7F60091C2E6 /* IAPHelper.m in Sources */,
 				328AE35819CA376F0090F995 /* SPGripViewBorderView.m in Sources */,
 				32D9EC3F19C4DB03005A6897 /* CarouselSourceSingleton.m in Sources */,
 				328AE34F19C7ABBE0090F995 /* ShareViewController.m in Sources */,

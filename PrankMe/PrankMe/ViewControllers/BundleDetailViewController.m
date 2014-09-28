@@ -8,6 +8,7 @@
 
 #import "BundleDetailViewController.h"
 #import "BundleDetailItem.h"
+#import "BundleIAPHelper.h"
 
 @interface BundleDetailViewController()
 
@@ -16,6 +17,8 @@
 @property (nonatomic, strong) NSArray *overlays;
 @property (nonatomic, strong) CarouselSourceSingleton *source;
 @property (nonatomic) Group group;
+@property (nonatomic) NSString *productID;
+@property (nonatomic, strong) NSArray *products;
 
 @end
 
@@ -29,12 +32,13 @@
     return self;
 }
 
-- (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group{
+- (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group andProductIdentifire:(NSString *)productIdentifire{
     self = [super initWithNibName:@"BundleDetailViewController" bundle:nil];
     if (self) {
         self.bundle = bundle;
         self.bundleTitle = bundleName;
         self.group = group;
+        self.productID = productIdentifire;
         self.source = [CarouselSourceSingleton sharedCarouselSourceSingleton];
     }
     return self;
@@ -43,6 +47,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    [self checkForHidePriceButton];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.navigationItem.title = @"Settings";
@@ -107,23 +114,27 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)buyBundle{
-    switch (self.group) {
-        case BrokenGlass:{
-            [self.source.brokenGlassFilters addObjectsFromArray:self.bundle[0]];
-            break;
-        }
-        case Scratches:{
-            [self.source.scratchesFilters addObjectsFromArray:self.bundle[0]];
-            break;
-        }
-        case Sprey:{
-            [self.source.spreyFilters addObjectsFromArray:self.bundle[0]];
-            break;
-        }
-        default:
-            break;
+- (void)productPurchased:(NSNotification *)notification {
+    NSString * productIdentifier = notification.object;
+    [self.source bundlePurchasedWithId:productIdentifier andGroup:self.group];
+    [self checkForHidePriceButton];
+}
+
+- (void)checkForHidePriceButton{
+    if ([[BundleIAPHelper sharedInstance] productPurchased:self.productID]){
+        self.price.hidden = YES;
+        self.buyButton.hidden = YES;
+        self.priceButtonBackground.hidden = YES;
+    } else {
+        self.price.hidden = NO;
+        self.buyButton.hidden = NO;
+        self.priceButtonBackground.hidden = NO;
     }
+}
+
+- (IBAction)buyBundle{
+    SKProduct *product = [self.source getProductById:self.productID];
+    [[BundleIAPHelper sharedInstance] buyProduct:product];
 }
 
 - (void)showOverlay:(UIButton *)sender{

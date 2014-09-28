@@ -15,9 +15,9 @@
 @property (nonatomic) IBOutlet UILabel *effectsCount;
 @property (nonatomic) IBOutlet UIImageView *selectedOverlay;
 @property (nonatomic) IBOutlet UILabel *price;
-
+@property (nonatomic) IBOutlet UIImageView *priceButtonBackground;
 @property (nonatomic) IBOutlet UIButton *buyButton;
 
-- (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group;
+- (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group andProductIdentifire:(NSString *)productIdentifire;
 
 @end

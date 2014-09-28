@@ -8,11 +8,16 @@
 
 #import "AppDelegate.h"
 #import "GalleryViewController.h"
+#import "BundleIAPHelper.h"
+#import "CarouselSourceSingleton.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [BundleIAPHelper sharedInstance];
+    [[CarouselSourceSingleton sharedCarouselSourceSingleton] checkPurchasedBundles];
+    [[CarouselSourceSingleton sharedCarouselSourceSingleton] getInAppProducts];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

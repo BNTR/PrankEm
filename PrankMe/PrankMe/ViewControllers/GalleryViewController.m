@@ -13,11 +13,16 @@
 #import "ImageEditViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
+#import "BundleIAPHelper.h"
+#import <StoreKit/StoreKit.h>
+
 @interface GalleryViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) SettingsViewController *settingsVC;
 @property (nonatomic, strong) ShopViewController *shopVC;
 @property (nonatomic, strong) ImageEditViewController *imageEditVC;
+
+@property (nonatomic, strong) NSArray *products;
 
 @end
 
@@ -61,7 +66,6 @@
     self.pictures.backgroundColor = [UIColor clearColor];
     [self getAllPictures];
     [self.pictures registerNib:[UINib nibWithNibName:@"GalleryCell" bundle:nil] forCellWithReuseIdentifier:@"GalleryCell"];
-
 }
 
 #pragma Navigation Buttons Action

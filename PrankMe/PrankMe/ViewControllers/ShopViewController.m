@@ -10,10 +10,12 @@
 #import "ShopItemCell.h"
 #import "BundleDetailViewController.h"
 #import "CarouselSourceSingleton.h"
+#import "BundleIAPHelper.h"
 
 @interface ShopViewController ()<UITableViewDataSource, UITableViewDelegate>
     
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
+@property (nonatomic, strong) BundleDetailViewController *bundleVC;
 
 @property (nonatomic, strong) NSString *cellValue;
 @property (nonatomic) Group group;
@@ -37,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productRestored) name:IAPHelperProductRestoredNotification object:nil];
     
     self.navigationItem.title = @"Supply Shop";
     
@@ -66,7 +70,7 @@
 #pragma Navigation Buttons Action
 
 - (void)restoreButtonTapped{
-    NSLog(@"Restore InApps");
+    [[BundleIAPHelper sharedInstance] restoreCompletedTransactions];
 }
 
 - (void)doneButtonTapped{
@@ -135,8 +139,13 @@
     cell.itemTopLabel.text = [NSString stringWithFormat:@"%@ %i", self.cellValue, (int)indexPath.row];
     NSArray *effects = bundle[0];
     NSDictionary *price = bundle[1];
+    NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    if ([[BundleIAPHelper sharedInstance] productPurchased:productID]){
+        cell.itemPriceLabel.text = @"Bought";
+    } else {
+        cell.itemPriceLabel.text = price[@"price"];
+    }
     cell.itemBottomLabel.text = [NSString stringWithFormat:@"%i effects", (int)effects.count];
-    cell.itemPriceLabel.text = price[@"price"];
     cell.itemPriceLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14.035];
     [cell.itemButton setTag:indexPath.row];
     [cell.itemButton addTarget:self action:@selector(buyFilters:) forControlEvents:UIControlEventTouchUpInside];
@@ -171,9 +180,12 @@
         default:
             break;
     }
-
-    BundleDetailViewController *bundleVC = [[BundleDetailViewController alloc] initWithBundle:bundle andBundleName:[NSString stringWithFormat:@"%@ %i", self.cellValue, (int)tag] andGroup:self.group];
-    [self.navigationController pushViewController:bundleVC animated:YES];
+    NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    self.bundleVC = [[BundleDetailViewController alloc] initWithBundle:bundle
+                                                         andBundleName:[NSString stringWithFormat:@"%@ %i", self.cellValue, (int)tag]
+                                                              andGroup:self.group
+                                                  andProductIdentifire:productID];
+    [self.navigationController pushViewController:self.bundleVC animated:YES];
 }
 
 #pragma mark Segment Cotrol Methods
@@ -198,5 +210,12 @@
     }
     [self.tableView reloadData];
 }
+
+#pragma mark In-Apps Restored 
+
+- (void)productRestored{
+    [self.carouselSource checkPurchasedBundles];
+}
+
 
 @end
