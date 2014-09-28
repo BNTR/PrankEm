@@ -215,6 +215,7 @@
 
 - (void)productRestored{
     [self.carouselSource checkPurchasedBundles];
+    [self.tableView reloadData];
 }
 
 
