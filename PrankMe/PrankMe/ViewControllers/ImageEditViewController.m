@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ZDStickerView.h"
 #import "OverlayOptions.h"
+#import <CoreImage/CoreImage.h>
 #import "UIImage+Filtering.h"
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, ZDStickerViewDelegate>
@@ -30,26 +31,6 @@
 @property (nonatomic, strong) UIImage *originalOverlayImage;
 
 @property (nonatomic, strong) UIView *selectedImageTopView;
-@end
-
-#import <CoreImage/CoreImage.h>
-
-@interface UIImage (ColorInverse)
-
-@end
-
-
-@implementation UIImage (ColorInverse)
-
-+ (UIImage *)inverseColor:(UIImage *)image
-{
-    CIImage *coreImage = [CIImage imageWithCGImage:image.CGImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
-    [filter setValue:coreImage forKey:kCIInputImageKey];
-    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    return [UIImage imageWithCIImage:result];
-}
-
 @end
 
 @implementation ImageEditViewController

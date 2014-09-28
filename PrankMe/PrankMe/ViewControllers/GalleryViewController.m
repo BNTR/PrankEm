@@ -148,14 +148,6 @@
     ALAsset *asset = self.imagesFromRoll[indexPath.row];
     ALAssetRepresentation *defaultRep = [asset defaultRepresentation];
     UIImage *selectedImage = [UIImage imageWithCGImage:[defaultRep fullScreenImage] scale:[defaultRep scale] orientation:0];
-    
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"MyImage.png"];
-    
-    // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
-    NSData *imageData = UIImagePNGRepresentation(selectedImage);
-    [imageData writeToFile:filePath atomically:YES];
 
     self.imageEditVC = [[ImageEditViewController alloc] initWithSelectedImage:selectedImage];
     [self.navigationController pushViewController:self.imageEditVC animated:YES];
