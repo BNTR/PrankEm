@@ -132,16 +132,6 @@
 }
 
 - (void)goToShareScreen{
-    UIImage *image = self.image.image;
-    
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"MyImageName.png"];
-    
-    // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [imageData writeToFile:filePath atomically:YES];
-    
     ShareViewController *shareVC = [[ShareViewController alloc] initWithCompleteImage:self.image.image];
     [self.navigationController pushViewController:shareVC animated:YES];
 }
