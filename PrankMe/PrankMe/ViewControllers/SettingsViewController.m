@@ -7,8 +7,13 @@
 //
 
 #import "SettingsViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate>
+#define kAppID @"ID"
+#define kSiteURL @"http://www.google.com"
+#define kSupportEmail @"support@support.support"
+
+@interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -52,11 +57,60 @@
 
 #pragma mark Table View Delegate
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@", indexPath);
+    if (indexPath.section == 0){
+        switch (indexPath.row) {
+            case 0:
+                NSLog(@"Share this App");
+                break;
+            case 1:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"itms-apps://itunes.apple.com/app/" stringByAppendingString:kAppID]]];
+                break;
+            case 2:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSiteURL]];
+                break;
+                
+            default:
+                break;
+        }
+    } else {
+        [self showSupportEmail];
+    }
 }
 
+- (void)showSupportEmail{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setToRecipients:@[kSupportEmail]];
+        [composeViewController setSubject:@"PrankEm support"];
+        
+        [self presentViewController:composeViewController animated:YES completion:nil];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    NSString *messageResult;
+    if (result == MessageComposeResultCancelled){
+        messageResult = @"Message cancelled";
+    } else if (result == MessageComposeResultSent) {
+        messageResult = @"Message sent";
+    } else {
+        messageResult = @"Message failed";
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:messageResult
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 
 #pragma mark Table View Datasource
 
@@ -144,6 +198,5 @@
     cell.backgroundView = background;
     return cell;
 }
-
 
 @end
