@@ -10,8 +10,7 @@
 #import <MessageUI/MessageUI.h>
 
 #define kAppID @"ID"
-#define kSiteURL @"http://www.google.com"
-#define kSupportEmail @"support@support.support"
+#define kSupportEmail @"support@cratis-split.com"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -67,9 +66,8 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"itms-apps://itunes.apple.com/app/" stringByAppendingString:kAppID]]];
                 break;
             case 2:
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kSiteURL]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://cratis-split.com"]];
                 break;
-                
             default:
                 break;
         }
@@ -89,13 +87,12 @@
     }
 }
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller
-                didFinishWithResult:(MessageComposeResult)result
-{
+                didFinishWithResult:(MessageComposeResult)result{
     [controller dismissViewControllerAnimated:YES completion:nil];
     NSString *messageResult;
     if (result == MessageComposeResultCancelled){
