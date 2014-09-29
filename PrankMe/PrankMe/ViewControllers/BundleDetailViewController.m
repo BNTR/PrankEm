@@ -112,12 +112,14 @@
 
 - (void)goBackToShop{
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)productPurchased:(NSNotification *)notification {
     NSString * productIdentifier = notification.object;
     [self.source bundlePurchasedWithId:productIdentifier andGroup:self.group];
     [self checkForHidePriceButton];
+    [self.shopVC.tableView reloadData];
 }
 
 - (void)checkForHidePriceButton{
@@ -133,8 +135,11 @@
 }
 
 - (IBAction)buyBundle{
-    SKProduct *product = [self.source getProductById:self.productID];
-    [[BundleIAPHelper sharedInstance] buyProduct:product];
+#warning Right now only for 1 broken glass
+    if (self.group == BrokenGlass && [self.productID isEqualToString:@"com.cratissoftware.prankem.glassbundle1"]){
+        SKProduct *product = [self.source getProductById:self.productID];
+        [[BundleIAPHelper sharedInstance] buyProduct:product];
+    }
 }
 
 - (void)showOverlay:(UIButton *)sender{

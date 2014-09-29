@@ -234,10 +234,7 @@
 				32621EB419CBA9B100AE8A38 /* Overlay */,
 				32D9EC3E19C4DB03005A6897 /* CarouselSourceSingleton.h */,
 				32D9EC3D19C4DB03005A6897 /* CarouselSourceSingleton.m */,
-				3240FB2819D4A7F60091C2E6 /* IAPHelper.h */,
-				3240FB2919D4A7F60091C2E6 /* IAPHelper.m */,
-				3240FB2B19D4ABC80091C2E6 /* BundleIAPHelper.h */,
-				3240FB2C19D4ABC80091C2E6 /* BundleIAPHelper.m */,
+				32E7328E19D9E69C008EB1DE /* InAppPurchase */,
 				32FEB2C919C625B0009ADD6E /* Fonts */,
 				327BE06619BE3C21007F065D /* ViewControllers */,
 				327BE03C19BE3777007F065D /* AppDelegate.h */,
@@ -308,6 +305,17 @@
 				328AE35519CA376F0090F995 /* SPGripViewBorderView.m */,
 			);
 			name = OverlayClass;
+			sourceTree = "<group>";
+		};
+		32E7328E19D9E69C008EB1DE /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				3240FB2819D4A7F60091C2E6 /* IAPHelper.h */,
+				3240FB2919D4A7F60091C2E6 /* IAPHelper.m */,
+				3240FB2B19D4ABC80091C2E6 /* BundleIAPHelper.h */,
+				3240FB2C19D4ABC80091C2E6 /* BundleIAPHelper.m */,
+			);
+			name = InAppPurchase;
 			sourceTree = "<group>";
 		};
 		32FEB2C519C62576009ADD6E /* Gallery */ = {
@@ -623,7 +631,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";
@@ -637,7 +645,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Viktor Sokolov (PL9WN7U76A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zorana Mirkovic (LT5QG3EH9P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PrankMe/PrankMe-Prefix.pch";
 				INFOPLIST_FILE = "PrankMe/PrankMe-Info.plist";

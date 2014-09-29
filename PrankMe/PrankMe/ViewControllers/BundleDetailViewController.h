@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CarouselSourceSingleton.h"
+#import "ShopViewController.h"
 
 @interface BundleDetailViewController : UIViewController
 
@@ -17,6 +18,7 @@
 @property (nonatomic) IBOutlet UILabel *price;
 @property (nonatomic) IBOutlet UIImageView *priceButtonBackground;
 @property (nonatomic) IBOutlet UIButton *buyButton;
+@property (nonatomic, weak) ShopViewController *shopVC;
 
 - (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group andProductIdentifire:(NSString *)productIdentifire;
 
