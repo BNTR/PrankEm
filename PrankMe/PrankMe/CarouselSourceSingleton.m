@@ -27,18 +27,18 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.brokenGlassFilters = [NSMutableArray arrayWithObjects:
                                    @{@"image": @"glassSeparator"},
                                    @{@"image": @"glassFree1",
-                                     @"title": @"glassFree1"},
+                                     @"title": @"Glass1"},
                                    @{@"image": @"glassFree2",
-                                     @"title": @"glassFree2"},
+                                     @"title": @"Glass2"},
                                    nil];
         self.brokenGlassFirstBundle = [NSMutableArray arrayWithObjects:
                                        @[
                                        @{@"image": @"glassBundle1_1",
-                                         @"title": @"glassBundle1_1"},
+                                         @"title": @"Glass3"},
                                        @{@"image": @"glassBundle1_2",
-                                         @"title": @"glassBundle1_2",},
+                                         @"title": @"Glass4",},
                                        @{@"image": @"glassBundle1_3",
-                                         @"title": @"glassBundle1_3"}
+                                         @"title": @"Glass5"}
                                        ],
                                        @{@"price":@"0,99 $"},
                                        nil];
@@ -74,11 +74,11 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.allBrokenGlassBundles = [NSMutableArray arrayWithObjects:self.brokenGlassFirstBundle, self.brokenGlassSecondBundle, self.brokenGlassThirdBundle, nil];
         
         self.scratchesFilters = [NSMutableArray arrayWithObjects:
-                                   @{@"image": @"glassSeparator"},
+                                   @{@"image": @"scratchesSeparator"},
                                    @{@"image": @"scratchFree1",
-                                     @"title": @"scratchFree1"},
+                                     @"title": @"Scratch1"},
                                    @{@"image": @"scratchFree2",
-                                     @"title": @"scratchFree2"},
+                                     @"title": @"Scratch2"},
                                    nil];
         
         self.scratchesFirstBundle = [NSMutableArray arrayWithObjects:
@@ -107,19 +107,19 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesFirstBundle, self.scratchesSecondBundle, nil];
         
         self.spreyFilters = [NSMutableArray arrayWithObjects:
-                                 @{@"image": @"glassSeparator"},
+                                 @{@"image": @"spraySeparator"},
                                  @{@"image": @"spreyFree1",
-                                   @"title": @"spreyFree1"},
+                                   @"title": @"Spray1"},
                                  @{@"image": @"spreyFree2",
-                                   @"title": @"spreyFree2"},
+                                   @"title": @"Spray2"},
                                  @{@"image": @"spreyFree3",
-                                   @"title": @"spreyFree3"},
+                                   @"title": @"Spray3"},
                                  @{@"image": @"spreyFree4",
-                                   @"title": @"spreyFree4"},
+                                   @"title": @"Spray4"},
                                  @{@"image": @"spreyFree5",
-                                   @"title": @"spreyFree5"},
+                                   @"title": @"Spray5"},
                                  @{@"image": @"spreyFree6",
-                                   @"title": @"spreyFree6"},
+                                   @"title": @"Spray6"},
                                  nil];
         
         self.spreyFirstBundle = [NSMutableArray arrayWithObjects:
