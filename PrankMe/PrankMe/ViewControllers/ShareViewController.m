@@ -131,9 +131,9 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
         [composeViewController setMailComposeDelegate:self];
-        [composeViewController setSubject:@"PrankEm photo"];
+        [composeViewController setSubject:@"Prank Them photo"];
         NSData *myData = UIImagePNGRepresentation(self.completeImage);
-        [composeViewController addAttachmentData:myData mimeType:@"image/png" fileName:@"PrankEmPhoto.png"];
+        [composeViewController addAttachmentData:myData mimeType:@"image/png" fileName:@"PrankThemPhoto.png"];
         
         [self presentViewController:composeViewController animated:YES completion:nil];
     }
