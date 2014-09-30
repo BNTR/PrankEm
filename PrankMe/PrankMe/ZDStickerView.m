@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kSPUserResizableViewGlobalInset 5.0
-#define kSPUserResizableViewDefaultMinWidth 48.0
+#define kSPUserResizableViewDefaultMinWidth 5.0
 #define kSPUserResizableViewInteractiveBorderSize 10.0
 #define kZDStickerViewControlSize 22.0
 
@@ -171,8 +171,8 @@
         self.minWidth = kSPUserResizableViewDefaultMinWidth;
         self.minHeight = self.bounds.size.height * (kSPUserResizableViewDefaultMinWidth/self.bounds.size.width);
     } else {
-        self.minWidth = self.bounds.size.width*0.5;
-        self.minHeight = self.bounds.size.height*0.5;
+        self.minWidth = 44;
+        self.minHeight = 44;
     }
     self.preventsPositionOutsideSuperview = YES;
     self.preventsLayoutWhileResizing = YES;
