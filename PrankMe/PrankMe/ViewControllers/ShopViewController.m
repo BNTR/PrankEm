@@ -206,8 +206,8 @@
             break;
     }
 #warning Right now only for 1 broken glass
-    if (self.segmentControl.selectedSegmentIndex == BrokenGlass && sender.tag == 0){
-        NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    if (self.segmentControl.selectedSegmentIndex == BrokenGlass && sender.tag == 0 && ![[BundleIAPHelper sharedInstance] productPurchased:productID]){
         SKProduct *product = [self.carouselSource getProductById:productID];
         [[BundleIAPHelper sharedInstance] buyProduct:product];
     }
@@ -245,6 +245,7 @@
 #pragma mark In-Apps Restored 
 
 - (void)productRestored{
+    
     [self.carouselSource checkPurchasedBundles];
     [self.tableView reloadData];
 }

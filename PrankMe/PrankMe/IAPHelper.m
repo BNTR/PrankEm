@@ -152,10 +152,12 @@ NSString *const IAPHelperProductRestoredNotification = @"IAPHelperProductRestore
 }
 
 - (void)provideContentForRestoredProductIdentifier:(NSString *)productIdentifier {
-    [_purchasedProductIdentifiers addObject:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductRestoredNotification object:productIdentifier userInfo:nil];
+    if (![_purchasedProductIdentifiers containsObject:productIdentifier]){
+        [_purchasedProductIdentifiers addObject:productIdentifier];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductRestoredNotification object:productIdentifier userInfo:nil];
+    }
 }
 
 - (void)restoreCompletedTransactions {
