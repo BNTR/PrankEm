@@ -11,6 +11,7 @@
 
 #define kAppID @"ID"
 #define kSupportEmail @"support@cratis-split.com"
+#define kShareText @"You want to prank your friend? I use an app called Prankstr. It's a cool app that makes your friend's car seem scratched, sprayed on or their glass cracked. Check it out here: http://cratis-split.com"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -60,7 +61,7 @@
     if (indexPath.section == 0){
         switch (indexPath.row) {
             case 0:
-                NSLog(@"Share this App");
+                [self showShareEmail];
                 break;
             case 1:
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"itms-apps://itunes.apple.com/app/" stringByAppendingString:kAppID]]];
@@ -73,6 +74,16 @@
         }
     } else {
         [self showSupportEmail];
+    }
+}
+
+- (void)showShareEmail{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setSubject:@"Have you tried this app?"];
+        [composeViewController setMessageBody:kShareText isHTML:NO];
+        [self presentViewController:composeViewController animated:YES completion:nil];
     }
 }
 
