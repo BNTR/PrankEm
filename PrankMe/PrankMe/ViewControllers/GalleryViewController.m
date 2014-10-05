@@ -60,7 +60,7 @@
     [shopButton setBackgroundImage:shopButtonImage forState:UIControlStateNormal];
     [shopButton addTarget:self action:@selector(goToShopScreen) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shopButton];
-    self.navigationItem.title = @"Prank Them";
+    self.navigationItem.title = @"Prankstr";
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     self.pictures.backgroundColor = [UIColor clearColor];

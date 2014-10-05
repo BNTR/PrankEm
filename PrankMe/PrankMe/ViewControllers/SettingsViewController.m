@@ -81,7 +81,7 @@
         MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
         [composeViewController setMailComposeDelegate:self];
         [composeViewController setToRecipients:@[kSupportEmail]];
-        [composeViewController setSubject:@"Prank Them support"];
+        [composeViewController setSubject:@"Prankstr support"];
         
         [self presentViewController:composeViewController animated:YES completion:nil];
     }
