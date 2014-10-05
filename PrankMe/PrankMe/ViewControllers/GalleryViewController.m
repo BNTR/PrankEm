@@ -126,24 +126,24 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(75, 75);
+    return CGSizeMake(96, 96);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(30, 20, 10, 20);
+    return UIEdgeInsetsMake(5, 6, 0, 6);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 28.0;
+    return 6.0;
 }
 - (GalleryCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GalleryCell *cell = (GalleryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"GalleryCell" forIndexPath:indexPath];
     ALAsset *asset = self.imagesFromRoll[indexPath.row];
     cell.asset = asset;
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
