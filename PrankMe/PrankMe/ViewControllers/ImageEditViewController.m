@@ -19,9 +19,6 @@
 
 @interface ImageEditViewController ()<UIScrollViewDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, ZDStickerViewDelegate>
 
-@property (nonatomic) IBOutlet UISlider *brightnessSlider;
-@property (nonatomic) IBOutlet UISlider *contrastSlider;
-
 @property (nonatomic, strong) UIImage *selectedImage;
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
 @property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
@@ -29,6 +26,7 @@
 @property (nonatomic) BOOL invertOn;
 
 @property (nonatomic, strong) UIImage *originalOverlayImage;
+@property (nonatomic, strong) UIImage *overlayImageForOptions;
 
 @property (nonatomic, strong) UIView *selectedImageTopView;
 @end
@@ -324,6 +322,7 @@
     [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateSelected];
     [self.view addSubview:self.overlayOptions];
     self.originalOverlayImage = image;
+    self.overlayImageForOptions = image;
     self.carouselContent.hidden = YES;
 }
 
@@ -344,7 +343,7 @@
     inProgress = YES;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImage *image = [self filteredImage:self.originalOverlayImage];
+        UIImage *image = [self filteredImage:self.overlayImageForOptions];
         [overlayImage performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
         inProgress = NO;
     });
@@ -380,36 +379,47 @@
     if (self.invertOn){
         self.overlayOptions.invertColorImage.image = [UIImage imageNamed:@"invertColorUncheck"];
         self.invertOn = NO;
+        self.overlayImageForOptions = self.originalOverlayImage;
+        ZDStickerView *overlay = self.overlaysOnScreen[0];
+        UIView *content = overlay.contentView;
+        UIImageView *overlayImage = [[UIImageView alloc] init];
+        for (int j = 0; j < content.subviews.count; j++){
+            if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+                overlayImage = content.subviews[j];
+            }
+        }
+        overlayImage.image = self.originalOverlayImage;
+        self.overlayOptions.brightnessSlider.value = 0.0;
+        self.overlayOptions.contrastSlider.value = 1.0;
     } else {
         self.overlayOptions.invertColorImage.image = [UIImage imageNamed:@"invertColorCheck"];
         self.invertOn = YES;
-    }
-    
-    ZDStickerView *overlay = self.overlaysOnScreen[0];
-    UIView *content = overlay.contentView;
-    UIImageView *overlayImage = [[UIImageView alloc] init];
-    for (int j = 0; j < content.subviews.count; j++){
-        if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
-            overlayImage = content.subviews[j];
+        ZDStickerView *overlay = self.overlaysOnScreen[0];
+        UIView *content = overlay.contentView;
+        UIImageView *overlayImage = [[UIImageView alloc] init];
+        for (int j = 0; j < content.subviews.count; j++){
+            if ([content.subviews[j] isKindOfClass:[UIImageView class]]){
+                overlayImage = content.subviews[j];
+            }
         }
+        UIGraphicsBeginImageContext(overlayImage.image.size);
+        CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
+        CGRect imageRect = CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height);
+        [overlayImage.image drawInRect:imageRect];
+        
+        CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
+        // translate/flip the graphics context (for transforming from CG* coords to UI* coords
+        CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0, overlayImage.image.size.height);
+        CGContextScaleCTM(UIGraphicsGetCurrentContext(), 1.0, -1.0);
+        //mask the image
+        CGContextClipToMask(UIGraphicsGetCurrentContext(), imageRect,  overlayImage.image.CGImage);
+        CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(),[UIColor whiteColor].CGColor);
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height));
+        UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        overlayImage.image = returnImage;
+        self.overlayImageForOptions = returnImage;
     }
-    UIGraphicsBeginImageContext(overlayImage.image.size);
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
-    CGRect imageRect = CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height);
-    [overlayImage.image drawInRect:imageRect];
-    
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
-    // translate/flip the graphics context (for transforming from CG* coords to UI* coords
-    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0, overlayImage.image.size.height);
-    CGContextScaleCTM(UIGraphicsGetCurrentContext(), 1.0, -1.0);
-    //mask the image
-    CGContextClipToMask(UIGraphicsGetCurrentContext(), imageRect,  overlayImage.image.CGImage);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(),[UIColor whiteColor].CGColor);
-    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, overlayImage.image.size.width, overlayImage.image.size.height));
-    UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    overlayImage.image = returnImage;
-    self.originalOverlayImage = returnImage;
 }
 
 @end
