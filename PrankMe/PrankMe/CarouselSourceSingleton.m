@@ -181,7 +181,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.allSpreyBundles = [NSMutableArray arrayWithObjects:self.spreyFirstBundle, self.spreySecondBundle, self.spreyThirdBundle, self.spreyFourthBundle, nil];
         
         self.allBundlesID = [NSMutableArray arrayWithObjects:
-                             @{@"key" :@"com.cratissoftware.prankem.glassbundle1",
+                             @{@"key" :@"com.cratissoftware.prankem.extreme",
                                @"bundle" : self.brokenGlassFirstBundle,
                                @"group" : @(BrokenGlass)},
                              @{@"key" : @"com.cratissoftware.prankem.glassbundle2",

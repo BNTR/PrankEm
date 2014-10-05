@@ -15,7 +15,7 @@
     static BundleIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
         NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      @"com.cratissoftware.prankem.glassbundle1",
+                                      @"com.cratissoftware.prankem.extreme",
 //                                      @"com.cratissoftware.prankem.glassbundle2",
 //                                      @"com.cratissoftware.prankem.glassbundle3",
 //                                      
