@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -65,30 +66,25 @@
                         <constraint firstAttribute="height" constant="1" id="nIP-vW-u9H"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampleBundleImage" translatesAutoresizingMaskIntoConstraints="NO" id="guh-y9-6Mb">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="guh-y9-6Mb">
                     <rect key="frame" x="20" y="34" width="151" height="192"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="151" id="788-El-NP9"/>
                         <constraint firstAttribute="height" constant="192" id="hfc-MU-grN"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="priceButton" translatesAutoresizingMaskIntoConstraints="NO" id="yEy-qT-4S9">
-                    <rect key="frame" x="256" y="290" width="53" height="17"/>
+                    <rect key="frame" x="234" y="287" width="76" height="24"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGD-SS-4fq">
-                    <rect key="frame" x="256" y="291" width="53" height="17"/>
-                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="9"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qUR-Pq-LJL">
                     <rect key="frame" x="37" y="65" width="117" height="117"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Ex-GxL">
-                    <rect key="frame" x="256" y="290" width="53" height="17"/>
+                    <rect key="frame" x="234" y="287" width="76" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="53" id="q7S-8D-1gc"/>
+                        <constraint firstAttribute="width" constant="76" id="q7S-8D-1gc"/>
                     </constraints>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,6 +93,12 @@
                         <action selector="buyBundle" destination="-1" eventType="touchUpInside" id="qEG-bx-m7E"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGD-SS-4fq">
+                    <rect key="frame" x="246" y="291" width="53" height="17"/>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -106,8 +108,8 @@
                 <constraint firstItem="zGD-SS-4fq" firstAttribute="top" secondItem="90U-Nn-dYK" secondAttribute="bottom" constant="13" id="6qm-85-yd2"/>
                 <constraint firstItem="KpX-JN-eG3" firstAttribute="leading" secondItem="DQw-jZ-NYQ" secondAttribute="leading" id="8vx-nF-DDy"/>
                 <constraint firstItem="F6z-uh-Jur" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8zW-tx-cmP"/>
-                <constraint firstItem="zGD-SS-4fq" firstAttribute="top" secondItem="yEy-qT-4S9" secondAttribute="top" constant="1" id="Evd-7C-CdL"/>
-                <constraint firstItem="2yM-Ex-GxL" firstAttribute="leading" secondItem="zGD-SS-4fq" secondAttribute="leading" id="LhK-Sm-yuG"/>
+                <constraint firstItem="zGD-SS-4fq" firstAttribute="top" secondItem="yEy-qT-4S9" secondAttribute="top" constant="4" id="Evd-7C-CdL"/>
+                <constraint firstItem="2yM-Ex-GxL" firstAttribute="leading" secondItem="zGD-SS-4fq" secondAttribute="leading" constant="-12" id="LhK-Sm-yuG"/>
                 <constraint firstItem="qUR-Pq-LJL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="MXQ-Ll-4K8"/>
                 <constraint firstItem="F6z-uh-Jur" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NG8-ji-mzb"/>
                 <constraint firstAttribute="trailing" secondItem="F6z-uh-Jur" secondAttribute="trailing" id="ODO-RN-V2k"/>
@@ -121,17 +123,17 @@
                 <constraint firstItem="DQw-jZ-NYQ" firstAttribute="top" secondItem="qUR-Pq-LJL" secondAttribute="bottom" constant="66" id="b0H-hK-uqs"/>
                 <constraint firstItem="qUR-Pq-LJL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37" id="dKn-mQ-JXF"/>
                 <constraint firstItem="KpX-JN-eG3" firstAttribute="top" secondItem="90U-Nn-dYK" secondAttribute="bottom" constant="8" id="goM-PU-u1P"/>
-                <constraint firstItem="zGD-SS-4fq" firstAttribute="bottom" secondItem="2yM-Ex-GxL" secondAttribute="bottom" constant="1" id="hch-Me-dBy"/>
+                <constraint firstItem="zGD-SS-4fq" firstAttribute="bottom" secondItem="2yM-Ex-GxL" secondAttribute="bottom" constant="-3" id="hch-Me-dBy"/>
                 <constraint firstAttribute="bottom" secondItem="F6z-uh-Jur" secondAttribute="bottom" id="jUF-WM-r8B"/>
                 <constraint firstItem="90U-Nn-dYK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="jfd-xs-qVB"/>
-                <constraint firstItem="zGD-SS-4fq" firstAttribute="trailing" secondItem="90U-Nn-dYK" secondAttribute="trailing" id="jfw-EV-DPh"/>
-                <constraint firstItem="zGD-SS-4fq" firstAttribute="leading" secondItem="yEy-qT-4S9" secondAttribute="leading" id="k1y-A1-KO1"/>
+                <constraint firstItem="zGD-SS-4fq" firstAttribute="trailing" secondItem="90U-Nn-dYK" secondAttribute="trailing" constant="-10" id="jfw-EV-DPh"/>
+                <constraint firstItem="zGD-SS-4fq" firstAttribute="leading" secondItem="yEy-qT-4S9" secondAttribute="leading" constant="12" id="k1y-A1-KO1"/>
                 <constraint firstItem="DQw-jZ-NYQ" firstAttribute="top" secondItem="py4-Jv-945" secondAttribute="bottom" constant="13" id="lqN-kS-c5c"/>
-                <constraint firstItem="zGD-SS-4fq" firstAttribute="trailing" secondItem="2yM-Ex-GxL" secondAttribute="trailing" id="mnE-Dy-4Nu"/>
+                <constraint firstItem="zGD-SS-4fq" firstAttribute="trailing" secondItem="2yM-Ex-GxL" secondAttribute="trailing" constant="-11" id="mnE-Dy-4Nu"/>
                 <constraint firstAttribute="trailing" secondItem="90U-Nn-dYK" secondAttribute="trailing" constant="11" id="nFT-ya-AGl"/>
-                <constraint firstItem="2yM-Ex-GxL" firstAttribute="top" secondItem="zGD-SS-4fq" secondAttribute="top" constant="-1" id="qNX-xV-kWA"/>
+                <constraint firstItem="2yM-Ex-GxL" firstAttribute="top" secondItem="zGD-SS-4fq" secondAttribute="top" constant="-4" id="qNX-xV-kWA"/>
                 <constraint firstItem="zGD-SS-4fq" firstAttribute="bottom" secondItem="KpX-JN-eG3" secondAttribute="bottom" constant="1" id="soA-4U-S5a"/>
-                <constraint firstItem="yEy-qT-4S9" firstAttribute="trailing" secondItem="zGD-SS-4fq" secondAttribute="trailing" id="yau-IX-dXk"/>
+                <constraint firstItem="yEy-qT-4S9" firstAttribute="trailing" secondItem="zGD-SS-4fq" secondAttribute="trailing" constant="11" id="yau-IX-dXk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
@@ -139,7 +141,6 @@
     <resources>
         <image name="background" width="320" height="568"/>
         <image name="priceButton" width="83" height="26"/>
-        <image name="sampleBundleImage" width="154" height="231"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
