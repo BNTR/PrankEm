@@ -193,7 +193,7 @@
     byteIndex += 4;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     [resultColor addObject:color];
-    NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
+    //NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
     free(rawData);
     return resultColor;
 }

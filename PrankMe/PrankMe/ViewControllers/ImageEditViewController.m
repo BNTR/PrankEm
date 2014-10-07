@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *overlaysOnScreen;
 @property (nonatomic, strong) OverlayOptions *overlayOptions;
 @property (nonatomic) BOOL invertOn;
+@property (nonatomic) BOOL overlaySelected;
 
 @property (nonatomic, strong) UIImage *originalOverlayImage;
 @property (nonatomic, strong) UIImage *overlayImageForOptions;
@@ -79,11 +80,24 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
     //self.selectedImageTopView.backgroundColor = [UIColor redColor];
     
-    CGSize size = [self imageSizeAfterAspectFit:self.image];
-    self.selectedImageTopView.frame = CGRectMake(self.image.frame.origin.x, self.image.frame.origin.y, size.width, size.height);
+//    CGSize size = [self imageSizeAfterAspectFit:self.image];
+//    self.selectedImageTopView.frame = CGRectMake(self.image.frame.origin.x, self.image.frame.origin.y, size.width, size.height);
     self.selectedImageTopView.clipsToBounds = YES;
     [self.view addSubview:self.selectedImageTopView];
     [self setupCarousel];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.overlaySelected){
+        for (int i = 0; i < self.overlaysOnScreen.count; i++){
+            ZDStickerView *overlay = self.overlaysOnScreen[i];
+            [self stickerViewDidClose:overlay];
+            [overlay removeFromSuperview];
+        }
+    }
+    CGSize size = [self imageSizeAfterAspectFit:self.image];
+    self.selectedImageTopView.frame = CGRectMake(self.image.frame.origin.x, self.image.frame.origin.y, size.width, size.height);
 }
 
 -(CGSize)imageSizeAfterAspectFit:(UIImageView*)imgview{
@@ -243,6 +257,7 @@
     [self.overlaysOnScreen addObject:overlay];
     [self addApplyButton];
     self.invertOn = NO;
+    self.overlaySelected = YES;
 }
 
 - (void)addApplyButton{
@@ -263,6 +278,7 @@
     
     self.overlayOptions.hidden = YES;
     self.carouselContent.hidden = NO;
+    self.overlaySelected = NO;
     self.navigationItem.title = @"Effects";
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -304,12 +320,14 @@
         ZDStickerView *overlay = self.overlaysOnScreen[i];
         [overlay removeFromSuperview];
     }
+    self.overlaySelected = NO;
 }
 
 - (void)stickerViewDidClose:(ZDStickerView *)sticker{
     [self.overlaysOnScreen removeObject:sticker];
     self.overlayOptions.hidden = YES;
     self.carouselContent.hidden = NO;
+    self.overlaySelected = NO;
     self.navigationItem.title = @"Effects";
 }
 
@@ -457,7 +475,7 @@
     byteIndex += 4;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     [resultColor addObject:color];
-    NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
+    //NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
     free(rawData);
     return resultColor;
 }
