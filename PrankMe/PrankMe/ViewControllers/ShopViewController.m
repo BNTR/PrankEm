@@ -95,7 +95,7 @@
             break;
         }
         case 2:{
-            bundle = self.carouselSource.allSpreyBundles[indexPath.row];
+            bundle = self.carouselSource.allSprayBundles[indexPath.row];
             break;
         }
         default:
@@ -126,7 +126,7 @@
             return self.carouselSource.allScratchesBundles.count;
             break;
         case 2:
-            return self.carouselSource.allSpreyBundles.count;
+            return self.carouselSource.allSprayBundles.count;
             break;
         default:{
             return 0;
@@ -154,7 +154,7 @@
             break;
         }
         case 2:{
-            bundle = self.carouselSource.allSpreyBundles[indexPath.row];
+            bundle = self.carouselSource.allSprayBundles[indexPath.row];
             break;
         }
         default:
@@ -198,8 +198,8 @@
             bundle = self.carouselSource.allScratchesBundles[sender.tag];
             break;
         }
-        case Sprey:{
-            bundle = self.carouselSource.allSpreyBundles[sender.tag];
+        case Spray:{
+            bundle = self.carouselSource.allSprayBundles[sender.tag];
             break;
         }
         default:
@@ -232,9 +232,9 @@
             self.group = Scratches;
             break;
         }
-        case Sprey:
-            self.cellValue = @"Sprey";
-            self.group = Sprey;
+        case Spray:
+            self.cellValue = @"Spray";
+            self.group = Spray;
             break;
         default:
             break;

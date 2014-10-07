@@ -68,6 +68,8 @@
     [doneButton addTarget:self action:@selector(goBackToShop) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     
+    self.backgroundForOverlayPlace.backgroundColor = [UIColor clearColor];
+    
     [self setupView];
 }
 
@@ -92,6 +94,15 @@
                                                           options:nil] objectAtIndex:0];
         [item setFrame:CGRectMake(xCoor, yCoor, item.frame.size.width, item.frame.size.height)];
         item.selectedOverlay.image = [UIImage imageNamed:self.overlays[i][@"image"]];
+        
+        NSArray *color = [self getRGBAFromImage:item.selectedOverlay.image atx:593 atY:357];
+        const CGFloat *colors = CGColorGetComponents([color[0] CGColor]);
+        if (colors[0] < 0.07 && colors[1] < 0.07 && colors[2] < 0.07 && self.group == Spray){
+            item.selectedOverlay.backgroundColor = [UIColor whiteColor];
+        } else {
+            item.selectedOverlay.backgroundColor = [UIColor blackColor];
+        }
+
         UIButton *overlayShowButton = [UIButton buttonWithType:UIButtonTypeCustom];
         overlayShowButton.frame = CGRectMake(xCoor, yCoor, item.frame.size.width, item.frame.size.height);
         [overlayShowButton addTarget:self action:@selector(showOverlay:) forControlEvents:UIControlEventTouchUpInside];
@@ -144,7 +155,47 @@
 
 - (void)showOverlay:(UIButton *)sender{
     NSInteger tag = sender.tag;
-    self.selectedOverlay.image = [UIImage imageNamed:self.overlays[tag][@"image"]];
+    UIImage *selectedOverlay = [UIImage imageNamed:self.overlays[tag][@"image"]];
+    // coors from all spray overlays contain this point with color
+    NSArray *color = [self getRGBAFromImage:selectedOverlay atx:593 atY:357];
+    const CGFloat *colors = CGColorGetComponents([color[0] CGColor]);
+    if (colors[0] < 0.07 && colors[1] < 0.07 && colors[2] < 0.07 && self.group == Spray){
+        self.backgroundForOverlayPlace.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundForOverlayPlace.backgroundColor = [UIColor blackColor];
+    }
+    self.selectedOverlay.image = selectedOverlay;
+}
+
+- (NSArray*)getRGBAFromImage:(UIImage*)image atx:(int)xp atY:(int)yp{
+    NSMutableArray *resultColor = [NSMutableArray array];
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    
+    int byteIndex = (bytesPerRow * yp) + xp * bytesPerPixel;
+    CGFloat red   = (rawData[byteIndex]     * 1.0) /255.0;
+    CGFloat green = (rawData[byteIndex + 1] * 1.0)/255.0 ;
+    CGFloat blue  = (rawData[byteIndex + 2] * 1.0)/255.0 ;
+    CGFloat alpha = (rawData[byteIndex + 3] * 1.0) /255.0;
+    byteIndex += 4;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    [resultColor addObject:color];
+    NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
+    free(rawData);
+    return resultColor;
 }
 
 @end

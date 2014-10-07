@@ -18,6 +18,7 @@
 @property (nonatomic) IBOutlet UILabel *price;
 @property (nonatomic) IBOutlet UIImageView *priceButtonBackground;
 @property (nonatomic) IBOutlet UIButton *buyButton;
+@property (nonatomic) IBOutlet UIView *backgroundForOverlayPlace;
 @property (nonatomic, weak) ShopViewController *shopVC;
 
 - (id)initWithBundle:(NSArray *)bundle andBundleName:(NSString *)bundleName andGroup:(Group)group andProductIdentifire:(NSString *)productIdentifire;

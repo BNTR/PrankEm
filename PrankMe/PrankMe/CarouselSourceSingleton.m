@@ -106,7 +106,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         
         self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesFirstBundle, self.scratchesSecondBundle, nil];
         
-        self.spreyFilters = [NSMutableArray arrayWithObjects:
+        self.sprayFilters = [NSMutableArray arrayWithObjects:
                                  @{@"image": @"spraySeparator"},
                                  @{@"image": @"spreyFree1",
                                    @"title": @"Spray1"},
@@ -122,7 +122,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                    @"title": @"Spray6"},
                                  nil];
         
-        self.spreyFirstBundle = [NSMutableArray arrayWithObjects:
+        self.sprayFirstBundle = [NSMutableArray arrayWithObjects:
                                        @[
                                          @{@"image": @"spreyBundle1_1",
                                            @"title": @"spreyBundle1_1"},
@@ -138,7 +138,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                        @{@"price":@"1,99 $"},
                                        nil];
         
-        self.spreySecondBundle = [NSMutableArray arrayWithObjects:
+        self.spraySecondBundle = [NSMutableArray arrayWithObjects:
                                         @[
                                           @{@"image": @"spreyBundle2_1",
                                             @"title": @"spreyBundle2_1",},
@@ -151,7 +151,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                           ],
                                         @{@"price":@"0,99 $"},
                                         nil];
-        self.spreyThirdBundle = [NSMutableArray arrayWithObjects:
+        self.sprayThirdBundle = [NSMutableArray arrayWithObjects:
                                        @[@{@"image": @"spreyBundle3_1",
                                            @"title": @"spreyBundle3_1"},
                                          @{@"image": @"spreyBundle3_2",
@@ -164,7 +164,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                            @"title": @"spreyBundle3_5"}],
                                        @{@"price":@"1,99 $"},
                                        nil];
-        self.spreyFourthBundle = [NSMutableArray arrayWithObjects:
+        self.sprayFourthBundle = [NSMutableArray arrayWithObjects:
                                  @[@{@"image": @"spreyBundle4_1",
                                      @"title": @"spreyBundle4_1"},
                                    @{@"image": @"spreyBundle4_2",
@@ -178,7 +178,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                  @{@"price":@"1,99 $"},
                                  nil];
         
-        self.allSpreyBundles = [NSMutableArray arrayWithObjects:self.spreyFirstBundle, self.spreySecondBundle, self.spreyThirdBundle, self.spreyFourthBundle, nil];
+        self.allSprayBundles = [NSMutableArray arrayWithObjects:self.sprayFirstBundle, self.spraySecondBundle, self.sprayThirdBundle, self.sprayFourthBundle, nil];
         
         self.allBundlesID = [NSMutableArray arrayWithObjects:
                              @{@"key" :@"com.cratissoftware.prankem.extreme",
@@ -194,10 +194,10 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                              @{@"com.cratissoftware.prankem.scratchesbundle1": self.scratchesFirstBundle},
                              @{@"com.cratissoftware.prankem.scratchesbundle2": self.scratchesSecondBundle},
                              
-                             @{@"com.cratissoftware.prankem.spreybundle1": self.spreyFirstBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle2": self.spreySecondBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle3": self.spreyThirdBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle4": self.spreyFourthBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle1": self.sprayFirstBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle2": self.spraySecondBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle3": self.sprayThirdBundle},
+                             @{@"com.cratissoftware.prankem.spreybundle4": self.sprayFourthBundle},
                              
                              nil];
         
@@ -206,11 +206,11 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
 }
 
 - (NSArray *)getAllItems{
-    return @[self.brokenGlassFilters, self.scratchesFilters, self.spreyFilters];
+    return @[self.brokenGlassFilters, self.scratchesFilters, self.sprayFilters];
 }
 
 - (NSInteger)getAllItemsCount{
-    return self.brokenGlassFilters.count + self.scratchesFilters.count + self.spreyFilters.count;
+    return self.brokenGlassFilters.count + self.scratchesFilters.count + self.sprayFilters.count;
 }
 
 #pragma mark Work mafaka with In-apps
@@ -269,8 +269,8 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
             [self.scratchesFilters addObjectsFromArray:bundle[0]];
             break;
         }
-        case Sprey:{
-            [self.spreyFilters addObjectsFromArray:bundle[0]];
+        case Spray:{
+            [self.sprayFilters addObjectsFromArray:bundle[0]];
             break;
         }
         default:
@@ -295,9 +295,9 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                     [self.scratchesFilters addObjectsFromArray:bundle[@"bundle"]];
                     break;
                 }
-                case Sprey:
+                case Spray:
                 {
-                    [self.spreyFilters addObjectsFromArray:bundle[@"bundle"]];
+                    [self.sprayFilters addObjectsFromArray:bundle[@"bundle"]];
                     break;
                 }
                 default:

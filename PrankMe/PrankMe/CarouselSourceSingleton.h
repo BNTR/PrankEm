@@ -12,14 +12,14 @@
 typedef enum {
     BrokenGlass = 0,
     Scratches,
-    Sprey
+    Spray
 } Group;
 
 @interface CarouselSourceSingleton : NSObject
 
 @property (nonatomic, strong) NSMutableArray *brokenGlassFilters;
 @property (nonatomic, strong) NSMutableArray *scratchesFilters;
-@property (nonatomic, strong) NSMutableArray *spreyFilters;
+@property (nonatomic, strong) NSMutableArray *sprayFilters;
 
 @property (nonatomic, strong) NSMutableArray *brokenGlassFirstBundle;
 @property (nonatomic, strong) NSMutableArray *brokenGlassSecondBundle;
@@ -30,11 +30,11 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *scratchesSecondBundle;
 @property (nonatomic, strong) NSMutableArray *allScratchesBundles;
 
-@property (nonatomic, strong) NSMutableArray *spreyFirstBundle;
-@property (nonatomic, strong) NSMutableArray *spreySecondBundle;
-@property (nonatomic, strong) NSMutableArray *spreyThirdBundle;
-@property (nonatomic, strong) NSMutableArray *spreyFourthBundle;
-@property (nonatomic, strong) NSMutableArray *allSpreyBundles;
+@property (nonatomic, strong) NSMutableArray *sprayFirstBundle;
+@property (nonatomic, strong) NSMutableArray *spraySecondBundle;
+@property (nonatomic, strong) NSMutableArray *sprayThirdBundle;
+@property (nonatomic, strong) NSMutableArray *sprayFourthBundle;
+@property (nonatomic, strong) NSMutableArray *allSprayBundles;
 
 @property (nonatomic, strong) NSMutableArray *allBundlesID;
 

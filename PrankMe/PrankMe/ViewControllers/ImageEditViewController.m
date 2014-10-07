@@ -182,6 +182,15 @@
                 [item setFrame:CGRectMake(xCoordinate, 0, item.frame.size.width, item.frame.size.height)];
                 UIImage *originalImage = [UIImage imageNamed:filters[@"image"]];
                 item.originalImageName = filters[@"image"];
+                
+                NSArray *color = [self getRGBAFromImage:originalImage atx:593 atY:357];
+                const CGFloat *colors = CGColorGetComponents([color[0] CGColor]);
+                if (colors[0] < 0.07 && colors[1] < 0.07 && colors[2] < 0.07 && i == Spray){
+                    item.itemImage.backgroundColor = [UIColor whiteColor];
+                } else {
+                    item.itemImage.backgroundColor = [UIColor blackColor];
+                }
+                
                 CGSize destinationSize = CGSizeMake(96, 96);
                 UIGraphicsBeginImageContext(destinationSize);
                 [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
@@ -421,5 +430,37 @@
         self.overlayImageForOptions = returnImage;
     }
 }
+
+- (NSArray*)getRGBAFromImage:(UIImage*)image atx:(int)xp atY:(int)yp{
+    NSMutableArray *resultColor = [NSMutableArray array];
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    
+    int byteIndex = (bytesPerRow * yp) + xp * bytesPerPixel;
+    CGFloat red   = (rawData[byteIndex]     * 1.0) /255.0;
+    CGFloat green = (rawData[byteIndex + 1] * 1.0)/255.0 ;
+    CGFloat blue  = (rawData[byteIndex + 2] * 1.0)/255.0 ;
+    CGFloat alpha = (rawData[byteIndex + 3] * 1.0) /255.0;
+    byteIndex += 4;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    [resultColor addObject:color];
+    NSLog(@"width:%i hight:%i Color:%@",width,height,[color description]);
+    free(rawData);
+    return resultColor;
+}
+
 
 @end
