@@ -15,17 +15,18 @@
     static BundleIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
         NSSet * productIdentifiers = [NSSet setWithObjects:
+                                      //Broken glass
                                       @"com.cratissoftware.prankem.extreme",
-//                                      @"com.cratissoftware.prankem.glassbundle2",
-//                                      @"com.cratissoftware.prankem.glassbundle3",
-//                                      
-//                                      @"com.cratissoftware.prankem.scratchesbundle1",
-//                                      @"com.cratissoftware.prankem.scratchesbundle2",
-//                                      
-//                                      @"com.cratissoftware.prankem.spreybundle1",
-//                                      @"com.cratissoftware.prankem.spreybundle2",
-//                                      @"com.cratissoftware.prankem.spreybundle3",
-//                                      @"com.cratissoftware.prankem.spreybundle4",
+                                      @"com.cratissoftware.prankem.sharp",
+                                      @"com.cratissoftware.prankem.crazed",
+                                      //Scratches
+                                      @"com.cratissoftware.prankem.claws",
+                                      @"com.cratissoftware.prankem.crazies",
+                                      //Spray
+                                      @"com.cratissoftware.prankem.splash",
+                                      @"com.cratissoftware.prankem.doodles",
+                                      @"com.cratissoftware.prankem.graffiti",
+                                      @"com.cratissoftware.prankem.scribbling",
                                       
                                       nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
