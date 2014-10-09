@@ -246,10 +246,8 @@
 
 - (void)productRestored:(NSNotification *)notification{
     NSString * productIdentifier = notification.object;
-    [self.carouselSource bundlePurchasedWithId:productIdentifier andGroup:self.group];
+    [self.carouselSource bundlePurchasedWithId:productIdentifier];
     [self.tableView reloadData];
-//    [self.carouselSource checkPurchasedBundles];
-//    [self.tableView reloadData];
 }
 
 - (void)reloadAfterProductsArrived{

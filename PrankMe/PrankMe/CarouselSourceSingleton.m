@@ -287,6 +287,37 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
     }
 }
 
+- (void)bundlePurchasedWithId:(NSString *)productID{
+    for (int i = 0; i < self.allBundlesID.count; i++){
+        NSDictionary *bundle = self.allBundlesID[i];
+        if ([productID isEqualToString:bundle[@"key"]]){
+            Group group = [bundle[@"group"] integerValue];
+            switch (group) {
+                case BrokenGlass:
+                {
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
+                    break;
+                }
+                case Scratches:
+                {
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    [self.scratchesFilters addObjectsFromArray:bundleContent[0]];
+                    break;
+                }
+                case Spray:
+                {
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    [self.sprayFilters addObjectsFromArray:bundleContent[0]];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+}
+
 - (void)checkPurchasedBundles{
     for (int i = 0; i < self.allBundlesID.count; i++){
         NSDictionary *bundle = self.allBundlesID[i];

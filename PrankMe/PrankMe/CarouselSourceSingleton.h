@@ -52,5 +52,6 @@ typedef enum {
 - (NSString *)getProductIdByBundle:(NSArray *)bundle;
 - (void)checkPurchasedBundles;
 - (void)bundlePurchasedWithId:(NSString *)productID andGroup:(Group)group;
+- (void)bundlePurchasedWithId:(NSString *)productID;
 
 @end
