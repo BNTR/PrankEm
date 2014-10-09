@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productRestored) name:IAPHelperProductRestoredNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productRestored:) name:IAPHelperProductRestoredNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAfterProductsArrived) name:IAPHelperProductsArrivedNotification object:nil];
     
@@ -244,9 +244,12 @@
 
 #pragma mark In-Apps Restored 
 
-- (void)productRestored{
-    [self.carouselSource checkPurchasedBundles];
+- (void)productRestored:(NSNotification *)notification{
+    NSString * productIdentifier = notification.object;
+    [self.carouselSource bundlePurchasedWithId:productIdentifier andGroup:self.group];
     [self.tableView reloadData];
+//    [self.carouselSource checkPurchasedBundles];
+//    [self.tableView reloadData];
 }
 
 - (void)reloadAfterProductsArrived{

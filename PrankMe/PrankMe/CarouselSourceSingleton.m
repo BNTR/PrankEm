@@ -79,14 +79,16 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                    nil];
         
         self.scratchesFirstBundle = [NSMutableArray arrayWithObjects:
-                                          @[@{@"image": @"scratchBundle1_1",
+                                          @[
+                                            @{@"image": @"scratchBundle1_1",
                                               @"title": @"Scratch3"},
                                             @{@"image": @"scratchBundle1_2",
                                               @"title": @"Scratch4"},
                                             @{@"image": @"scratchBundle1_3",
                                               @"title": @"Scratch5"},
                                             @{@"image": @"scratchBundle1_4",
-                                              @"title": @"Scratch6"}],
+                                              @"title": @"Scratch6"}
+                                            ],
                                           nil];
         self.scratchesSecondBundle = [NSMutableArray arrayWithObjects:
                                           @[@{@"image": @"scratchBundle2_1",
@@ -294,25 +296,34 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                 case BrokenGlass:
                 {
                     NSArray *bundleContent = bundle[@"bundle"];
-                    if (![self.brokenGlassFilters containsObject:bundleContent[0][0]]){
-                        [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
+                    for (int i = 0; i < bundleContent.count; i++){
+                        if ([self.brokenGlassFilters containsObject:bundleContent[0][i]]){
+                            return;
+                        }
                     }
+                    [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
                     break;
                 }
                 case Scratches:
                 {
                     NSArray *bundleContent = bundle[@"bundle"];
-                    if (![self.scratchesFilters containsObject:bundleContent[0][0]]){
-                        [self.scratchesFilters addObjectsFromArray:bundle[@"bundle"]];
+                    for (int i = 0; i < bundleContent.count; i++){
+                        if ([self.scratchesFilters containsObject:bundleContent[0][i]]){
+                            return;
+                        }
                     }
+                    [self.scratchesFilters addObjectsFromArray:bundleContent[0]];
                     break;
                 }
                 case Spray:
                 {
                     NSArray *bundleContent = bundle[@"bundle"];
-                    if (![self.sprayFilters containsObject:bundleContent[0][0]]){
-                        [self.sprayFilters addObjectsFromArray:bundle[@"bundle"]];
+                    for (int i = 0; i < bundleContent.count; i++){
+                        if ([self.sprayFilters containsObject:bundleContent[0][i]]){
+                            break;
+                        }
                     }
+                    [self.sprayFilters addObjectsFromArray:bundleContent[0]];
                     break;
                 }
                 default:
