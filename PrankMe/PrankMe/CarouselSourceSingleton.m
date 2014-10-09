@@ -40,35 +40,32 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                                        @{@"image": @"glassBundle1_3",
                                          @"title": @"Glass5"}
                                        ],
-                                       @{@"price":@"0,99 $"},
                                        nil];
 
         self.brokenGlassSecondBundle = [NSMutableArray arrayWithObjects:
                                         @[
                                         @{@"image": @"glassBundle2_1",
-                                          @"title": @"glassBundle2_1",},
+                                          @"title": @"Glass6",},
                                         @{@"image": @"glassBundle2_2",
-                                          @"title": @"glassBundle2_2",},
+                                          @"title": @"Glass7",},
                                         @{@"image": @"glassBundle2_3",
-                                          @"title": @"glassBundle2_3",},
+                                          @"title": @"Glass8",},
                                         @{@"image": @"glassBundle2_4",
-                                          @"title": @"glassBundle2_4",},
+                                          @"title": @"Glass9",},
                                         @{@"image": @"glassBundle2_5",
-                                          @"title": @"glassBundle2_5",}],
-                                        @{@"price":@"1,99 $"},
+                                          @"title": @"Glass10",}],
                                         nil];
         self.brokenGlassThirdBundle = [NSMutableArray arrayWithObjects:
                                        @[@{@"image": @"glassBundle3_1",
-                                         @"title": @"glassBundle3_1"},
+                                         @"title": @"Glass11"},
                                        @{@"image": @"glassBundle3_2",
-                                         @"title": @"glassBundle3_2"},
+                                         @"title": @"Glass12"},
                                        @{@"image": @"glassBundle3_3",
-                                         @"title": @"glassBundle3_3"},
+                                         @"title": @"Glass13"},
                                        @{@"image": @"glassBundle3_4",
-                                         @"title": @"glassBundle3_4"},
+                                         @"title": @"Glass14"},
                                        @{@"image": @"glassBundle3_5",
-                                         @"title": @"glassBundle3_5"}],
-                                       @{@"price":@"1,99 $"},
+                                         @"title": @"Glass15"}],
                                        nil];
         
         self.allBrokenGlassBundles = [NSMutableArray arrayWithObjects:self.brokenGlassFirstBundle, self.brokenGlassSecondBundle, self.brokenGlassThirdBundle, nil];
@@ -83,25 +80,23 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         
         self.scratchesFirstBundle = [NSMutableArray arrayWithObjects:
                                           @[@{@"image": @"scratchBundle1_1",
-                                              @"title": @"scratchBundle1_1"},
+                                              @"title": @"Scratch3"},
                                             @{@"image": @"scratchBundle1_2",
-                                              @"title": @"scratchBundle1_2"},
+                                              @"title": @"Scratch4"},
                                             @{@"image": @"scratchBundle1_3",
-                                              @"title": @"scratchBundle1_3"},
+                                              @"title": @"Scratch5"},
                                             @{@"image": @"scratchBundle1_4",
-                                              @"title": @"scratchBundle1_4"}],
-                                            @{@"price":@"0,99 $"},
+                                              @"title": @"Scratch6"}],
                                           nil];
         self.scratchesSecondBundle = [NSMutableArray arrayWithObjects:
                                           @[@{@"image": @"scratchBundle2_1",
-                                              @"title": @"scratchBundle2_1"},
+                                              @"title": @"Scratch7"},
                                             @{@"image": @"scratchBundle2_2",
-                                              @"title": @"scratchBundle2_2"},
+                                              @"title": @"Scratch8"},
                                             @{@"image": @"scratchBundle2_3",
-                                              @"title": @"scratchBundle2_3"},
+                                              @"title": @"Scratch9"},
                                             @{@"image": @"scratchBundle2_4",
-                                              @"title": @"scratchBundle2_4"}],
-                                          @{@"price":@"0,99 $"},
+                                              @"title": @"Scratch10"}],
                                           nil];
         
         self.allScratchesBundles = [NSMutableArray arrayWithObjects:self.scratchesFirstBundle, self.scratchesSecondBundle, nil];
@@ -125,79 +120,90 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
         self.sprayFirstBundle = [NSMutableArray arrayWithObjects:
                                        @[
                                          @{@"image": @"spreyBundle1_1",
-                                           @"title": @"spreyBundle1_1"},
+                                           @"title": @"Spray7"},
                                          @{@"image": @"spreyBundle1_2",
-                                           @"title": @"spreyBundle1_2",},
+                                           @"title": @"Spray8",},
                                          @{@"image": @"spreyBundle1_3",
-                                           @"title": @"spreyBundle1_3"},
+                                           @"title": @"Spray9"},
                                          @{@"image": @"spreyBundle1_4",
-                                           @"title": @"spreyBundle1_4"},
+                                           @"title": @"Spray10"},
                                          @{@"image": @"spreyBundle1_5",
-                                           @"title": @"spreyBundle1_5"}
+                                           @"title": @"Spray11"}
                                          ],
-                                       @{@"price":@"1,99 $"},
                                        nil];
         
         self.spraySecondBundle = [NSMutableArray arrayWithObjects:
                                         @[
                                           @{@"image": @"spreyBundle2_1",
-                                            @"title": @"spreyBundle2_1",},
+                                            @"title": @"Spray12",},
                                           @{@"image": @"spreyBundle2_2",
-                                            @"title": @"spreyBundle2_2",},
+                                            @"title": @"Spray13",},
                                           @{@"image": @"spreyBundle2_3",
-                                            @"title": @"spreyBundle2_3",},
+                                            @"title": @"Spray14",},
                                           @{@"image": @"spreyBundle2_4",
-                                            @"title": @"spreyBundle2_4",}
+                                            @"title": @"Spray15",}
                                           ],
-                                        @{@"price":@"0,99 $"},
                                         nil];
         self.sprayThirdBundle = [NSMutableArray arrayWithObjects:
                                        @[@{@"image": @"spreyBundle3_1",
-                                           @"title": @"spreyBundle3_1"},
+                                           @"title": @"Spray16"},
                                          @{@"image": @"spreyBundle3_2",
-                                           @"title": @"spreyBundle3_2"},
+                                           @"title": @"Spray17"},
                                          @{@"image": @"spreyBundle3_3",
-                                           @"title": @"spreyBundle3_3"},
+                                           @"title": @"Spray18"},
                                          @{@"image": @"spreyBundle3_4",
-                                           @"title": @"spreyBundle3_4"},
+                                           @"title": @"Spray19"},
                                          @{@"image": @"spreyBundle3_5",
-                                           @"title": @"spreyBundle3_5"}],
-                                       @{@"price":@"1,99 $"},
+                                           @"title": @"Spray20"}],
                                        nil];
         self.sprayFourthBundle = [NSMutableArray arrayWithObjects:
                                  @[@{@"image": @"spreyBundle4_1",
-                                     @"title": @"spreyBundle4_1"},
+                                     @"title": @"Spray21"},
                                    @{@"image": @"spreyBundle4_2",
-                                     @"title": @"spreyBundle4_2"},
+                                     @"title": @"Spray22"},
                                    @{@"image": @"spreyBundle4_3",
-                                     @"title": @"spreyBundle4_3"},
+                                     @"title": @"Spray23"},
                                    @{@"image": @"spreyBundle4_4",
-                                     @"title": @"spreyBundle4_4"},
+                                     @"title": @"Spray24"},
                                    @{@"image": @"spreyBundle4_5",
-                                     @"title": @"spreyBundle4_5"}],
-                                 @{@"price":@"1,99 $"},
+                                     @"title": @"Spray25"}],
                                  nil];
         
         self.allSprayBundles = [NSMutableArray arrayWithObjects:self.sprayFirstBundle, self.spraySecondBundle, self.sprayThirdBundle, self.sprayFourthBundle, nil];
         
         self.allBundlesID = [NSMutableArray arrayWithObjects:
+                             //Broken glass
                              @{@"key" :@"com.cratissoftware.prankem.extreme",
                                @"bundle" : self.brokenGlassFirstBundle,
                                @"group" : @(BrokenGlass)},
-                             @{@"key" : @"com.cratissoftware.prankem.glassbundle2",
+                             @{@"key" : @"com.cratissoftware.prankem.sharp",
                                @"bundle" : self.brokenGlassSecondBundle,
                                @"group" : @(BrokenGlass)},
-                             @{@"key" : @"com.cratissoftware.prankem.glassbundle3",
+                             @{@"key" : @"com.cratissoftware.prankem.crazed",
                                @"bundle" : self.brokenGlassThirdBundle,
                                @"group" : @(BrokenGlass)},
                              
-                             @{@"com.cratissoftware.prankem.scratchesbundle1": self.scratchesFirstBundle},
-                             @{@"com.cratissoftware.prankem.scratchesbundle2": self.scratchesSecondBundle},
+                             //Scratch
+                             @{@"key" : @"com.cratissoftware.prankem.claws",
+                               @"bundle" : self.scratchesFirstBundle,
+                               @"group" : @(Scratches)},
+                             @{@"key" : @"com.cratissoftware.prankem.crazies",
+                               @"bundle" : self.scratchesSecondBundle,
+                               @"group" : @(Scratches)},
                              
-                             @{@"com.cratissoftware.prankem.spreybundle1": self.sprayFirstBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle2": self.spraySecondBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle3": self.sprayThirdBundle},
-                             @{@"com.cratissoftware.prankem.spreybundle4": self.sprayFourthBundle},
+                             //Spray
+                             @{@"key" : @"com.cratissoftware.prankem.splash",
+                               @"bundle" : self.sprayFirstBundle,
+                               @"group" : @(Spray)},
+                             @{@"key" : @"com.cratissoftware.prankem.doodles",
+                               @"bundle" : self.spraySecondBundle,
+                               @"group" : @(Spray)},
+                             @{@"key" : @"com.cratissoftware.prankem.graffiti",
+                               @"bundle" : self.sprayThirdBundle,
+                               @"group" : @(Spray)},
+                             @{@"key" : @"com.cratissoftware.prankem.scribbling",
+                               @"bundle" : self.sprayFourthBundle,
+                               @"group" : @(Spray)},
                              
                              nil];
         
@@ -245,6 +251,7 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
             self.products = products;
         }
         NSLog(@"%@", self.products);
+        [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductsArrivedNotification object:nil userInfo:nil];
     }];
 }
 
@@ -287,17 +294,25 @@ static CarouselSourceSingleton* _sharedGameManager = nil;
                 case BrokenGlass:
                 {
                     NSArray *bundleContent = bundle[@"bundle"];
-                    [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
+                    if (![self.brokenGlassFilters containsObject:bundleContent[0][0]]){
+                        [self.brokenGlassFilters addObjectsFromArray:bundleContent[0]];
+                    }
                     break;
                 }
                 case Scratches:
                 {
-                    [self.scratchesFilters addObjectsFromArray:bundle[@"bundle"]];
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    if (![self.scratchesFilters containsObject:bundleContent[0][0]]){
+                        [self.scratchesFilters addObjectsFromArray:bundle[@"bundle"]];
+                    }
                     break;
                 }
                 case Spray:
                 {
-                    [self.sprayFilters addObjectsFromArray:bundle[@"bundle"]];
+                    NSArray *bundleContent = bundle[@"bundle"];
+                    if (![self.sprayFilters containsObject:bundleContent[0][0]]){
+                        [self.sprayFilters addObjectsFromArray:bundle[@"bundle"]];
+                    }
                     break;
                 }
                 default:

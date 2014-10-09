@@ -112,8 +112,15 @@
     }
     self.effectsCount.text = [NSString stringWithFormat:@"%i effects", (int)self.overlays.count];
     self.bundleName.text = self.bundleTitle;
-    NSDictionary *price = self.bundle[1];
-    self.price.text = price[@"price"];
+    
+    NSString *productID = [self.source getProductIdByBundle:self.bundle];
+    SKProduct *product = [self.source getProductById:productID];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:product.priceLocale];
+    NSString *formattedPrice = [numberFormatter stringFromNumber:product.price];
+    self.price.text = formattedPrice;
 }
 
 - (void)didReceiveMemoryWarning
@@ -146,11 +153,8 @@
 }
 
 - (IBAction)buyBundle{
-#warning Right now only for 1 broken glass
-    if (self.group == BrokenGlass && [self.productID isEqualToString:@"com.cratissoftware.prankem.glassbundle1"]){
-        SKProduct *product = [self.source getProductById:self.productID];
-        [[BundleIAPHelper sharedInstance] buyProduct:product];
-    }
+    SKProduct *product = [self.source getProductById:self.productID];
+    [[BundleIAPHelper sharedInstance] buyProduct:product];
 }
 
 - (void)showOverlay:(UIButton *)sender{

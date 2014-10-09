@@ -17,7 +17,6 @@
 @property (nonatomic, strong) CarouselSourceSingleton *carouselSource;
 @property (nonatomic, strong) BundleDetailViewController *bundleVC;
 
-@property (nonatomic, strong) NSString *cellValue;
 @property (nonatomic) Group group;
 
 @property (strong, nonatomic) IBOutlet UIView *segmentControlView;
@@ -30,7 +29,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.cellValue = @"Broken Glass";
         self.carouselSource = [CarouselSourceSingleton sharedCarouselSourceSingleton];
     }
     return self;
@@ -42,6 +40,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productRestored) name:IAPHelperProductRestoredNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAfterProductsArrived) name:IAPHelperProductsArrivedNotification object:nil];
     
     self.navigationItem.title = @"Supply Shop";
     
@@ -78,12 +77,12 @@
     [self.imageEdit reloadCarousel];
     [self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductsArrivedNotification object:nil];
 }
 
 #pragma mark Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
     NSMutableArray *bundle = [NSMutableArray array];
     switch (self.segmentControl.selectedSegmentIndex) {
         case 0:{
@@ -102,8 +101,9 @@
             break;
     }
     NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    SKProduct *product = [self.carouselSource getProductById:productID];
     self.bundleVC = [[BundleDetailViewController alloc] initWithBundle:bundle
-                                                         andBundleName:[NSString stringWithFormat:@"%@ %i", self.cellValue, (int)indexPath.row]
+                                                         andBundleName:product.localizedTitle
                                                               andGroup:self.group
                                                   andProductIdentifire:productID];
     self.bundleVC.shopVC = self;
@@ -162,15 +162,21 @@
     }
     
     cell.itemImage.image = [UIImage imageNamed:@"sampleFilterImage"];
-    cell.itemTopLabel.text = [NSString stringWithFormat:@"%@ %i", self.cellValue, (int)indexPath.row];
-    NSArray *effects = bundle[0];
-    NSDictionary *price = bundle[1];
+    
     NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
+    SKProduct *product = [self.carouselSource getProductById:productID];
     if ([[BundleIAPHelper sharedInstance] productPurchased:productID]){
         cell.itemPriceLabel.text = @"Bought";
     } else {
-        cell.itemPriceLabel.text = price[@"price"];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [numberFormatter setLocale:product.priceLocale];
+        NSString *formattedPrice = [numberFormatter stringFromNumber:product.price];
+        cell.itemPriceLabel.text = formattedPrice;
     }
+    cell.itemTopLabel.text = [NSString stringWithFormat:@"%@", product.localizedTitle];
+    NSArray *effects = bundle[0];
     cell.itemBottomLabel.text = [NSString stringWithFormat:@"%i effects", (int)effects.count];
     cell.itemPriceLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14.035];
     [cell.itemButton setTag:indexPath.row];
@@ -205,12 +211,9 @@
         default:
             break;
     }
-#warning Right now only for 1 broken glass
     NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
-    if (self.segmentControl.selectedSegmentIndex == BrokenGlass && sender.tag == 0 && ![[BundleIAPHelper sharedInstance] productPurchased:productID]){
-        SKProduct *product = [self.carouselSource getProductById:productID];
-        [[BundleIAPHelper sharedInstance] buyProduct:product];
-    }
+    SKProduct *product = [self.carouselSource getProductById:productID];
+    [[BundleIAPHelper sharedInstance] buyProduct:product];
 }
 
 - (void)productPurchased:(NSNotification *)notification {
@@ -224,16 +227,13 @@
 - (IBAction)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl{
     switch (segmentedControl.selectedSegmentIndex) {
         case BrokenGlass:
-            self.cellValue = @"Broken Glass";
             self.group = BrokenGlass;
             break;
         case Scratches:{
-            self.cellValue = @"Scratches";
             self.group = Scratches;
             break;
         }
         case Spray:
-            self.cellValue = @"Spray";
             self.group = Spray;
             break;
         default:
@@ -245,10 +245,12 @@
 #pragma mark In-Apps Restored 
 
 - (void)productRestored{
-    
     [self.carouselSource checkPurchasedBundles];
     [self.tableView reloadData];
 }
 
+- (void)reloadAfterProductsArrived{
+    [self.tableView reloadData];
+}
 
 @end

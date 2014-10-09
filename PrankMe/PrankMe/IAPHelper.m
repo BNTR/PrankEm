@@ -10,6 +10,7 @@
 
 NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
 NSString *const IAPHelperProductRestoredNotification = @"IAPHelperProductRestoredNotification";
+NSString *const IAPHelperProductsArrivedNotification = @"IAPHelperProductsArrivedNotification";
 
 // 2
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
@@ -152,7 +153,7 @@ NSString *const IAPHelperProductRestoredNotification = @"IAPHelperProductRestore
 }
 
 - (void)provideContentForRestoredProductIdentifier:(NSString *)productIdentifier {
-    if (![_purchasedProductIdentifiers containsObject:productIdentifier]){
+    if (![_purchasedProductIdentifiers containsObject:productIdentifier] && ![productIdentifier isEqualToString:@"com.cratissoftware.prankem.glassbundle1"]){
         [_purchasedProductIdentifiers addObject:productIdentifier];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
         [[NSUserDefaults standardUserDefaults] synchronize];
