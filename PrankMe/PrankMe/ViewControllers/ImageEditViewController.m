@@ -199,20 +199,20 @@
                 UIImage *originalImage = [UIImage imageNamed:filters[@"image"]];
                 item.originalImageName = filters[@"image"];
                 
-                NSArray *color = [self getRGBAFromImage:originalImage atx:593 atY:357];
-                const CGFloat *colors = CGColorGetComponents([color[0] CGColor]);
-                if (colors[0] < 0.07 && colors[1] < 0.07 && colors[2] < 0.07 && i == Spray){
-                    item.itemImage.backgroundColor = [UIColor whiteColor];
+                if (i == 2){
+                    NSArray *color = [self getRGBAFromImage:originalImage atx:593 atY:357];
+                    const CGFloat *colors = CGColorGetComponents([color[0] CGColor]);
+                    if (colors[0] < 0.07 && colors[1] < 0.07 && colors[2] < 0.07 && i == Spray){
+                        item.itemImage.backgroundColor = [UIColor whiteColor];
+                    } else {
+                        item.itemImage.backgroundColor = [UIColor blackColor];
+                    }
                 } else {
                     item.itemImage.backgroundColor = [UIColor blackColor];
                 }
-                
-                CGSize destinationSize = CGSizeMake(96, 96);
-                UIGraphicsBeginImageContext(destinationSize);
-                [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
-                UIImage *thumbImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                item.itemImage.image = thumbImage;
+            
+                NSString *thumbImage = [NSString stringWithFormat:@"thumb_%@", filters[@"image"]];
+                item.itemImage.image = [UIImage imageNamed:thumbImage];
                 item.itemLabel.text = filters[@"title"];
                 item.itemLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11.765];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectFilter:)];
