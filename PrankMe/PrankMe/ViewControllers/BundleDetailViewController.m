@@ -61,13 +61,6 @@
     [shopButton addTarget:self action:@selector(goBackToShop) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shopButton];
     
-    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *orangeDoneImage = [UIImage imageNamed:@"orangeDoneButton"];
-    doneButton.frame = CGRectMake(0, 0, orangeDoneImage.size.width, orangeDoneImage.size.height);
-    [doneButton setBackgroundImage:orangeDoneImage forState:UIControlStateNormal];
-    [doneButton addTarget:self action:@selector(goBackToShop) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
-    
     self.backgroundForOverlayPlace.backgroundColor = [UIColor clearColor];
     
     [self setupView];
