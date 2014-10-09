@@ -9,7 +9,7 @@
 #import "SettingsViewController.h"
 #import <MessageUI/MessageUI.h>
 
-#define kAppID @"ID"
+#define kAppID @"926098427"
 #define kSupportEmail @"support@cratis-split.com"
 #define kShareText @"You want to prank your friend? I use an app called Prankstr. It's a cool app that makes your friend's car seem scratched, sprayed on or their glass cracked. Check it out here: http://cratis-split.com"
 
