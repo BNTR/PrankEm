@@ -25,6 +25,7 @@
 @property (nonatomic, strong) OverlayOptions *overlayOptions;
 @property (nonatomic) BOOL invertOn;
 @property (nonatomic) BOOL overlaySelected;
+@property (nonatomic) BOOL imageHaveAddedOverlay;
 
 @property (nonatomic, strong) UIImage *originalOverlayImage;
 @property (nonatomic, strong) UIImage *overlayImageForOptions;
@@ -69,6 +70,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageHaveAddedOverlay = NO;
     self.image.image = self.selectedImage;
     self.navigationItem.title = @"Effects";
     self.navigationController.delegate = self;
@@ -279,6 +281,7 @@
     self.overlayOptions.hidden = YES;
     self.carouselContent.hidden = NO;
     self.overlaySelected = NO;
+    self.imageHaveAddedOverlay = YES;
     self.navigationItem.title = @"Effects";
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -329,6 +332,9 @@
     self.carouselContent.hidden = NO;
     self.overlaySelected = NO;
     self.navigationItem.title = @"Effects";
+    if (!self.imageHaveAddedOverlay){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    }
 }
 
 #pragma mark Overlay Options
