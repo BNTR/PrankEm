@@ -10,8 +10,8 @@
 #import <MessageUI/MessageUI.h>
 
 #define kAppID @"926098427"
-#define kSupportEmail @"support@cratis-split.com"
-#define kShareText @"You want to prank your friend? I use an app called Prankstr. It's a cool app that makes your friend's car seem scratched, sprayed on or their glass cracked. Check it out here: http://cratis-split.com"
+#define kSupportEmail @"support@cratisproduction.com"
+#define kShareText @"Check it out here: http://itunes.apple.com/app/926098427 \n And check out our website for other cool apps cratissoftware.com"
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
@@ -67,7 +67,7 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"itms-apps://itunes.apple.com/app/" stringByAppendingString:kAppID]]];
                 break;
             case 2:
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://cratis-split.com"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://cratissoftware.com"]];
                 break;
             default:
                 break;
