@@ -255,6 +255,7 @@
     overlay.preventsCustomButton = NO;
     [overlay showEditingHandles];
 
+    self.originalOverlayImage = [UIImage imageNamed:selecteLayer.originalImageName];
     [self.selectedImageTopView addSubview:overlay];
     [self.overlaysOnScreen addObject:overlay];
     [self addApplyButton];
@@ -354,7 +355,6 @@
     [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateHighlighted];
     [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateSelected];
     [self.view addSubview:self.overlayOptions];
-    self.originalOverlayImage = image;
     self.overlayImageForOptions = image;
     self.carouselContent.hidden = YES;
 }
