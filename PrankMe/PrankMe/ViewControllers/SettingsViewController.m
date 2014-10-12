@@ -15,6 +15,9 @@
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
+@property (nonatomic, strong) MFMailComposeViewController *shareComposeViewController;
+@property (nonatomic, strong) MFMailComposeViewController *supportComposeViewController;
+
 @end
 
 @implementation SettingsViewController
@@ -42,6 +45,17 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    self.shareComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+    [self.shareComposeViewController setMailComposeDelegate:self];
+    [self.shareComposeViewController setSubject:@"Have you tried this app?"];
+    [self.shareComposeViewController setMessageBody:kShareText isHTML:NO];
+    
+    self.supportComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+    [self.supportComposeViewController setMailComposeDelegate:self];
+    [self.supportComposeViewController setToRecipients:@[kSupportEmail]];
+    [self.supportComposeViewController setSubject:@"Prankstr support"];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,22 +93,13 @@
 
 - (void)showShareEmail{
     if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-        [composeViewController setMailComposeDelegate:self];
-        [composeViewController setSubject:@"Have you tried this app?"];
-        [composeViewController setMessageBody:kShareText isHTML:NO];
-        [self presentViewController:composeViewController animated:YES completion:nil];
-    }
+        [self presentViewController:self.shareComposeViewController animated:YES completion:nil];
+   }
 }
 
 - (void)showSupportEmail{
     if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-        [composeViewController setMailComposeDelegate:self];
-        [composeViewController setToRecipients:@[kSupportEmail]];
-        [composeViewController setSubject:@"Prankstr support"];
-        
-        [self presentViewController:composeViewController animated:YES completion:nil];
+        [self presentViewController:self.supportComposeViewController animated:YES completion:nil];
     }
 }
 

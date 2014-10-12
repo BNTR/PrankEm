@@ -16,6 +16,11 @@
 @property (nonatomic, strong) UIImage *completeImage;
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
+@property (nonatomic, strong) SLComposeViewController *facebookController;
+@property (nonatomic, strong) SLComposeViewController *twitterController;
+@property (nonatomic, strong) MFMailComposeViewController *mailViewController;
+@property (nonatomic, strong) MFMessageComposeViewController *messagePicker;
+
 @end
 
 @implementation ShareViewController
@@ -53,6 +58,26 @@
     UIImageWriteToSavedPhotosAlbum(self.completeImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    self.facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [self.facebookController setInitialText:@"Prankstr photo"];
+    [self.facebookController addImage:self.completeImage];
+    
+    self.twitterController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [self.twitterController setInitialText:@"Prankstr photo"];
+    [self.twitterController addImage:self.completeImage];
+    
+    NSData *data = UIImagePNGRepresentation(self.completeImage);
+    self.mailViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+    [self.mailViewController setMailComposeDelegate:self];
+    [self.mailViewController setSubject:@"Prankstr photo"];
+    [self.mailViewController addAttachmentData:data mimeType:@"image/png" fileName:@"PrankstrPhoto.png"];
+    
+    self.messagePicker = [[MFMessageComposeViewController alloc] initWithNibName:nil bundle:nil];
+    self.messagePicker.messageComposeDelegate = self;
+    self.messagePicker.body = @"Prankstr photo";
+    [self.messagePicker addAttachmentData:data typeIdentifier:@"image/png" filename:@"PrankstrPhoto.png"];
+
 }
 
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError *)error contextInfo:(NSDictionary*)info{
@@ -104,38 +129,20 @@
 }
 
 - (IBAction)facebookButtonTapped:(id)sender{
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        
-        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        
-        [controller setInitialText:@"Facebook"];
-        [controller addImage:self.completeImage];
-        
-        [self presentViewController:controller animated:YES completion:Nil];
-        
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        [self presentViewController:self.facebookController animated:YES completion:Nil];
     }
 }
 
 - (IBAction)twitterButtonTapped:(id)sender{
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
-        SLComposeViewController *tweetSheet = [SLComposeViewController
-                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheet setInitialText:@"Twitter"];
-        [tweetSheet addImage:self.completeImage];
-        [self presentViewController:tweetSheet animated:YES completion:nil];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        [self presentViewController:self.twitterController animated:YES completion:nil];
     }
 }
 
 - (IBAction)mailButtonTapped:(id)sender{
     if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-        [composeViewController setMailComposeDelegate:self];
-        [composeViewController setSubject:@"Prankstr photo"];
-        NSData *myData = UIImagePNGRepresentation(self.completeImage);
-        [composeViewController addAttachmentData:myData mimeType:@"image/png" fileName:@"PrankThemPhoto.png"];
-        
-        [self presentViewController:composeViewController animated:YES completion:nil];
+        [self presentViewController:self.mailViewController animated:YES completion:nil];
     }
 }
 
@@ -146,12 +153,7 @@
 
 - (IBAction)textButtonTapped:(id)sender{
     if ([MFMessageComposeViewController canSendText]){
-        MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] initWithNibName:nil bundle:nil];
-        picker.messageComposeDelegate = self;
-        picker.body = @"Pranked photo!";
-        NSData* data = UIImagePNGRepresentation(self.completeImage);
-        [picker addAttachmentData:data typeIdentifier:@"image/png" filename:@"image.png"];
-        [self presentViewController:picker animated:YES completion:nil];
+        [self presentViewController:self.messagePicker animated:YES completion:nil];
     }
 }
 
