@@ -212,8 +212,10 @@
             break;
     }
     NSString *productID = [self.carouselSource getProductIdByBundle:bundle];
-    SKProduct *product = [self.carouselSource getProductById:productID];
-    [[BundleIAPHelper sharedInstance] buyProduct:product];
+    if (![[BundleIAPHelper sharedInstance] productPurchased:productID]){
+        SKProduct *product = [self.carouselSource getProductById:productID];
+        [[BundleIAPHelper sharedInstance] buyProduct:product];
+    }
 }
 
 - (void)productPurchased:(NSNotification *)notification {
