@@ -188,4 +188,19 @@
     return library;
 }
 
+#pragma mark Hide buttons if bottom
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat height = scrollView.frame.size.height;
+    CGFloat contentYoffset = scrollView.contentOffset.y;
+    CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset - 90;
+    if (distanceFromBottom < height){
+        self.cameraButton.hidden = YES;
+        self.rollButton.hidden = YES;
+    } else {
+        self.cameraButton.hidden = NO;
+        self.rollButton.hidden = NO;
+    }
+}
+
 @end
