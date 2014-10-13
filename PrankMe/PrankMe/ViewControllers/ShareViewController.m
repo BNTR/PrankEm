@@ -48,6 +48,9 @@
     self.completeImageView.image = self.completeImage;
     self.navigationItem.title = @"Share";
     
+    self.activityView.hidden = YES;
+    self.activityIndicator.hidden = YES;
+    
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *doneButtonImage = [UIImage imageNamed:@"doneButton"];
     doneButton.frame = CGRectMake(0, 0, doneButtonImage.size.width, doneButtonImage.size.height);
@@ -59,16 +62,40 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
+    __weak ShareViewController *weakSelf = self;
+        
     self.facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     [self.facebookController setInitialText:@"Prankstr photo"];
     [self.facebookController addImage:self.completeImage];
+    [self.facebookController setCompletionHandler:^(SLComposeViewControllerResult result) {
+        weakSelf.activityView.hidden = YES;
+        weakSelf.activityIndicator.hidden = YES;
+        [weakSelf.activityIndicator stopAnimating];
+        //  dismiss the Tweet Sheet
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf dismissViewControllerAnimated:NO completion:^{
+                NSLog(@"Tweet Sheet has been dismissed.");
+            }];
+        });
+    }];
     
     self.twitterController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     [self.twitterController setInitialText:@"Prankstr photo"];
     [self.twitterController addImage:self.completeImage];
-    
-    NSData *data = UIImagePNGRepresentation(self.completeImage);
-    self.mailViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+    [self.twitterController setCompletionHandler:^(SLComposeViewControllerResult result) {
+        weakSelf.activityView.hidden = YES;
+        weakSelf.activityIndicator.hidden = YES;
+        [weakSelf.activityIndicator stopAnimating];
+        //  dismiss the Tweet Sheet
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf dismissViewControllerAnimated:NO completion:^{
+                NSLog(@"Tweet Sheet has been dismissed.");
+            }];
+        });
+    }];
+     
+     NSData *data = UIImagePNGRepresentation(self.completeImage);
+     self.mailViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
     [self.mailViewController setMailComposeDelegate:self];
     [self.mailViewController setSubject:@"Prankstr photo"];
     [self.mailViewController addAttachmentData:data mimeType:@"image/png" fileName:@"PrankstrPhoto.png"];
@@ -130,13 +157,19 @@
 
 - (IBAction)facebookButtonTapped:(id)sender{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
-        [self presentViewController:self.facebookController animated:YES completion:Nil];
+        self.activityView.hidden = NO;
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+        [self presentViewController:self.facebookController animated:NO completion:nil];
     }
 }
 
 - (IBAction)twitterButtonTapped:(id)sender{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
-        [self presentViewController:self.twitterController animated:YES completion:nil];
+        self.activityView.hidden = NO;
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+        [self presentViewController:self.twitterController animated:NO completion:nil];
     }
 }
 

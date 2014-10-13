@@ -18,6 +18,9 @@
 @property (nonatomic) IBOutlet UIButton *mailButton;
 @property (nonatomic) IBOutlet UIButton *textButton;
 
+@property (nonatomic) IBOutlet UIView *activityView;
+@property (nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 - (id)initWithCompleteImage:(UIImage *)completeImage;
 
 @end

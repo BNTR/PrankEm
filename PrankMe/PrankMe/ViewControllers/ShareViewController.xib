@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController">
             <connections>
+                <outlet property="activityIndicator" destination="jPh-0I-dSm" id="gix-Iy-Vfq"/>
+                <outlet property="activityView" destination="cUI-Nw-7ht" id="IrQ-cj-apw"/>
                 <outlet property="completeImageView" destination="Ic8-UU-qdA" id="rD7-AN-Ih3"/>
                 <outlet property="facebookButton" destination="g7G-ji-LWB" id="6H6-xW-KAN"/>
                 <outlet property="mailButton" destination="PJx-IQ-KT4" id="dR6-72-hca"/>
@@ -81,6 +83,21 @@
                         <action selector="textButtonTapped:" destination="-1" eventType="touchUpInside" id="jhW-MB-tYv"/>
                     </connections>
                 </button>
+                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUI-Nw-7ht">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jPh-0I-dSm">
+                            <rect key="frame" x="142" y="153" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jPh-0I-dSm" secondAttribute="trailing" constant="141" id="BNB-W9-MV2"/>
+                        <constraint firstAttribute="bottom" secondItem="jPh-0I-dSm" secondAttribute="bottom" constant="290" id="LbE-3A-Vof"/>
+                        <constraint firstItem="jPh-0I-dSm" firstAttribute="leading" secondItem="cUI-Nw-7ht" secondAttribute="leading" constant="142" id="cKg-bj-no4"/>
+                        <constraint firstItem="jPh-0I-dSm" firstAttribute="top" secondItem="cUI-Nw-7ht" secondAttribute="top" constant="153" id="uKO-EB-AyO"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -106,6 +123,8 @@
                 <constraint firstItem="Pv6-gl-NA3" firstAttribute="top" secondItem="Ic8-UU-qdA" secondAttribute="bottom" constant="43" id="SNG-nz-wOR"/>
                 <constraint firstItem="Ic8-UU-qdA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="37" id="TX9-gf-fgy"/>
                 <constraint firstItem="QAO-Od-bBt" firstAttribute="centerX" secondItem="KYt-Te-CMG" secondAttribute="centerX" id="Te1-wH-gF0"/>
+                <constraint firstItem="cUI-Nw-7ht" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xza-Ep-hXK"/>
+                <constraint firstItem="cUI-Nw-7ht" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="akQ-wa-tkk"/>
                 <constraint firstAttribute="trailing" secondItem="Ic8-UU-qdA" secondAttribute="trailing" constant="24" id="cRS-aN-321"/>
                 <constraint firstAttribute="bottom" secondItem="KYt-Te-CMG" secondAttribute="bottom" id="cZG-3g-61k"/>
                 <constraint firstItem="QAO-Od-bBt" firstAttribute="leading" secondItem="g7G-ji-LWB" secondAttribute="trailing" constant="20" id="ehS-Lu-cVZ"/>
@@ -125,6 +144,8 @@
                 <constraint firstItem="Pv6-gl-NA3" firstAttribute="leading" secondItem="PJx-IQ-KT4" secondAttribute="trailing" constant="18" id="vmi-Pc-euh"/>
                 <constraint firstItem="g7G-ji-LWB" firstAttribute="baseline" secondItem="QAO-Od-bBt" secondAttribute="baseline" id="wnn-eM-73r"/>
                 <constraint firstItem="g7G-ji-LWB" firstAttribute="firstBaseline" secondItem="QAO-Od-bBt" secondAttribute="firstBaseline" id="wxU-Vf-cNK"/>
+                <constraint firstAttribute="trailing" secondItem="cUI-Nw-7ht" secondAttribute="trailing" id="x5F-nC-F32"/>
+                <constraint firstAttribute="bottom" secondItem="cUI-Nw-7ht" secondAttribute="bottom" id="xE5-pM-rxl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
