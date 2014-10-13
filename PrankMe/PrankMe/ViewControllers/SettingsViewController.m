@@ -11,7 +11,7 @@
 
 #define kAppID @"926098427"
 #define kSupportEmail @"support@cratisproduction.com"
-#define kShareText @"Check it out here: http://itunes.apple.com/app/926098427 \n And check out our website for other cool apps cratissoftware.com"
+#define kShareText @"You want to prank your friend? I use an app called Prankstr. It's a cool app that makes your friend's car seem scratched, sprayed on or their glass cracked. \n Check it out here:http://itunes.apple.com/app/926098427. \n Or check out our website cratissoftware.com."
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
