@@ -251,7 +251,7 @@
     overlay.tag = 0;
     overlay.delegate = self;
     overlay.contentView = contentView;
-    overlay.preventsPositionOutsideSuperview = YES;
+    overlay.preventsPositionOutsideSuperview = NO;
     overlay.preventsCustomButton = NO;
     [overlay showEditingHandles];
 
