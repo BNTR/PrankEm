@@ -18,8 +18,7 @@
 
 @property (nonatomic, strong) SLComposeViewController *facebookController;
 @property (nonatomic, strong) SLComposeViewController *twitterController;
-@property (nonatomic, strong) MFMailComposeViewController *mailViewController;
-@property (nonatomic, strong) MFMessageComposeViewController *messagePicker;
+@property (nonatomic, strong) NSData *imageData;
 
 @end
 
@@ -94,17 +93,7 @@
         });
     }];
      
-     NSData *data = UIImagePNGRepresentation(self.completeImage);
-     self.mailViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.mailViewController setMailComposeDelegate:self];
-    [self.mailViewController setSubject:@"Prankstr photo"];
-    [self.mailViewController addAttachmentData:data mimeType:@"image/png" fileName:@"PrankstrPhoto.png"];
-    
-    self.messagePicker = [[MFMessageComposeViewController alloc] initWithNibName:nil bundle:nil];
-    self.messagePicker.messageComposeDelegate = self;
-    self.messagePicker.body = @"Prankstr photo";
-    [self.messagePicker addAttachmentData:data typeIdentifier:@"image/png" filename:@"PrankstrPhoto.png"];
-
+    self.imageData = UIImagePNGRepresentation(self.completeImage);
 }
 
 - (void)image:(UIImage*)image didFinishSavingWithError:(NSError *)error contextInfo:(NSDictionary*)info{
@@ -175,24 +164,64 @@
 
 - (IBAction)mailButtonTapped:(id)sender{
     if ([MFMailComposeViewController canSendMail]) {
-        [self presentViewController:self.mailViewController animated:YES completion:nil];
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [mailViewController setMailComposeDelegate:self];
+        [mailViewController setSubject:@"Prankstr photo"];
+        [mailViewController addAttachmentData:self.imageData mimeType:@"image/png" fileName:@"PrankstrPhoto.png"];
+        self.activityView.hidden = NO;
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+        [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+}
+
+- (IBAction)textButtonTapped:(id)sender{
+    if ([MFMessageComposeViewController canSendText]){
+        MFMessageComposeViewController *messagePicker = [[MFMessageComposeViewController alloc] initWithNibName:nil bundle:nil];
+        messagePicker.messageComposeDelegate = self;
+        messagePicker.body = @"Prankstr photo";
+        [messagePicker addAttachmentData:self.imageData typeIdentifier:@"image/png" filename:@"PrankstrPhoto.png"];
+        self.activityView.hidden = NO;
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+        [self presentViewController:messagePicker animated:YES completion:nil];
     }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
+    UIAlertView *alert;
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultSent:
+            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have successfully send email." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultFailed:
+            alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        default:
+            break;
+    }
+    self.activityView.hidden = YES;
+    self.activityIndicator.hidden = YES;
+    [self.activityIndicator stopAnimating];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)textButtonTapped:(id)sender{
-    if ([MFMessageComposeViewController canSendText]){
-        [self presentViewController:self.messagePicker animated:YES completion:nil];
-    }
-}
-
--(void)messageComposeViewController:(MFMessageComposeViewController *)controller
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
                 didFinishWithResult:(MessageComposeResult)result
 {
+    self.activityView.hidden = YES;
+    self.activityIndicator.hidden = YES;
+    [self.activityIndicator stopAnimating];
     [controller dismissViewControllerAnimated:YES completion:nil];
     NSString *messageResult;
     if (result == MessageComposeResultCancelled){
@@ -203,9 +232,9 @@
         messageResult = @"Message failed";
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:messageResult
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
     [alert show];
 }
 

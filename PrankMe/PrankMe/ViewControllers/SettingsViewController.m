@@ -15,9 +15,6 @@
 
 @interface SettingsViewController ()<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, strong) MFMailComposeViewController *shareComposeViewController;
-@property (nonatomic, strong) MFMailComposeViewController *supportComposeViewController;
-
 @end
 
 @implementation SettingsViewController
@@ -45,16 +42,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    self.shareComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.shareComposeViewController setMailComposeDelegate:self];
-    [self.shareComposeViewController setSubject:@"Have you tried this app?"];
-    [self.shareComposeViewController setMessageBody:kShareText isHTML:NO];
-    
-    self.supportComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.supportComposeViewController setMailComposeDelegate:self];
-    [self.supportComposeViewController setToRecipients:@[kSupportEmail]];
-    [self.supportComposeViewController setSubject:@"Prankstr support"];
 
 }
 
@@ -93,36 +80,49 @@
 
 - (void)showShareEmail{
     if ([MFMailComposeViewController canSendMail]) {
-        [self presentViewController:self.shareComposeViewController animated:YES completion:nil];
+        MFMailComposeViewController *shareComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        shareComposeViewController.mailComposeDelegate = self;
+        [shareComposeViewController setMailComposeDelegate:self];
+        [shareComposeViewController setSubject:@"Have you tried this app?"];
+        [shareComposeViewController setMessageBody:kShareText isHTML:NO];
+        [self presentViewController:shareComposeViewController animated:YES completion:nil];
    }
 }
 
 - (void)showSupportEmail{
     if ([MFMailComposeViewController canSendMail]) {
-        [self presentViewController:self.supportComposeViewController animated:YES completion:nil];
+        MFMailComposeViewController *supportComposeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [supportComposeViewController setMailComposeDelegate:self];
+        [supportComposeViewController setToRecipients:@[kSupportEmail]];
+        [supportComposeViewController setSubject:@"Prankstr support"];
+        supportComposeViewController.mailComposeDelegate = self;
+        [self presentViewController:supportComposeViewController animated:YES completion:nil];
     }
 }
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    UIAlertView *alert;
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            alert = [[UIAlertView alloc] initWithTitle:@"Draft Saved" message:@"Mail is saved in draft." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultSent:
+            alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have successfully send email." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case MFMailComposeResultFailed:
+            alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Sorry! Failed to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        default:
+            break;
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)messageComposeViewController:(MFMessageComposeViewController *)controller
-                didFinishWithResult:(MessageComposeResult)result{
-    [controller dismissViewControllerAnimated:YES completion:nil];
-    NSString *messageResult;
-    if (result == MessageComposeResultCancelled){
-        messageResult = @"Message cancelled";
-    } else if (result == MessageComposeResultSent) {
-        messageResult = @"Message sent";
-    } else {
-        messageResult = @"Message failed";
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:messageResult
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
 }
 
 #pragma mark Table View Datasource
